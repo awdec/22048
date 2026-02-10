@@ -97,7 +97,7 @@ export default defineConfig({
             { text: '质数', link: '/math/number theory/prime'},
             { text: '初等数论函数', link: '/math/number theory/function'},
             { text: 'Gcd', link: '/math/number theory/gcd'},
-            { text: '模', link: '/math/number theory/mod1'},
+            { text: '取模运算', link: '/math/number theory/mod1'},
             { text: '同余', link: '/math/number theory/mod'},
             { text: 'Dirichlet 前缀和', link: '/math/number theory/dirichlet'},
             { text: '筛法', link: '/math/number theory/sieve'},

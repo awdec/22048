@@ -4,7 +4,7 @@
 }
 </style>
 
-<h1><center>模</center></h1>
+<h1><center>取模运算</center></h1>
 
 由于“同余”的篇幅过大，模意义的一些基础概念单开一页。
 
