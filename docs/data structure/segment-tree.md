@@ -10,7 +10,7 @@
 
 ​普通线段树是一棵二叉树，zkw 线段树是一棵满二叉树，同样采用堆式建树。因为其满二叉树的性质，使得它能容易地获取叶子节点编号，也可以通过位运算简单地获取区间。具有代码短，常数小的优点。
 
-了解即可，实用价值不大。
+了解即可，实用价值有，但是不大。
 
 ​以维护加法为例。
 
@@ -30,11 +30,13 @@ void build(int m, vector<int> &a) {
 
 ### 单点修改：
 
-​从叶子层不断跳父节点即可。
+修改叶子后，自底向上 `push_up` 即可。
 
 ```cpp
 void update(int x, int v) {
-    for (int cur = n + x; cur; cur >>= 1) tr[cur].sum += v;
+    tr[n + x].sum += v;
+    for (int cur = (n + x) >> 1; cur; cur >>= 1)
+        tr[cur].sum = tr[cur << 1].sum + tr[cur << 1 | 1].sum;
 }
 ```
 
@@ -42,7 +44,7 @@ void update(int x, int v) {
 
 ​先将左右端点分别变为 $l-1,r+1$，不断判断：当前左端点是否是其父节点的左儿子，若是则更新其兄弟节点（即其父节点的右儿子）；当前右端点是否是其父节点的右儿子，若是则更新其兄弟节点的（即其父节点的左儿子）。更新完后左右端点同时跳向父节点，当左右端点互为兄弟节点时终止循环。
 
-​因为 zkw 线段树是自下而上更新的，所以不能使用懒标记（无法下传）。所以只能使用标记永久化。
+​因为 zkw 线段树是自下而上更新的，所以不能使用懒标记（无法下传），只能使用标记永久化。
 
 ```cpp
 void update(int l, int r, int v) {
@@ -59,7 +61,7 @@ void update(int l, int r, int v) {
 
 ```cpp
 int query(int x) {
-    int res = tr[n + x].sum;
+    int res = tr[n + x];
     for (int cur = n + x; cur; cur >>= 1) res += tr[cur].tag;
     return res;
 }
@@ -73,11 +75,16 @@ int query(int x) {
 int query(int l, int r) {
     int res = 0;
     for (l = n + l - 1, r = n + r + 1; (l | 1) != r; l >>= 1, r >>= 1) {
-        res += (l & 1 ^ 1) * tr[l ^ 1].sum + (r & 1) * tr[r ^ 1].sum;
+        if (l & 1 ^ 1)
+            res += tr[l ^ 1].sum + tr[l ^ 1].tag;
+        if (r & 1)
+            res += tr[r ^ 1].sum + tr[r ^ 1].tag;
     }
     return res;
 }
 ```
+
+zkw 线段树做单点修改、区间询问，没有问题。也容易实现线段树上二分。瓶颈在于无法下传标记，在区间修改上局限性较大，同时因为形态是固定的，所以当然没有可持久化版本。
 
 ## 猫树
 
