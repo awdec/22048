@@ -12,6 +12,15 @@
 
 出于实际使用情况考虑，省略链表维护的介绍。
 
+## init
+
+```cpp
+void init(int l, int r){
+    mp.clear();
+    mp[l] = mp[r + 1] = - 1;
+}
+```
+
 ## split
 
 ```cpp
