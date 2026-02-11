@@ -323,6 +323,8 @@ struct Splay {
     void push_up(int p) { tr[p].sz = tr[ls(p)].sz + tr[rs(p)].sz + tr[p].cnt; }
     void rotate(int x) {
         int y = tr[x].fa, z = tr[y].fa;
+        // push_down(y); 如果需要 push_down 的话
+        // push_down(x);
         bool w = (rs(y) == x);
         tr[z].s[rs(z) == y] = x, tr[x].fa = z;
         tr[y].s[w] = tr[x].s[w ^ 1], tr[tr[x].s[w ^ 1]].fa = y;
@@ -348,68 +350,85 @@ struct Splay {
         return idx;
     }
     void init() {
+        for (int i = 1; i <= idx; i++)
+            tr[i] = {0, 0, 0, 0, 0, 0};
+        idx = root = 0;
         tr[++idx] = {0, 2, -inf, 0, 1, 2};
         tr[++idx] = {0, 0, inf, 1, 1, 1};
         root = 1;
     }
-    PII get_pre(int p, int key) {
-        if (!p)
-            return {0, -inf - 1};
-        if (key <= tr[p].key)
-            return get_pre(ls(p), key);
-        auto temp = get_pre(rs(p), key);
-        if (tr[p].key > temp.second)
-            return {p, tr[p].key};
-        return temp;
+    int get_pre(int key, int y = 0) {
+        int x = root, res = 0;
+        while (x) {
+            if (tr[x].key < key) {
+                if (!res || tr[res].key < tr[x].key)
+                    res = x;
+                x = rs(x);
+            } else {
+                x = ls(x);
+            }
+        }
+        // 因为初始化插入了 -inf 所以前驱一定存在
+        splay(res, y);
+        return res;
     }
-    PII get_suf(int p, int key) {
-        if (!p)
-            return {0, inf + 1};
-        if (key >= tr[p].key)
-            return get_suf(rs(p), key);
-        auto temp = get_suf(ls(p), key);
-        if (tr[p].key < temp.second)
-            return {p, tr[p].key};
-        return temp;
+    int get_suf(int key, int y = 0) {
+        int x = root, res = 0;
+        while (x) {
+            if (tr[x].key > key) {
+                if (!res || tr[res].key > tr[x].key)
+                    res = x;
+                x = ls(x);
+            } else {
+                x = rs(x);
+            }
+        }
+        // 因为初始化插入了 inf 所以后继一定存在
+        splay(res, y);
+        return res;
     }
     void insert(int key) {
-        int pre = get_pre(root, key).first, suf = get_suf(root, key).first;
-        splay(pre, 0);
-        splay(suf, pre);
-        if (ls(suf)) {
-            tr[ls(suf)].cnt++;
-            tr[ls(suf)].sz++;
-        } else
-            ls(suf) = make_node(key, suf);
-        push_up(suf), push_up(pre);
+        auto pre = get_pre(key);
+        auto suf = get_suf(key, pre);
+        auto &now = ls(suf);
+        if (now) {
+            tr[now].cnt++;
+        } else {
+            now = make_node(key, suf);
+        }
+        splay(now, 0);
     }
     void remove(int key) {
-        int pre = get_pre(root, key).first, suf = get_suf(root, key).first;
-        splay(pre, 0);
-        splay(suf, pre);
-        if (tr[ls(suf)].cnt > 1) {
-            tr[ls(suf)].cnt--;
-            tr[ls(suf)].sz--;
-        } else
-            ls(suf) = 0;
-        push_up(suf), push_up(pre);
+        auto pre = get_pre(key);
+        auto suf = get_suf(key, pre);
+        auto &now = ls(suf);
+        tr[now].cnt--;
+        if (!tr[now].cnt) {
+            now = 0;
+        } else {
+            splay(now, 0);
+        }
     }
-    PII get_rank_by_key(int p, int key) {
-        if (!p)
-            return {0, 0};
-        if (key == tr[p].key)
-            return {p, tr[ls(p)].sz};
-        if (key < tr[p].key)
-            return get_rank_by_key(ls(p), key);
-        auto temp = get_rank_by_key(rs(p), key);
-        return {temp.first, tr[ls(p)].sz + tr[p].cnt + temp.second};
+    int get_rank_by_key(int key) {
+        // 统计比 key 小的数量，注意 -inf
+        get_pre(key);
+        return tr[root].cnt + tr[ls(root)].sz;
     }
-    PII get_key_by_rank(int p, int rank) {
-        if (tr[ls(p)].sz >= rank)
-            return get_key_by_rank(ls(p), rank);
-        else if (tr[ls(p)].sz + tr[p].cnt >= rank)
-            return {p, tr[p].key};
-        return get_key_by_rank(rs(p), rank - tr[ls(p)].sz - tr[p].cnt);
+    int get_key_by_rank(int rank) {
+        int x = root;
+        rank++; // 需要加上 -inf 的贡献
+        while (x) {
+            if (tr[ls(x)].sz >= rank) {
+                x = ls(x);
+            } else if (tr[ls(x)].sz + tr[x].cnt >= rank) {
+                splay(x, 0);
+                return tr[root].key;
+            } else {
+                rank -= tr[ls(x)].sz + tr[x].cnt;
+                x = rs(x);
+            }
+        }
+        // 没有做存在性检查，上述代码在保证有解的前提下
     }
 } tree;
 ```
@@ -625,3 +644,5 @@ Splay $O(n)$ 建树
 |Fhq-Treap|大|√|√|
 |Splay|最大|√|×|
 |替罪羊树|最小|×|×|
+
+一般情况下大概是这样，但是如果出题人数据造的不够优秀，那么会出现“利好”某些数据结构的情况。

@@ -78,7 +78,7 @@ $$ax+by=\frac{c}{\gcd(a,b)}\times \gcd(a,b)$$
 
 使用 exgcd 求出 $ax+by=\gcd(a,b)$ 的一组特解，乘以 $\frac{c}{\gcd(a,b)}$ 得到 $ax+by=c$ 的一组特解：$x',y'$。
 
-$a(x'+d)+b(y'-e)=c\Rightarrow ad=be\Rightarrow \frac{a}{\gcd(a,b)} d = \frac{b}{\gcd(a,b)} e\Rightarrow d = t\times {b}{\gcd(a,b)}, e = t\times \frac{a}{\gcd(a,b)}$
+$a(x'+d)+b(y'-e)=c\Rightarrow ad=be\Rightarrow \frac{a}{\gcd(a,b)} d = \frac{b}{\gcd(a,b)} e\Rightarrow d = t\times \frac{b}{\gcd(a,b)}, e = t\times \frac{a}{\gcd(a,b)}$
 
 代入原方程，可得：
 
