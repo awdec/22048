@@ -57,3 +57,18 @@ int rnd(int l, int r) {
 vector<int> a;
 shuffle(a.begin(), a.end(), rng);
 ```
+
+
+## nth-element
+
+```cpp
+// 默认升序规则（less<>）
+nth_element(first, nth, last);
+// 自定义比较规则
+nth_element(first, nth, last, cmp);
+// 自定义降序比较规则
+nth_element(nums.begin(), nums.begin() + k - 1, nums.end(),
+                [](int a, int b) { return a > b; });
+```
+
+$O(n)$ 找到第 $k$ 小。

@@ -151,7 +151,7 @@ struct Treap {
 
 ## Fhq-Treep
 
-通常情况下[^6]，Treap 指的是有旋 Treap，即通过旋转操作维护 heap 性质。但是实际上，还存在另一种维护 heap 性质的方式：分裂、合并。一般称之为 Fhq-Treap 或无旋 Treap。
+通常情况下，Treap 指的是有旋 Treap，即通过旋转操作维护 heap 性质。但是实际上，还存在另一种维护 heap 性质的方式：分裂、合并。一般称之为 Fhq-Treap 或无旋 Treap。
 
 ### 分裂：
 
@@ -173,7 +173,7 @@ struct Treap {
 
 ### 合并：
 
-合并接受两个参数：$root_1,root_2$，要求 $root_1$ 为根的 $tree_1$ 中所有节点的键值 $\leq$ $root_2$ 为根的 $tree_2$ 中的所有节点的键值。合并时，要维护 heap 的性质，所以不能随意地把 $root_1,root_2$ 中的一个作为根。若 $Val_1>Val_2$，$root_1$ 作为根，把 $root_1$ 的右子树和 $tree_2$ 递归合并，$root_1$ 的左子树保持不变。若 $Val_1<Val_2$，$root_2$ 作为根，把 $root_2$ 的左子树和 $tree_1$ 递归合并，$root_2$ 的右子树保持不变。因为 Treap 节点的 Val 是随机生成的，所以合并的过程是随机的，此方法能保证时间复杂度是 $O(\log n)$ 的（但是不保证树高时刻是 $O(\log n)$ 的）。
+合并接受两个参数：$root_1,root_2$，要求 $root_1$ 为根的 $tree_1$ 中所有节点的键值 $\leq$ $root_2$ 为根的 $tree_2$ 中的所有节点的键值。合并时，要维护 heap 的性质，所以不能随意地把 $root_1,root_2$ 中的一个作为根。若 $Val_1>Val_2$，$root_1$ 作为根，把 $root_1$ 的右子树和 $tree_2$ 递归合并，$root_1$ 的左子树保持不变。若 $Val_1<Val_2$，$root_2$ 作为根，把 $root_2$ 的左子树和 $tree_1$ 递归合并，$root_2$ 的右子树保持不变。因为 Treap 节点的 Val 是随机生成的，所以合并的过程是随机的，此方法能保证时间复杂度是 $O(\log n)$ 的。
 
 Fhq-Treap 要保证操作结束后还是一整棵树，也就是每一次通过分裂操作实现别的操作后，都要通过合并操作把树合并回去。
 
@@ -432,6 +432,7 @@ struct Splay {
     }
 } tree;
 ```
+Splay 采用迭代实现，一方面是为了方便在操作后进行 splay 操作，另一方面是抵消常数（实际这部分影响比较小）。
 
 ## 替罪羊树
 
@@ -447,19 +448,22 @@ struct Splay {
 
 ### 删除：
 
-因为替罪羊树没有随意修改树形态的操作（重构要求子节点子树大小），所以不能采用一般的删除手段。因为可以采用惰性删除，$cnt$ 为 $0$ 表示这个点已被删除。因为点不会被删除多次，所以 $cnt$ 不为负。
+因为替罪羊树没有随意修改树形态的操作（重构要求子节点子树大小），所以不能采用一般的删除手段。可以采用惰性删除，$cnt$ 为 $0$ 表示这个点已被删除。因为点不会被删除多次，所以 $cnt$ 不为负。
 
 ### 前驱/后继：
 
-因为替罪羊树采用惰性删除，所以查询前驱/后继时，经过的键值不能直接递归。在朴素 BST 中查询元素 $v$ 前驱，若当前的键值 $<v$，则递归右节点查询。因为朴素 BST 中节点上的键值是一定存在的，所以可以向更大的右节点递归。但是在替罪羊树中，当前节点的键值可能不存在，此时不能向右递归，因为可能右子树中不存在前驱，而左子树中还可能有前驱。同时，就算右子树中存在 $cnt$ 不为 $0$ 的点，BST 也不能保证右子树的键值都是不超过 $v$ 的，所以依然不能递归右子树。因此最坏情况下需要遍历整棵 BST。时间复杂度：$O(n)$。
+因为替罪羊树采用惰性删除，所以查询前驱/后继时，经过的键值不能直接递归。在朴素 BST 中查询 $v$ 的前驱时，若当前的键值 $<v$，则递归右子树查询。因为朴素 BST 中节点上的键值是一定存在的，所以可以向更大的右节点递归。但是在替罪羊树中，当前节点的键值可能不存在，此时不能向右递归，因为可能左子树中还可能有前驱。因此最坏情况下需要遍历整棵 BST。时间复杂度：$O(n)$。
 
-如果要直接递归求前驱/后继，为每个点在维护一个子树 $\min,\max$ 即可。
+如果要直接递归求前驱/后继，为每个点再维护一个子树 $\min,\max$ 即可。
 
 另一个简单的实现是，rank 和 K-th 不受惰性删除影响，所以，可以通过 rank 和 K-th 查询前驱/后继。
+
+实践中，虽然通过 rank 和 K-th 查询前驱/后继需要操作两次，但是因为不需要维护 $\min,\max$，所以常数差不多，可能前者还更快一点。
 
 ```cpp
 struct node {
     int ls, rs, key, cnt, sz, s;
+    int maxn, minn;
 };
 struct Tzy_tree {
     node tr[N];
@@ -469,9 +473,19 @@ struct Tzy_tree {
     bool need_rebuild(int p) {
         return alpha * tr[p].s <= (double)max(tr[ls(p)].s, tr[rs(p)].s);
     }
+
     void push_up(int p) {
         tr[p].s = tr[ls(p)].s + tr[rs(p)].s + 1;
         tr[p].sz = tr[ls(p)].sz + tr[rs(p)].sz + tr[p].cnt;
+        if (!tr[p].cnt) {
+            tr[p].maxn = -inf;
+            tr[p].minn = inf;
+        } else {
+            tr[p].maxn = tr[p].minn = tr[p].key;
+        }
+
+        tr[p].maxn = max({tr[p].maxn, tr[ls(p)].maxn, tr[rs(p)].maxn});
+        tr[p].minn = min({tr[p].minn, tr[ls(p)].minn, tr[rs(p)].minn});
     }
     void Flatten(int &id, int p) {
         if (!p)
@@ -496,24 +510,26 @@ struct Tzy_tree {
         p = Rebuild(1, id);
     }
     int make_node(int key) {
-        tr[++idx] = {0, 0, key, 1, 1, 1};
+        tr[++idx] = {0, 0, key, 1, 1, 1, key, key};
         return idx;
     }
     void init() {
-        tr[++idx] = {0, 2, -inf, 1, 2, 2};
-        tr[++idx] = {0, 0, inf, 1, 1, 1};
+        for (int i = 0; i <= idx; i++)
+            tr[i] = {0, 0, 0, 0, 0, 0, -inf, inf};
+        idx = root = 0;
+        tr[++idx] = {0, 2, -inf, 1, 2, 2, inf, -inf};
+        tr[++idx] = {0, 0, inf, 1, 1, 1, inf, inf};
         root = 1;
     }
-    int bad;
     void insert(int &p, int key) {
         if (!p) {
             p = make_node(key);
             return;
         }
-        if (key == tr[p].key) {
-            tr[p].cnt++;
-        } else if (key < tr[p].key) {
+        if (key < tr[p].key) {
             insert(ls(p), key);
+        } else if (key == tr[p].key) {
+            tr[p].cnt++;
         } else {
             insert(rs(p), key);
         }
@@ -521,76 +537,63 @@ struct Tzy_tree {
         if (need_rebuild(p))
             Re(p);
     }
-    void remove(int &p, int key) {
-        if (key == tr[p].key) {
-            if (tr[p].cnt)
-                tr[p].cnt--;
-        } else if (key < tr[p].key) {
+    void remove(int p, int key) {
+        // if (!p) return ;
+        if (key < tr[p].key) {
             remove(ls(p), key);
+        } else if (key == tr[p].key) {
+            tr[p].cnt--;
         } else {
             remove(rs(p), key);
         }
         push_up(p);
-        if (need_rebuild(p))
-            Re(p);
-    }
-    void find(int &p, int key) {
-        if (p == bad) {
-            Re(p);
-            return;
-        }
-        if (key == tr[p].key)
-            return;
-        if (key < tr[p].key)
-            find(ls(p), key);
-        else {
-            find(rs(p), key);
-        }
     }
     int get_rank_by_key(int p, int key) {
         if (!p)
             return 0;
-        if (key <= tr[p].key) {
-            return get_rank_by_key(ls(p), key);
-        }
-        return tr[ls(p)].sz + tr[p].cnt + get_rank_by_key(rs(p), key);
+        if (tr[p].key < key)
+            return tr[p].cnt + tr[ls(p)].sz + get_rank_by_key(rs(p), key);
+        return get_rank_by_key(ls(p), key);
     }
     int get_key_by_rank(int p, int rank) {
+        if (!p)
+            return 0;
         if (tr[ls(p)].sz >= rank)
             return get_key_by_rank(ls(p), rank);
-        else if (tr[ls(p)].sz + tr[p].cnt >= rank)
+        if (tr[ls(p)].sz + tr[p].cnt >= rank)
             return tr[p].key;
         return get_key_by_rank(rs(p), rank - tr[ls(p)].sz - tr[p].cnt);
     }
-    int big(int p, int key) {
-        if (!p)
-            return 1;
-        if (key == tr[p].key && tr[p].cnt)
-            return tr[ls(p)].sz + tr[p].cnt + 1;
-        else if (key < tr[p].key)
-            return big(ls(p), key);
-        return tr[ls(p)].sz + tr[p].cnt + big(rs(p), key);
+    int get_pre(int key) {
+        int x = root, res = -inf;
+        while (x) {
+            if (tr[x].key < key) {
+                if (tr[x].cnt) {
+                    res = max(res, tr[x].key);
+                } else
+                    res = max(res, tr[ls(x)].maxn);
+                x = rs(x);
+            } else {
+                x = ls(x);
+            }
+        }
+        return res;
     }
-    int small(int p, int key) {
-        if (!p)
-            return 0;
-        if (key == tr[p].key && tr[p].cnt)
-            return tr[ls(p)].sz;
-        else if (key > tr[p].key)
-            return tr[ls(p)].sz + tr[p].cnt + small(rs(p), key);
-        return small(ls(p), key);
+    int get_suf(int key) {
+        int x = root, res = inf;
+        while (x) {
+            if (tr[x].key > key) {
+                if (tr[x].cnt) {
+                    res = min(res, tr[x].key);
+                } else
+                    res = min(res, tr[rs(x)].minn);
+                x = ls(x);
+            } else {
+                x = rs(x);
+            }
+        }
+        return res;
     }
-    int at(int p, int rank) {
-        if (!p)
-            return 0;
-        if (tr[ls(p)].sz < rank && rank <= tr[ls(p)].sz + tr[p].cnt)
-            return tr[p].key;
-        else if (tr[ls(p)].sz + tr[p].cnt < rank)
-            return at(rs(p), rank - tr[ls(p)].sz - tr[p].cnt);
-        return at(ls(p), rank);
-    }
-    int get_pre(int p, int key) { return at(p, small(p, key)); }
-    int get_suf(int p, int key) { return at(p, big(p, key)); }
 } tree;
 ```
 
@@ -645,4 +648,6 @@ Splay $O(n)$ 建树
 |Splay|最大|√|×|
 |替罪羊树|最小|×|×|
 
-一般情况下大概是这样，但是如果出题人数据造的不够优秀，那么会出现“利好”某些数据结构的情况。
+WBLT 时间常数可能还要更小一些，再说吧。
+
+一般情况下大概是这样，但是如果出题人数据造的不够优秀，那么会出现“利好”某些数据结构的情况，没办法，自认倒霉/喷出题人吧。
