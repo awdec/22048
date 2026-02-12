@@ -4,7 +4,7 @@
 }
 </style>
 
-<h1><center>贪心</center></h1>
+<h1><center>区间变换</center></h1>
 
 ### 选最少的点覆盖所有区间
 

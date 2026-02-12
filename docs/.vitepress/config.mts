@@ -129,6 +129,7 @@ export default defineConfig({
         {
           text: "杂项",
           items: [
+            {text: '区间变换', link: '/other/interval'},
             {text: '树同构', link: '/other/tree-hash'},
             {text: '哈希', link: '/other/hashing'},
             {text: '优秀的编码习惯', link: '/other/constant'},
