@@ -9,7 +9,7 @@ export default defineConfig({
   // base: "/blog-algorithm/",
   
   head: [
-    ['link', { rel: 'icon', href: '/docs/logo2.ico' }]
+    ['link', { rel: 'icon', href: '/logo2.ico' }]
   ],
 
 
