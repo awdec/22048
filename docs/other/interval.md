@@ -26,7 +26,7 @@ int calc(vector<pii> a) {
 
 同【选最少的点覆盖所有区间】。
 
-### 区间分组
+### 区间分成组内区间无交的最少组数
 
 ```cpp
 int calc(vector<pii> a) {

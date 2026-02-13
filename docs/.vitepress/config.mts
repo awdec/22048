@@ -6,16 +6,16 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lastUpdated: true,
   
-  base: "/blog-algorithm/",
+  // base: "/blog-algorithm/",
   
   head: [
     ['link', { rel: 'icon', href: '/docs/logo2.ico' }]
   ],
 
 
-  title: "Awdec's Blog",
+  title: "awdec's Blog",
   
-  description: "A VitePress Site",
+  description: "awdec 算法-理论",
 
 
 
