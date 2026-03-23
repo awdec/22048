@@ -11,7 +11,7 @@ hero:
     alt: background
   actions:
     - theme: brand
-      text: 算竞，启动！
+      text: welcome
       link: /
     - theme: alt
       text: 关于我
