@@ -71,7 +71,7 @@ void solve() {
 
 ## 带修莫队
 
-### 	算法流程：
+### 算法流程：
 
 ​带修莫队与普通莫队相比，多了一维时间轴表示每修改一次，时间增加 $1$。
 
@@ -157,8 +157,6 @@ void solve() {
 }
 ```
 
-
-
 ## 回滚莫队
 
 ​回滚莫队用于 add 容易维护，del 不易维护的问题，可以将 del 操作转换成 add 操作。
@@ -190,17 +188,14 @@ void add(int x) {
         将 a[x] 加入答案
     */
 }
-void del(int x) {
-    /*
-        将 a[x] 删去
-    */
-}
+
 void solve() {
 
     for (int i = 1; i <= n; i++)
         kind[i] = (i - 1) / B;
 
     sort(q + 1, q + 1 + m);
+
     int i = 1, l, r;
     while (i <= m) {
         int j = i;
@@ -214,33 +209,27 @@ void solve() {
             /*
 			    ans[q[i].id] = ...;
 			*/
-            for (int k = q[i].l; k <= q[i].r; k++)
-                del(k);
+            init(); // 清空信息
             i++;
         }
         res = 0, l = right + 1, r = right;
         while (i < j) {
             while (r < q[i].r)
                 add(++r);
-            long long last = res; // 记录旧的的答案
+            copy() // 把当前的信息拷贝一份
             while (l > q[i].l)
                 add(--l);
             /*
 			    ans[q[i].id] = ...;
 			*/
-            while (l < right + 1)
-                del(l++);
-            res = last; // 回滚
+            l = right + 1;
+            rcopy() // 回滚到旧信息
             i++;
         }
-        /*
-		    清空信息
-		*/
+        init(); // 清空信息
     }
 }
 ```
-
-
 
 ## 树上莫队
 
