@@ -182,3 +182,67 @@ void copy(int now, int cur) {
     sz.root[now] = sz.root[cur];
 }
 ```
+
+## 赋值并查集
+
+维护把集合中所有 $x$ 修改成 $y$，查询初始 $x$ 当前是什么值。
+
+```cpp
+struct merge_dsu
+{
+    int fa[N], sz[N], val[N], belong[N];
+    bool exist[N];
+    void init(int n)
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            fa[i] = i;
+            sz[i] = 1;
+            val[i] = i;
+        }
+    }
+    void init(vector<int> &a)
+    {
+        for (auto u : a)
+        {
+            exist[u] = 1;
+            belong[u] = u;
+        }
+    }
+    int find(int x)
+    {
+        return fa[x] == x ? x : fa[x] = find(fa[x]);
+    }
+    int merge(int x, int y, int z)
+    {
+        x = find(x), y = find(y);
+        if (sz[x] > sz[y])
+            swap(x, y);
+        fa[x] = y;
+        sz[y] += sz[x];
+        val[y] = z;
+        return y;
+    }
+    void modify(int x, int y)
+    {
+        if (x == y)
+            return;
+        if (!belong[x])
+            return;
+        int rx = find(belong[x]);
+        if (!belong[y])
+        {
+            belong[y] = rx;
+            belong[x] = 0;
+            val[rx] = y;
+        }
+        else
+        {
+            int ry = find(belong[y]);
+            int root = merge(rx, ry, y);
+            belong[y] = root;
+            belong[x] = 0;
+        }
+    }
+};
+```

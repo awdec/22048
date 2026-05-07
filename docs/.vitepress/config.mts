@@ -68,6 +68,7 @@ export default defineConfig({
             { text: 'cdq 分治', link: '/data structure/cdq'},
             { text: '整体二分', link: '/data structure/dfs'},
             { text: '珂朵莉树', link: '/data structure/odt'},
+            { text: 'bitset', link: '/data structure/bitset'},
           ]
         }
       ],
@@ -205,16 +206,6 @@ export default defineConfig({
         }
         
       ],
-
-      // '/sundry' :[
-      //   {
-      //     text: '杂项',
-      //     items:[
-      //       { text: '/hashing', link: '/'},
-      //       { text: '/constant', link: '/'},
-      //     ]
-      //   }
-      // ]
 
     },
 

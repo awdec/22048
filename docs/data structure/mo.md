@@ -6,6 +6,8 @@
 
 <h1><center>莫队</center></h1>
 
+默认的莫队时间复杂度分析仅考虑指针移动的次数，具体问题中，还需要考虑指针移动时维护信息的时间复杂度，和处理询问答案时的时间复杂度，因此具体实现时，可以根据这个均衡块长。
+
 ## 普通莫队
 
 ​普通莫队是一个基于分块的离线解决静态区间询问问题的算法。
@@ -172,7 +174,7 @@ void solve() {
 
 ### 时间复杂度分析：
 
-​时间复杂度与普通莫队一致。
+处理过程中，右端点移动 $O(n)$，有 $O(\dfrac{n}{B})$，总 $O(\dfrac{n^2}{B})$，左端点均摊每个询问移动 $O(B)$，总 $O(mB)$。
 
 ```c++
 struct node {
@@ -188,20 +190,23 @@ void add(int x) {
         将 a[x] 加入答案
     */
 }
+void init(){
+
+}
 
 void solve() {
 
     for (int i = 1; i <= n; i++)
-        kind[i] = (i - 1) / B;
+        kind[i] = (i - 1) / B + 1;
 
     sort(q + 1, q + 1 + m);
 
-    int i = 1, l, r;
+    int i = 1, l, r, res = 0;
     while (i <= m) {
         int j = i;
         while (j <= m && kind[q[i].l] == kind[q[j].l])
             j++;
-        int right = min(n, (kind[q[i].l] + 1) * B);
+        int right = min(n, kind[q[i].l] * B);
         while (i < j && q[i].r <= right) {
             res = 0;
             for (int k = q[i].l; k <= q[i].r; k++)
@@ -212,18 +217,24 @@ void solve() {
             init(); // 清空信息
             i++;
         }
-        res = 0, l = right + 1, r = right;
+        l = right + 1, r = right;
         while (i < j) {
             while (r < q[i].r)
                 add(++r);
-            copy() // 把当前的信息拷贝一份
+            /*
+                拷贝旧信息
+            */
             while (l > q[i].l)
                 add(--l);
             /*
 			    ans[q[i].id] = ...;
 			*/
-            l = right + 1;
-            rcopy() // 回滚到旧信息
+            while(l < right + 1){
+                l++;// 回滚
+            }
+            /*
+                回滚到旧信息
+            */
             i++;
         }
         init(); // 清空信息
