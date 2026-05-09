@@ -212,66 +212,62 @@ void solve() {
 ```cpp
 struct node {
     int l, r, t, id;
-    bool operator<(const node &x) const {
+    bool operator<(const node &x) const
+    {
         if (kind[l] != kind[x.l])
-            return kind[l] < kind[x.l];
+            return l < x.l;
         if (kind[r] != kind[x.r])
-            return kind[r] < kind[x.r];
-        return t < x.t;
+            return (kind[l] & 1) ? r < x.r : r > x.r;
+        return (kind[r] & 1) ? t < x.t : t > x.t;
     }
 };
-void add(int x) {
-    /*
-    	将 x 加入答案
-    */
-}
-void del(int x) {
-    /*
-    	将 x 删去
-    */
-}
 void solve() {
     for (int i = 1; i <= n; i++)
         kind[i] = (i - 1) / B;
 
     for (int i = 1; i <= m; i++) {
         {
-            idx1++;
-            q[idx1] = {l, r, idx1, idx2};
+            m1++;
+            q[m1] = {l, r, m1, m2};
         }
         {
-            c[++idx2] = {x, v};
+            c[++m2] = {x, v};
         }
     }
 
-    sort(q + 1, q + 1 + idx1);
+    sort(q + 1, q + 1 + m1);
+    auto add = [&](int x) ->{
 
+    };
+    auto del = [&](int x) ->{
+
+    };
     int l = 1, r = 0, t = 0;
-    for (int i = 1; i <= idx1; i++) {
+    for (int i = 1; i <= m1; i++) {
         while (q[i].l < l) add(a[--l]);
+        while (q[i].r > r) add(a[++r]);
         while (q[i].l > l) del(a[l++]);
         while (q[i].r < r) del(a[r--]);
-        while (q[i].r > r) add(a[++r]);
         while (t < q[i].t)
         {
             t++;
-            auto [now, cur] = c[t];
+            auto &[now, cur] = c[t];
             if (now >= l && now <= r)
             {
                 del(a[now]);
                 add(cur);
             }
-            swap(a[now], c[t].second);
+            swap(a[now], cur);
         }
         while (t > q[i].t)
         {
-            auto [now, cur] = c[t];
+            auto &[now, cur] = c[t];
             if (now >= l && now <= r)
             {
                 del(a[now]);
                 add(cur);
             }
-            swap(a[now], c[t].second);
+            swap(a[now], cur);
             t--;
         }
         /*
