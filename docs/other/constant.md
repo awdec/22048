@@ -93,6 +93,93 @@
 
 同时，因为部分平台问题，实际情况会有差异。
 
+```cpp
+namespace IO
+{
+    char buf[1 << 21], *p1 = buf, *p2 = buf;
+    static inline char gc()
+    {
+        if (p1 == p2)
+        {
+            p2 = (p1 = buf) + fread(buf, 1, 1 << 21, stdin);
+            if (p1 == p2)
+                return EOF;
+        }
+        return *p1++;
+    }
+    static inline int read()
+    {
+        int x = 0, f = 1;
+        char c = gc();
+        if (c == '-')
+            f = -1;
+        while (c < '0' || c > '9')
+        {
+            c = gc();
+            if (c == '-')
+                f = -1;
+        }
+        while (c >= '0' && c <= '9')
+        {
+            x = x * 10 + c - '0';
+            c = gc();
+        }
+        return x * f;
+    }
+    static inline char read_char()
+    {
+        char c = gc();
+        while (c == ' ' || c == '\n' || c == '\r' || c == '\t')
+        {
+            c = gc();
+        }
+        return c;
+    }
+
+    char out_buf[1 << 21];
+    int out_pos = 0;
+    static inline void flush()
+    {
+        fwrite(out_buf, 1, out_pos, stdout);
+        out_pos = 0;
+    }
+    static inline void pc(char c)
+    {
+        if (out_pos == (1 << 21))
+            flush();
+        out_buf[out_pos++] = c;
+    }
+
+    static inline void write(long long x)
+    {
+        static char stk[25];
+        int top = 0;
+
+        if (x < 0)
+        {
+            pc('-');
+            x = -x;
+        }
+
+        if (x == 0)
+            pc('0');
+
+        while (x)
+        {
+            stk[++top] = x % 10 + '0';
+            x /= 10;
+        }
+        while (top)
+            pc(stk[top--]);
+        pc('\n');
+    }
+}
+using IO::flush;
+using IO::read;
+using IO::read_char;
+using IO::write;
+```
+
 ## 快速取模
 
 |取模方式|P3373 线段树 2|5e8 次 rand×rand 求和|
