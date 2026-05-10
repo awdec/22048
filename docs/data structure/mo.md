@@ -30,9 +30,9 @@
 
 #### 时间复杂度分析：
 
-​综上：处理完 $m$ 个询问，$l,r$ 指针的总移动次数为：$O(\frac{n^2}{t}+mt)$。
+​综上：处理完 $m$ 个询问，$l,r$ 指针的总移动次数为：$O(\dfrac{n^2}{t}+mt)$。
 
-​当 $t=\frac{n}{\sqrt m}$ 时，时间复杂度最优为：$O(n\sqrt m)$。
+​当 $t=\dfrac{n}{\sqrt m}$ 时，时间复杂度最优为：$O(n\sqrt m)$。
 
 ​认为 $n,m$ 同阶，所以直接取 $\sqrt n$。
 
@@ -331,7 +331,7 @@ $r$ 指针移动过程中总贡献为 $\sum\limits_{x=r+1}^{r'}(g(a[x],x-1)-g(a[
 
 第一部分，令 $h(x)=g(a[x],x-1)$，可以写成 $h(r')-h(r)$，预处理 $h(x)$ 即可。
 
-第二部分，以一个区间形式「二次离线」，需要被计算的 $g(a[x],l-1)$ 数量规模同原莫队指针移动次数规模 $O(n\sqrt m)$。
+第二部分，以一个区间形式「二次离线」（目的是做到线性空间），需要被计算的 $g(a[x],l-1)$ 数量规模同原莫队指针移动次数规模 $O(n\sqrt m)$。
 
 剩下三种指针移动情况类似，具体贡献范围下标略有区别。
 
@@ -344,9 +344,9 @@ $r$ 指针移动过程中总贡献为 $\sum\limits_{x=r+1}^{r'}(g(a[x],x-1)-g(a[
 
 ::: details 点击展开代码
 ```cpp
-auto addEvent = [&](int p, int L, int R, int id, int coef)
+auto addEvent = [&](int p, int L, int R, int id, int k)
 {
-    event[p].push_back({L, R, id, coef});
+    event[p].push_back({L, R, id, k});
 };
 
 for (int i = 1; i <= m; i++)
