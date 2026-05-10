@@ -102,7 +102,7 @@ void solve() {
 
 ::: details 点击展开代码
 
-```c++
+```cpp
 struct node {
     int l, r, id;
     bool operator<(const node &t) const {
@@ -314,9 +314,82 @@ void solve() {
 
 ### 二次离线莫队
 
-#### 算法流程
+#### 算法流程：
+
+普通莫队进行指针移动时，如果 add 和 del 操作的时间复杂度不为 $O(1)$，那么时间复杂度会变劣，如果这一部分贡献可以通过前缀和差分的方式离线计算，那么就可以去掉这一部分的时间复杂度。
 
 
+具体而言，处理每一个询问的指针移动时，$l,r$ 只会向某一侧单调移动且不会出现 $l>r$ 的情况。
+
+以 $[l,r]$ 移动到 $[l,r'],r'>r$ 为例，每次 add 的贡献为 $f(a[x],l,x-1),x\in[r+1,r']$。
+
+如果 $f$ 可差分，那么 $f(a[x],l,x-1)=g(a[x],x-1)-g(a[x],l-1)$。
+
+$r$ 指针移动过程中总贡献为 $\sum\limits_{x=r+1}^{r'}(g(a[x],x-1)-g(a[x],l-1))$。
+
+继续拆成两部分：$\sum\limits_{x=r+1}^{r'}g(a[x],x-1)-\sum\limits_{x=r+1}^{r'}g(a[x],l-1)$。
+
+第一部分，令 $h(x)=g(a[x],x-1)$，可以写成 $h(r')-h(r)$，预处理 $h(x)$ 即可。
+
+第二部分，以一个区间形式「二次离线」，需要被计算的 $g(a[x],l-1)$ 数量规模同原莫队指针移动次数规模 $O(n\sqrt m)$。
+
+剩下三种指针移动情况类似，具体贡献范围下标略有区别。
+
+**注意最后要将询问的贡献按莫队排序后的顺序前缀累计。**
+
+#### 时间复杂度分析：
+
+第二部分的贡献仍然计算 $O(n\sqrt m)$ 次，剩下部分的瓶颈为计算前缀信息的时间复杂度，需要结合具体问题分析。
+
+
+::: details 点击展开代码
+```cpp
+auto addEvent = [&](int p, int L, int R, int id, int coef)
+{
+    event[p].push_back({L, R, id, coef});
+};
+
+for (int i = 1; i <= m; i++)
+{
+    int ql = q[i].l, qr = q[i].r, id = q[i].id;
+    if (ql < l)
+    {
+        int L = ql;
+        int R = l - 1;
+        addEvent(r, L, R, id, 1);
+        ans[id] -= sum2(L, R);
+        l = ql;
+    }
+
+    if (qr > r)
+    {
+        int L = r + 1;
+        int R = qr;
+        ans[id] += sum1(L, R);
+        addEvent(l - 1, L, R, id, -1);
+        r = qr;
+    }
+
+    if (ql > l)
+    {
+        int L = l;
+        int R = ql - 1;
+        addEvent(r, L, R, id, -1);
+        ans[id] += sum2(L, R);
+        l = ql;
+    }
+
+    if (qr < r)
+    {
+        int L = qr + 1;
+        int R = r;
+        ans[id] -= sum1(L, R);
+        addEvent(l - 1, L, R, id, 1);
+        r = qr;
+    }
+}
+```
+:::
 
 ## 在线莫队
 
