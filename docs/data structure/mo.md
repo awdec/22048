@@ -45,9 +45,9 @@
 ::: details 点击展开代码
 
 ```c++
-struct node {
+struct Query {
     int l, r, id;
-    bool operator<(const node &t) const {
+    bool operator<(const Query &t) const {
         return (kind[l] ^ kind[t.l]) ? kind[l] < kind[t.l]
                                      : ((kind[l] & 1) ? r < t.r : r > t.r);
     }
@@ -103,22 +103,14 @@ void solve() {
 ::: details 点击展开代码
 
 ```cpp
-struct node {
+struct Query {
     int l, r, id;
-    bool operator<(const node &t) const {
+    bool operator<(const Query &t) const {
         if (kind[l] != kind[t.l])
             return kind[l] < kind[t.l];
         return r < t.r;
     }
 } q[N];
-void add(int x) {
-    /*
-        将 a[x] 加入答案
-    */
-}
-void init(){
-
-}
 
 void solve() {
 
@@ -128,6 +120,9 @@ void solve() {
     sort(q + 1, q + 1 + m);
 
     int i = 1, l, r, res = 0;
+    auto add = [&](){
+
+    };
     while (i <= m) {
         int j = i;
         while (j <= m && kind[q[i].l] == kind[q[j].l])
@@ -140,7 +135,7 @@ void solve() {
             /*
 			    ans[q[i].id] = ...;
 			*/
-            init(); // 清空信息
+            // 清空信息
             i++;
         }
         l = right + 1, r = right;
@@ -163,7 +158,7 @@ void solve() {
             */
             i++;
         }
-        init(); // 清空信息
+        // 清空信息
     }
 }
 ```
@@ -219,13 +214,19 @@ void solve() {
 
 ​认为序列大小 $n$，询问次数 $m$，修改次数 $t$ 同阶，块长取 $n^{\frac{2}{3}}$ 时，时间复杂度最优，为 $O(n^{\frac{5}{3}})$。
 
+
+#### 优化：
+
+和普通莫队奇偶排序类似地，带修莫队多一维，进行蛇形排序。
+
+
 ::: details 点击展开代码
 
 
 ```cpp
-struct node {
+struct Query {
     int l, r, t, id;
-    bool operator<(const node &x) const
+    bool operator<(const Query &x) const
     {
         if (kind[l] != kind[x.l])
             return l < x.l;
@@ -296,6 +297,8 @@ void solve() {
 
 ​树上莫队就是莫队上树，询问树上路径信息，因为莫队通过 add 和 del 维护信息，所以在括号序上跑莫队即可。括号序会通过一次 add 和一次 del 将树上两点的 LCA 的祖先信息去掉。
 
+如果是询问子树信息，那么通常通过 dfs 序转换成连续的区间处理，后续同其他莫队。
+
 #### 算法流程：
 
 通过「欧拉序」将树上的一条路径转换成序列上一段连续的区间。
@@ -308,6 +311,8 @@ void solve() {
 
 指针移动时，维护变化元素的奇偶次数，奇相当于加入，偶相当于删去。
 
+注：不难发现，树上莫队维护时，必定需要支持 add 和 del，所以不能处理「树上回滚莫队」。
+
 #### 时间复杂度分析：
 
 与普通莫队一致。
@@ -317,7 +322,6 @@ void solve() {
 #### 算法流程：
 
 普通莫队进行指针移动时，如果 add 和 del 操作的时间复杂度不为 $O(1)$，那么时间复杂度会变劣，如果这一部分贡献可以通过前缀和差分的方式离线计算，那么就可以去掉这一部分的时间复杂度。
-
 
 具体而言，处理每一个询问的指针移动时，$l,r$ 只会向某一侧单调移动且不会出现 $l>r$ 的情况。
 
@@ -332,6 +336,8 @@ $r$ 指针移动过程中总贡献为 $\sum\limits_{x=r+1}^{r'}(g(a[x],x-1)-g(a[
 第一部分，令 $h(x)=g(a[x],x-1)$，可以写成 $h(r')-h(r)$，预处理 $h(x)$ 即可。
 
 第二部分，以一个区间形式「二次离线」（目的是做到线性空间），需要被计算的 $g(a[x],l-1)$ 数量规模同原莫队指针移动次数规模 $O(n\sqrt m)$。
+
+回滚莫队二次离线同理。
 
 剩下三种指针移动情况类似，具体贡献范围下标略有区别。
 
