@@ -109,7 +109,7 @@ struct node
     int cnt;
 };
 
-struct FastTrie
+struct PatriciaTrie
 {
     node tr[N << 1];
     int root, idx;
