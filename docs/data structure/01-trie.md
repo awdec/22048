@@ -13,6 +13,8 @@
 
 01-Trie 空间复杂度为 $O(n\log n)$。
 
+::: details 点击展开代码
+
 ```cpp
 struct Trie01 {
     int root, idx;
@@ -43,12 +45,16 @@ struct Trie01 {
 };
 ```
 
+:::
+
 
 ### 可持久化 01-Trie
 
 一般可持久化 Trie 仅用于 01-Trie，通过差分可维护区间二进制信息。
 
 由于 Trie 的特殊性，进行可持久化不需要额外空间，空间复杂度仍为：$O(n\log n)$。
+
+::: details 点击展开代码
 
 ```cpp
 struct PTrie01 {
@@ -85,6 +91,8 @@ struct PTrie01 {
 };
 ```
 
+:::
+
 ### 压缩 01-Trie
 
 Patricia Trie
@@ -93,7 +101,7 @@ Patricia Trie
 
 不分叉时，单链的递归路径是唯一的，那么就可以尝试把它压缩起来。
 
-> 对于一棵除了叶子，其他节点度数都是 $2$ 的树而言，非叶子数 $=$ 叶子数 $-1$。
+> 引理：对于一棵除了叶子，其他节点儿子数都是 $2$ 的树而言，非叶子数 $=$ 叶子数 $-1$。
 
 叶子数为插入的元素数量，为 $n$，那么 Patricia Trie 的需要的节点数即为 $2n$。
 
@@ -196,3 +204,237 @@ struct PatriciaTrie
 
 
 Patricia Trie 同样可以持久化，但是时空复杂度与可持久化 01-Trie 一致，所以不作展开。
+
+
+### 压位 01-Trie
+
+压位 01-Trie 本质是一棵 $w$ 叉树（通常 $w=64$，即计算机 `unsigned long long` 的位数）。
+
+每个节点用一个 `unsigned long long` 压缩儿子节点状态，如果 $mask$ 的第 $i$ 为 $1$ 表示第 $i$ 个儿子存在。这样建出来的树高是 $O(\log_{64}V)$，其中 $V$ 表示的值域大小。
+
+通过位运算计算访问相应的节点。
+
+因为压位 01-Trie 只存储「是否存在儿子」的信息，所以不显示建树，直接将每一层的节点拍平成数组。
+
+默认维护不可重集，空间复杂度：$O(\dfrac{V}{w})$，如果维护可重集，需要增加一个计数数组，使用静态数组或者哈希表，空间复杂度变劣。
+
+所有操作时间复杂度均为 $O(\log_wV)$。
+
+#### 插入/删除
+
+遍历每一层，更新对应节点的儿子节点状态即可。
+
+#### 前驱/后继
+
+先自下而上，向前/后找到第一个可转向的层（也就是子树存在叶子的节点），再向下找到那个点。
+
+#### 最大值/最小值
+
+其实可以直接转换成判断值域的边界是否存在后查前驱后继。
+
+自上而下，找到最高/最低位 $1$ 即可。
+
+::: details 点击展开代码
+```cpp
+struct FastTrie
+{
+    int V;
+    vector<vector<u64>> tr;
+    vector<int> nbits;
+    void init(int V)
+    {
+        this->V = V;
+        tr.clear();
+        nbits.clear();
+        int idx = 0;
+        int now = V + 1;
+        while (1)
+        {
+            idx++;
+            int cur = (now + 63) >> 6;
+            if (cur == 1)
+                break;
+            now = cur;
+        }
+        tr.reserve(idx);
+        nbits.reserve(idx);
+        now = V + 1;
+        while (1)
+        {
+            nbits.emplace_back(now);
+            int cur = (now + 63) >> 6;
+            tr.emplace_back(cur, 0ULL);
+            if (cur == 1)
+                break;
+            now = cur;
+        }
+    }
+    int lowbit_pos(u64 x)
+    {
+        return __builtin_ctzll(x);
+    }
+
+    int highbit_pos(u64 x)
+    {
+        return 63 - __builtin_clzll(x);
+    }
+
+    u64 prefix_mask(int b)
+    {
+        return b == 63 ? ~0ULL : ((1ULL << (b + 1)) - 1);
+    }
+
+    bool empty()
+    {
+        return tr.empty() || tr.back()[0] == 0;
+    }
+
+    int next_in_dep(int dep, int pos)
+    {
+        if (pos >= nbits[dep])
+            return -1;
+        int w = pos >> 6;
+        int b = pos & 63;
+        u64 cur = tr[dep][w] & (~0ULL << b);
+        if (cur)
+        {
+            int res = (w << 6) + lowbit_pos(cur);
+            return res < nbits[dep] ? res : -1;
+        }
+        if (dep + 1 >= tr.size())
+            return -1;
+        int nw = next_in_dep(dep + 1, w + 1);
+        if (nw == -1)
+            return -1;
+        int res = (nw << 6) + lowbit_pos(tr[dep][nw]);
+        return res < nbits[dep] ? res : -1;
+    }
+
+    int prev_in_dep(int dep, int pos)
+    {
+        if (pos < 0)
+            return -1;
+        if (pos >= nbits[dep])
+            pos = nbits[dep] - 1;
+        int w = pos >> 6;
+        int b = pos & 63;
+        u64 cur = tr[dep][w] & prefix_mask(b);
+        if (cur)
+        {
+            int res = (w << 6) + highbit_pos(cur);
+            return res < nbits[dep] ? res : -1;
+        }
+        if (dep + 1 >= tr.size())
+            return -1;
+        int pw = prev_in_dep(dep + 1, w - 1);
+        if (pw == -1)
+            return -1;
+        int res = (pw << 6) + highbit_pos(tr[dep][pw]);
+        return res < nbits[dep] ? res : -1;
+    }
+    bool contains(int x)
+    {
+        int w = x >> 6;
+        int b = x & 63;
+        return (tr[0][w] >> b) & 1ULL;
+    }
+    void insert(int x)
+    {
+        int w0 = x >> 6;
+        int b0 = x & 63;
+        u64 m0 = 1ULL << b0;
+        if (tr[0][w0] & m0)
+            return;
+        int id = x;
+        for (int dep = 0; dep < tr.size(); dep++)
+        {
+            int w = id >> 6;
+            int b = id & 63;
+            u64 m = 1ULL << b;
+            u64 old = tr[dep][w];
+            tr[dep][w] |= m;
+            if (old)
+                break;
+            id = w;
+        }
+    }
+    void erase(int x)
+    {
+        int w0 = x >> 6;
+        int b0 = x & 63;
+        u64 m0 = 1ULL << b0;
+        if (!(tr[0][w0] & m0))
+            return;
+        int id = x;
+        for (int dep = 0; dep < tr.size(); dep++)
+        {
+            int w = id >> 6;
+            int b = id & 63;
+            u64 m = 1ULL << b;
+            tr[dep][w] &= ~m;
+            if (tr[dep][w])
+                break;
+            id = w;
+        }
+    }
+    int get_min()
+    {
+        if (empty())
+            return 0;
+        int top = tr.size() - 1;
+        int id = lowbit_pos(tr[top][0]);
+        for (int dep = top - 1; dep >= 0; dep--)
+        {
+            id = (id << 6) + lowbit_pos(tr[dep][id]);
+        }
+        return id;
+    }
+    int get_max()
+    {
+        if (empty())
+            return 0;
+        int top = tr.size() - 1;
+        int id = highbit_pos(tr[top][0]);
+        for (int dep = top - 1; dep >= 0; dep--)
+        {
+            id = (id << 6) + highbit_pos(tr[dep][id]);
+        }
+        return id;
+    }
+    int get_prev(int x)
+    {
+        if (x <= 1 || empty())
+            return 0;
+        int p = min(x - 1, V);
+        int res = prev_in_dep(0, p);
+        return res >= 1 ? res : 0;
+    }
+    int get_next(int x)
+    {
+        if (x >= V || empty())
+            return 0;
+        int p = max(1, x + 1);
+        int res = next_in_dep(0, p);
+        return res >= 1 && res <= V ? res : 0;
+    }
+};
+```
+:::
+
+### 动态开点压位 01-Trie
+
+如果值域达到 $10^{8}$ 甚至更大，那么静态数组就不能支持了。
+
+一个办法是直接恢复到显式地把树建出来（因为 01-Trie 本来就是动态开点的，所以其实就是恢复到了原本的写法），但是这样要存儿子节点的编号。
+
+如果直接存，空间复杂度为 $O(nw\log_wV)$，使用 `map` 维护儿子，时空复杂度均多乘一个 $O(\log w)$，优势变小。
+
+可以用于集合大小不大，但是询问次数爆炸、值域爆炸，并且强制在线的情况。
+
+
+
+::: details 点击展开代码
+```cpp
+// 没啥用，暂略
+```
+:::
