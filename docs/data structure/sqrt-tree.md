@@ -7,11 +7,11 @@
 <h1><center>Sqrt Tree</center></h1>
 
 
+## Sqrt Tree
+
 ​Sqrt Tree 可以 $O(n\log\log n)$ 预处理，$O(1)$ 区间询问，支持 $O(\sqrt n)$ 单点修改。
 
 但是采用 `vector` 实现常数貌似有点太大了，码量也很大，仅供参考。娱乐性大于实用性。
-
-## 询问：
 
 ​考虑序列分块，将原序列分成 $\sqrt n$ 块，每块长 $\sqrt n$，每一块内维护前后缀，若询问区间不在同一块内，将首尾散块前后缀拼接，中间整块整取，时间复杂度 $O(\sqrt n)$，若再预处理 $B[i][j]$ 表示第 $i$ 块到第 $j$ 的区间和，预处理时间复杂度 $O(n)$。询问时中间的整块就可以 $O(1)$ 的得到结果，时间复杂度 $O(1)$。若询问区间在同一块内，无法表示，暴力维护时间复杂度：$O(\sqrt n)$。
 
@@ -29,100 +29,223 @@
 
 ​实际维护的时候，不用显式建树，只要维护若干层的分块即可。
 
-```cpp
-struct sqr_tree {
-    int k;
-    vector<vector<vector<int>>> B;
-    vector<vector<int>> pre, suf;
-    int id(int x) { return (x - 1) / (1 << k) + 1; }
-    int l(int x) { return (1 << k) * (x - 1) + 1; }
-    int r(int x) { return (1 << k) * x; }
-    void init(int k, int n, vector<int> &a, bool w) {
-        this->k = k;
-        int idx = id(n);
-        for (int i = 1; i <= idx; i++) {
-            vector<int> temp;
-            int l = this->l(i), r = this->r(i);
-            for (int j = l; j <= r; j++) {
-                if (temp.empty())
-                    temp.push_back(a[j]);
-                else
-                    temp.push_back(max(a[j], temp.back()));
-            }
-            pre.push_back(temp);
-            temp.clear();
-            for (int j = r; j >= l; j--) {
-                if (temp.empty())
-                    temp.push_back(a[j]);
-                else
-                    temp.push_back(max(a[j], temp.back()));
-            }
-            suf.push_back(temp);
-        }
-        if (!w) {
-            vector<vector<int>> tmp;
-            for (int i = 1; i <= idx; i++) {
-                vector<int> temp;
-                for (int j = i; j <= idx; j++) {
-                    if (temp.empty())
-                        temp.push_back(pre[j - 1].back());
-                    else
-                        temp.push_back(max(pre[j - 1].back(), temp.back()));
-                }
-                tmp.push_back(temp);
-            }
-            B.push_back(tmp);
-        } else {
-            for (i = 1; i <= n; i += (1 << (k + k))) {
-                int now = id(i), cur = id(i + (1 << (k + k)) - 1);
-                vector<vector<int>> tmp;
-                for (int j = now; j <= cur; j++) {
-                    vector<int> temp;
-                    for (int l = j; l <= cur; l++) {
-                        if (temp.empty())
-                            temp.push_back(pre[l - 1].back());
-                        else
-                            temp.push_back(max(pre[l - 1].back(), temp.back()));
-                    }
-                    tmp.push_back(temp);
-                }
-                B.push_back(tmp);
-            }
-        }
-    }
-    bool in(int l, int r) { return (l ^ r) < (1 << k); }
-    int query(int l, int r, int w) {
-        int res = 0;
-        if (!w) {
-            int s = id(l) + 1, t = id(r) - 1;
-            if (s <= t)
-                res = B[0][s - 1][t - s];
-            s--, t++;
-            res = max(res, suf[s - 1][this->r(s) - l]);
-            res = max(res, pre[t - 1][r - this->l(t)]);
-            return res;
-        } else {
-            int index = (l - 1) / (1 << (k + k));
-            int s = id(l), t = id(r);
-            res = max(res, suf[s - 1][this->r(s) - l]);
-            res = max(res, pre[t - 1][r - this->l(t)]);
-            s++, t--;
-            if (s <= t) {
-                s = (s - 1) % (1 << k) + 1;
-                t = (t - 1) % (1 << k) + 1;
-                res = max(res, B[index][s - 1][t - s]);
-            }
-            return res;
-        }
-    }
-} tree[10];
-```
 
+::: details 点击展开代码
+```cpp
+struct SqrtTree
+{
+    // 对于一般问题，只需要修改这里的 op。
+    static inline int op(int x, int y)
+    {
+        return max(x, y);
+    }
+
+    struct Layer
+    {
+        int n = 0;
+        int k = 0;
+        int S = 0;
+        int block_cnt = 0;
+        bool top_layer = false;
+
+        vector<int> pre, suf;
+        vector<int> between;
+
+        inline int get_between(int lb, int rb) const
+        {
+            if (top_layer)
+            {
+                return between[lb * block_cnt + rb];
+            }
+            else
+            {
+                int g = lb >> k;
+                int li = lb & (S - 1);
+                int ri = rb & (S - 1);
+
+                return between[g * S * S + li * S + ri];
+            }
+        }
+
+        void build(int _k, int _n, const vector<int> &a, bool _top_layer)
+        {
+            k = _k;
+            n = _n;
+            S = 1 << k;
+            top_layer = _top_layer;
+            block_cnt = (n + S - 1) >> k;
+
+            pre.assign(n + 1, 0);
+            suf.assign(n + 1, 0);
+
+            vector<int> whole(block_cnt);
+
+            for (int b = 0; b < block_cnt; b++)
+            {
+                int L = (b << k) + 1;
+                int R = min(n, (b + 1) << k);
+
+                pre[L] = a[L];
+                for (int i = L + 1; i <= R; i++)
+                    pre[i] = SqrtTree::op(pre[i - 1], a[i]);
+
+                suf[R] = a[R];
+                for (int i = R - 1; i >= L; i--)
+                    suf[i] = SqrtTree::op(a[i], suf[i + 1]);
+
+                whole[b] = pre[R];
+            }
+
+            if (top_layer)
+            {
+                between.assign(block_cnt * block_cnt, 0);
+
+                for (int i = 0; i < block_cnt; i++)
+                {
+                    int cur = whole[i];
+                    between[i * block_cnt + i] = cur;
+
+                    for (int j = i + 1; j < block_cnt; j++)
+                    {
+                        cur = SqrtTree::op(cur, whole[j]);
+                        between[i * block_cnt + j] = cur;
+                    }
+                }
+            }
+            else
+            {
+                int group_cnt = (block_cnt + S - 1) >> k;
+
+                between.assign(group_cnt * S * S, 0);
+
+                for (int g = 0; g < group_cnt; g++)
+                {
+                    int start = g * S;
+                    int end = min(block_cnt - 1, start + S - 1);
+
+                    for (int i = start; i <= end; i++)
+                    {
+                        int li = i - start;
+                        int cur = whole[i];
+
+                        between[g * S * S + li * S + li] = cur;
+
+                        for (int j = i + 1; j <= end; j++)
+                        {
+                            cur = SqrtTree::op(cur, whole[j]);
+
+                            int lj = j - start;
+                            between[g * S * S + li * S + lj] = cur;
+                        }
+                    }
+                }
+            }
+        }
+
+        inline int query(int l, int r) const
+        {
+            int bl = (l - 1) >> k;
+            int br = (r - 1) >> k;
+
+            int ans = suf[l];
+
+            if (bl + 1 <= br - 1)
+                ans = SqrtTree::op(ans, get_between(bl + 1, br - 1));
+
+            ans = SqrtTree::op(ans, pre[r]);
+
+            return ans;
+        }
+    };
+
+    int orig_n = 0;
+    int n = 0;
+
+    vector<int> a;
+    vector<Layer> layer;
+    vector<short> which;
+
+    static inline int highest_bit(int x)
+    {
+        return x == 0 ? 0 : 31 - __builtin_clz((unsigned)x);
+    }
+
+    void build(const vector<int> &src, int _n)
+    {
+        orig_n = _n;
+
+        n = 1;
+        while (n < orig_n)
+            n <<= 1;
+
+        a.assign(n + 1, 0);
+
+        for (int i = 1; i <= orig_n; i++)
+            a[i] = src[i];
+
+        // 补到 2 的幂。正常询问不会访问补出来的位置。
+        // 对本题 max 来说，补什么都不影响合法询问。
+        for (int i = orig_n + 1; i <= n; i++)
+            a[i] = src[orig_n];
+
+        if (n <= 2)
+            return;
+
+        int lgN = __lg(n);
+
+        // top_k 是不超过 log2(n) 的最大 2 的幂。
+        // 例如 n = 2^17，则 top_k = 16。
+        int top_k = 1;
+        while ((top_k << 1) <= lgN)
+            top_k <<= 1;
+
+        vector<int> ks;
+        for (int k = top_k; k >= 1; k >>= 1)
+            ks.push_back(k);
+
+        layer.reserve(ks.size());
+
+        for (int i = 0; i < (int)ks.size(); i++)
+        {
+            layer.emplace_back();
+            layer.back().build(ks[i], n, a, i == 0);
+        }
+
+        which.assign(n, 0);
+
+        for (int mask = 1; mask < n; mask++)
+        {
+            int hb = highest_bit(mask);
+
+            int id = 0;
+            while (id + 1 < (int)ks.size() && ks[id] > hb)
+                id++;
+
+            which[mask] = (short)id;
+        }
+    }
+
+    inline int query(int l, int r) const
+    {
+        if (l == r)
+            return a[l];
+
+        if (r == l + 1)
+            return op(a[l], a[r]);
+
+        int mask = (l - 1) ^ (r - 1);
+        int id = which[mask];
+
+        return layer[id].query(l, r);
+    }
+};
+```
+:::
 
 可以发现，Sqrt Tree 维护信息的本质是首尾前后缀和中间整块信息预处理，和猫树是类似的。不难意识到：Sqrt Tree 在功能性上优于猫树优于 ST 表。但是常数上显然 Sqrt Tree 大于猫树大于 ST 表，所以就实际表现而言，Sqrt Tree 并不见得有多大优势。
 
 ​甚至 Sqrt Tree 在不影响预处理和询问的前提下，支持 $O(\sqrt n)$ 的单点修改。保持 $O(1)$ 询问时，$O(\sqrt n\log\log n)$ 的区间赋值；$O(\log\log n)$ 询问时，$O(\sqrt n)$ 的区间赋值。
 
-## 修改：
+## vBE
 
-​感觉有点复杂，主要是没啥用。暂时略了，真遇到了再说。
+
