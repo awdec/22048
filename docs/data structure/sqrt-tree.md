@@ -9,9 +9,7 @@
 
 ## Sqrt Tree
 
-​Sqrt Tree 可以 $O(n\log\log n)$ 预处理，$O(1)$ 区间询问，支持 $O(\sqrt n)$ 单点修改。
-
-但是采用 `vector` 实现常数貌似有点太大了，码量也很大，仅供参考。娱乐性大于实用性。
+​Sqrt Tree 可以 $O(n\log\log n)$ 预处理，$O(1)$ 区间询问。
 
 ​考虑序列分块，将原序列分成 $\sqrt n$ 块，每块长 $\sqrt n$，每一块内维护前后缀，若询问区间不在同一块内，将首尾散块前后缀拼接，中间整块整取，时间复杂度 $O(\sqrt n)$，若再预处理 $B[i][j]$ 表示第 $i$ 块到第 $j$ 的区间和，预处理时间复杂度 $O(n)$。询问时中间的整块就可以 $O(1)$ 的得到结果，时间复杂度 $O(1)$。若询问区间在同一块内，无法表示，暴力维护时间复杂度：$O(\sqrt n)$。
 
@@ -246,6 +244,430 @@ struct SqrtTree
 
 ​甚至 Sqrt Tree 在不影响预处理和询问的前提下，支持 $O(\sqrt n)$ 的单点修改。保持 $O(1)$ 询问时，$O(\sqrt n\log\log n)$ 的区间赋值；$O(\log\log n)$ 询问时，$O(\sqrt n)$ 的区间赋值。
 
-## vBE
+## vEB
+
+Sqrt Tree 是序列上的根号树，vEB 是对值域做根号树。
+
+vEB 功能上与压位 Trie 相同，用于维护插入、删除、前驱、后继、最大值、最小值。
+
+vEB 上每个节点将值域分成 $O(\sqrt V)$ 块，每个节点自身单独维护一个最大值/最小值，不加入递归。
+
+每个节点上这 $O(\sqrt V)$ 份子节点，对应 $O(\sqrt V)$ 个 vEB 维护 $O(\sqrt V)$ 份值域。再用一个 vEB 维护哪些子节点存在。
+
+值域根号 $O(\log\log V)$ 次到 $O(1)$，所以树高 $O(\log\log V)$。
+
+### 插入
+
+如果当前位置没有最大值/最小值，插入即可。
+
+如果比最大值小且比最小值大，计算插入的 $v$ 在哪一个子节点，递归插入。
+
+如果比最大值大/比最小值小，替换最大值/最小值，将旧的最大值/最小值递归插入。
+
+时间复杂度：$O(\log\log V)$。
+
+### 删除
 
 
+
+### 后继/前驱
+
+如果和查询的 $v$ 同一个子树中有解，则递归子树。
+
+反之，找到高位/低位第一个存在值的子树，相当于在维护子节点的那个 vEB 中查询后继/前驱，这也是一个递归的过程。
+
+找到那个第一个存在值的子树后，直接返回它维护的最小值/最大值即可。
+
+时间复杂度：$O(\log\log V)$。
+
+### 最大值/最小值
+
+全局的最大最小值是在根节点直接维护的，直接获取即可。
+
+空间复杂度：$T(V)=(\sqrt V + 1)\times T(\sqrt V) +O(\sqrt V)=O(V)$。
+
+:::details 点击展开代码
+```cpp
+struct vEB
+{
+    struct VEB
+    {
+        static constexpr int BASE_BITS = 6;
+
+        int bits;
+        int low_bits, high_bits;
+        int mn, mx;
+
+        u64 mask;
+
+        VEB *summary;
+        VEB **child;
+
+        VEB(int b = 20)
+            : bits(b),
+              low_bits(0),
+              high_bits(0),
+              mn(-1),
+              mx(-1),
+              mask(0),
+              summary(nullptr),
+              child(nullptr)
+        {
+            if (bits > BASE_BITS)
+            {
+                low_bits = bits >> 1;
+                high_bits = bits - low_bits;
+            }
+        }
+
+        bool is_base() const
+        {
+            return bits <= BASE_BITS;
+        }
+
+        bool empty() const
+        {
+            return mn == -1;
+        }
+
+        int high(int x) const
+        {
+            return x >> low_bits;
+        }
+
+        int low(int x) const
+        {
+            return x & ((1 << low_bits) - 1);
+        }
+
+        int idx(int h, int l) const
+        {
+            return (h << low_bits) | l;
+        }
+
+        int get_min() const
+        {
+            return mn;
+        }
+
+        int get_max() const
+        {
+            return mx;
+        }
+
+        void pull_base()
+        {
+            if (mask == 0)
+            {
+                mn = mx = -1;
+            }
+            else
+            {
+                mn = __builtin_ctzll(mask);
+                mx = 63 - __builtin_clzll(mask);
+            }
+        }
+
+        void ensure_child_array()
+        {
+            if (child == nullptr)
+            {
+                child = new VEB *[1 << high_bits]();
+            }
+        }
+
+        VEB *ensure_child(int h)
+        {
+            ensure_child_array();
+            if (child[h] == nullptr)
+            {
+                child[h] = new VEB(low_bits);
+            }
+            return child[h];
+        }
+
+        VEB *get_child(int h) const
+        {
+            return child == nullptr ? nullptr : child[h];
+        }
+
+        VEB *ensure_summary()
+        {
+            if (summary == nullptr)
+            {
+                summary = new VEB(high_bits);
+            }
+            return summary;
+        }
+
+        bool contains(int x) const
+        {
+            if (mn == -1)
+                return false;
+            if (x == mn || x == mx)
+                return true;
+            if (x < mn || x > mx)
+                return false;
+
+            if (is_base())
+            {
+                return (mask >> x) & 1ULL;
+            }
+
+            int h = high(x);
+            int l = low(x);
+            VEB *c = get_child(h);
+            return c != nullptr && c->contains(l);
+        }
+
+        void insert(int x)
+        {
+            if (is_base())
+            {
+                mask |= (1ULL << x);
+                pull_base();
+                return;
+            }
+
+            if (mn == -1)
+            {
+                mn = mx = x;
+                return;
+            }
+
+            if (x == mn || x == mx)
+                return;
+
+            if (x < mn)
+            {
+                int t = x;
+                x = mn;
+                mn = t;
+            }
+
+            int h = high(x);
+            int l = low(x);
+
+            VEB *c = ensure_child(h);
+
+            if (c->empty())
+            {
+                ensure_summary()->insert(h);
+            }
+
+            c->insert(l);
+
+            if (x > mx)
+            {
+                mx = x;
+            }
+        }
+
+        void erase(int x)
+        {
+            if (is_base())
+            {
+                mask &= ~(1ULL << x);
+                pull_base();
+                return;
+            }
+
+            if (mn == -1 || x < mn || x > mx)
+                return;
+
+            if (x != mn && x != mx)
+            {
+                int h0 = high(x);
+                int l0 = low(x);
+                VEB *c0 = get_child(h0);
+                if (c0 == nullptr || !c0->contains(l0))
+                    return;
+            }
+
+            if (mn == mx)
+            {
+                mn = mx = -1;
+                return;
+            }
+
+            if (x == mn)
+            {
+                int first_cluster = summary->get_min();
+                VEB *c = child[first_cluster];
+                int new_low = c->get_min();
+
+                x = idx(first_cluster, new_low);
+                mn = x;
+            }
+
+            int h = high(x);
+            int l = low(x);
+
+            VEB *c = child[h];
+            c->erase(l);
+
+            if (c->empty())
+            {
+                summary->erase(h);
+
+                if (x == mx)
+                {
+                    int last_cluster = summary->get_max();
+
+                    if (last_cluster == -1)
+                    {
+                        mx = mn;
+                    }
+                    else
+                    {
+                        mx = idx(last_cluster, child[last_cluster]->get_max());
+                    }
+                }
+            }
+            else if (x == mx)
+            {
+                mx = idx(h, c->get_max());
+            }
+        }
+
+        int prev(int x) const
+        {
+            if (mn == -1)
+                return -1;
+
+            if (is_base())
+            {
+                if (x <= 0)
+                    return -1;
+
+                u64 m;
+                if (x >= 64)
+                {
+                    m = mask;
+                }
+                else
+                {
+                    m = mask & ((1ULL << x) - 1ULL);
+                }
+
+                if (m == 0)
+                    return -1;
+                return 63 - __builtin_clzll(m);
+            }
+
+            if (x <= mn)
+                return -1;
+            if (x > mx)
+                return mx;
+
+            int h = high(x);
+            int l = low(x);
+
+            VEB *c = get_child(h);
+            if (c != nullptr)
+            {
+                int p = c->prev(l);
+                if (p != -1)
+                {
+                    return idx(h, p);
+                }
+            }
+
+            int pc = summary == nullptr ? -1 : summary->prev(h);
+
+            if (pc == -1)
+            {
+                return mn;
+            }
+
+            return idx(pc, child[pc]->get_max());
+        }
+
+        int next(int x) const
+        {
+            if (mn == -1)
+                return -1;
+
+            if (is_base())
+            {
+                if (x < 0)
+                    return get_min();
+                if (x >= 63)
+                    return -1;
+
+                u64 m = mask & (~0ULL << (x + 1));
+
+                if (m == 0)
+                    return -1;
+                return __builtin_ctzll(m);
+            }
+
+            if (x < mn)
+                return mn;
+            if (x >= mx)
+                return -1;
+
+            int h = high(x);
+            int l = low(x);
+
+            VEB *c = get_child(h);
+            if (c != nullptr)
+            {
+                int s = c->next(l);
+                if (s != -1)
+                {
+                    return idx(h, s);
+                }
+            }
+
+            int sc = summary == nullptr ? -1 : summary->next(h);
+
+            if (sc == -1)
+            {
+                return mx;
+            }
+
+            return idx(sc, child[sc]->get_min());
+        }
+    };
+
+    VEB root;
+
+    vEB() : root(20) {}
+
+    void insert(int x)
+    {
+        root.insert(x);
+    }
+
+    void erase(int x)
+    {
+        root.erase(x);
+    }
+
+    int get_min()
+    {
+        int res = root.get_min();
+        return res == -1 ? 0 : res;
+    }
+
+    int get_max()
+    {
+        int res = root.get_max();
+        return res == -1 ? 0 : res;
+    }
+
+    int get_prev(int x)
+    {
+        int res = root.prev(x);
+        return res == -1 ? 0 : res;
+    }
+
+    int get_next(int x)
+    {
+        int res = root.next(x);
+        return res == -1 ? 0 : res;
+    }
+};
+```
+:::
