@@ -69,6 +69,7 @@ export default defineConfig({
             { text: '整体二分', link: '/data structure/dfs'},
             { text: '珂朵莉树', link: '/data structure/odt'},
             { text: 'bitset', link: '/data structure/bitset'},
+            { text: '小波树', link: '/data structure/Wavelet'},
           ]
         }
       ],
