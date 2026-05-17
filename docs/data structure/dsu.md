@@ -16,8 +16,11 @@
 
 ​路径压缩是唯一在询问时也要进行修改的方式。
 
-​启发式合并，总时间复杂度：$O(n\log n)$，但是常数过大，实测 $2\times 10^5$ 不能通过 2s。
+​启发式合并，总时间复杂度：$O(n\log n)$，常数相对较大。
 
+采用链式前向星可适当减小常数。
+
+::: details 点击展开代码
 ```cpp
 void init(int n) {
     for (int i = 1; i <= n; i++)
@@ -28,7 +31,7 @@ void merge(int x, int y) {
     if (same(x, y))
         return;
     x = root[x], y = root[y];
-    if (p[x].size() > p[x].size()) {
+    if (p[x].size() > p[y].size()) {
         swap(x, y);
     }
     vector<int> emp;
@@ -39,6 +42,7 @@ void merge(int x, int y) {
     p[x].swap(emp);
 }
 ```
+:::
 
 ## 可撤销并查集
 
@@ -46,6 +50,7 @@ void merge(int x, int y) {
 
 ​因为撤销操作也是有顺序的，即按照合并的顺序逆序撤销，所以把合并操作放在栈中，每次撤销栈顶操作即可。合并撤销不影响子树结果，所以记录下是哪个节点接到哪个节点上即可（$u$ 成为 $v$ 的儿子节点）。
 
+::: details 点击展开代码
 ```cpp
 void init(int n) {
     for (int i = 1; i <= n; i++)
@@ -83,6 +88,7 @@ void roll() {
     fa[t] = t;
 }
 ```
+:::
 
 ## 带权并查集
 
@@ -96,6 +102,7 @@ void roll() {
 
 ​以食物链为例：$A\rightarrow B,B\rightarrow C,C\rightarrow A$。
 
+::: details 点击展开代码
 ```cpp
 void init(int n) {
     for (int i = 1; i <= n; i++)
@@ -119,6 +126,7 @@ void merge(int x, int y, int w) {
     fa[fx] = fy;
 }
 ```
+:::
 
 ## 扩展域并查集
 
@@ -144,6 +152,8 @@ void merge(int x, int y, int w) {
 
 ​不过同样的问题，在支持离线的情况下，可以用可撤销并查集做到线性空间。具体而言，就是需要访问历史版本时，把当前版本编号指向历史版本编号，那么每个版本都只会指向一个比它小的编号，那么建出来的一定是一棵树，在这个树上递归执行合并操作，递归退出时撤销即可。
 
+
+::: details 点击展开代码
 ```cpp
 p_tree fa, sz; // 使用可持久化化线段树维护
 int n;
@@ -182,11 +192,13 @@ void copy(int now, int cur) {
     sz.root[now] = sz.root[cur];
 }
 ```
+:::
 
 ## 赋值并查集
 
 维护把集合中所有 $x$ 修改成 $y$，查询初始 $x$ 当前是什么值。
 
+:::details 点击展开代码
 ```cpp
 struct merge_dsu
 {
@@ -246,3 +258,7 @@ struct merge_dsu
     }
 };
 ```
+:::
+
+## 倍增并查集
+
