@@ -70,6 +70,7 @@ export default defineConfig({
             { text: '珂朵莉树', link: '/data structure/odt'},
             { text: 'bitset', link: '/data structure/bitset'},
             { text: '小波树', link: '/data structure/wavelet'},
+            { text: 'K-D Tree', link: '/data structure/kdtree'},
           ]
         }
       ],
