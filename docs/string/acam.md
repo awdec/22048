@@ -30,6 +30,7 @@
 
 注：ACAM 因为要跳 Border 的特殊性，一般将 ACAM 中 Trie 的根设为 $0$。
 
+:::details 点击展开代码
 ```cpp
 struct Trie {
     /*
@@ -81,6 +82,7 @@ struct ACAM {
     }
 };
 ```
+:::
 
 ## Trie 图优化
 
@@ -100,6 +102,7 @@ struct ACAM {
 ​但是因为 $trans$ 需要预处理出所有节点的所有字符的失配后成功匹配的节点，所以时空复杂度均为 $O(\sum|T||c|)$，其中 $|c|$ 表示字符集大小。
 
 
+:::details 点击展开代码
 ```cpp
 // 补全 Trie 图
 for (int i = 0; i < 26; i++) {
@@ -117,3 +120,4 @@ for(auto u : s){
     now = trie.son[j][u - 'a'];
 }
 ```
+:::

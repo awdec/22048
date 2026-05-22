@@ -36,6 +36,7 @@ $$\begin{cases}
 
 上述过程只是求出了 $ax+by=\gcd(a,b)$ 的一组特解。
 
+:::details 点击展开代码
 ```cpp
 void exgcd(int a, int b, int &x, int &y) {
     int t;
@@ -49,6 +50,7 @@ void exgcd(int a, int b, int &x, int &y) {
     }
 }
 ```
+:::
 
 考虑通解：
 
@@ -91,6 +93,7 @@ $a(x'+d)+b(y'-e)=c\Rightarrow ad=be\Rightarrow \frac{a}{\gcd(a,b)} d = \frac{b}{
 
 对于线性同余方程 $ax\equiv b\pmod c$，可以改写成 $ax+cy=b$ 的形式，看作二元一次方程求整数解即可。
 
+:::details 点击展开代码
 ```cpp
 int tyfc(int a, int b, int c) {
     b %= c;
@@ -105,6 +108,7 @@ int tyfc(int a, int b, int c) {
     return x;
 }
 ```
+:::
 
 ## 欧拉定理
 
@@ -144,6 +148,7 @@ Lucas 定理揭示了，组合数 $\dbinom{n}{m}$ 对质数取模的结果等价
 
 所以时间复杂度：$O(\log_pn+p)$。
 
+:::details 点击展开代码
 ```cpp
 int C(int x, int y, int mod) {
     auto calc = [](int x, int y, int mod) -> int {
@@ -163,6 +168,7 @@ int C(int x, int y, int mod) {
     return res;
 }
 ```
+:::
 
 ## 扩展卢卡斯定理
 
@@ -201,6 +207,7 @@ $w_p(n!)\equiv (-1)^{\lfloor\frac{n}{p^a}\rfloor}\times \prod\limits_{1\le i\le 
 预处理 $\prod\limits_{1\le i\le (n\bmod p^a),i\perp p^a}i$，递归求解，容易得到时间复杂度：预处理 $O(p^a)$，单次询问 $O(\log_pn)$。
 
 
+:::details 点击展开代码
 ```cpp
 int phi(int x, int y) { return x * (y - 1) / y; }
 int nn, a[N], b[N];
@@ -276,6 +283,7 @@ int C(int n, int m, int p) {
     return intchina();
 }
 ```
+:::
 
 ## BSGS
 
@@ -309,6 +317,7 @@ $a^{A\sqrt c+B}\equiv b\pmod c\rightarrow a^{A\sqrt c}\times a^B\equiv b\pmod c$
 
 或者实际上本质上是求 $O(\sqrt n)$ 个元素的逆元，朴素也可以做到 $O(\sqrt n +\log n)$ 求解。
 
+:::details 点击展开代码
 ```cpp
 struct BSGS {
     unordered_map<int, int> mp;
@@ -334,6 +343,7 @@ struct BSGS {
     }
 };
 ```
+:::
 
 
 ## 扩展 BSGS
@@ -352,6 +362,7 @@ $$a^x\equiv b\pmod c,\gcd(a,c)\ne 1$$
 
 时间复杂度：$O(\sqrt n+\log n)$ 与 bsgs 相同。
 
+:::details 点击展开代码
 ```cpp
 struct ExBSGS {
     int exbsgs(int a, int b, int c) {
@@ -397,6 +408,7 @@ struct ExBSGS {
     }
 };
 ```
+:::
 
 
 ### 离散对数
@@ -434,6 +446,7 @@ $p$ 存在原根 $g$，设 $x=g^c$，原式可以写成 $(g^c)^a\equiv b\pmod p\
 
 注：若不保证模数为质数，仅保证两两互质，那么可以使用欧拉定理预处理欧拉函数求逆元。或直接使用 exgcd 求解逆元。
 
+:::details 点击展开代码
 ```cpp
 struct CRT {
     int intchina(vector<int> &r, vector<int> &mod, int n) {
@@ -452,6 +465,7 @@ struct CRT {
     }
 };
 ```
+:::
 
 ### garner 算法
 
@@ -493,6 +507,7 @@ $$x_k=(...((a_k-x_1)r_{1,k}-x_2)r_{2,k}-\dots)r_{k-1,k}\bmod {p_k}$$
 
 三模数 NTT 实现的任意模数 NTT 就是这个原理。
 
+:::details 点击展开代码
 ```cpp
 int Garner(vector<int> &r, vector<int> &mod, int n) {
     vector<int> x(n + 1);
@@ -519,6 +534,7 @@ int Garner(vector<int> &r, vector<int> &mod, int n) {
     return res;
 }
 ```
+:::
 
 
 ## 扩展中国剩余定理
@@ -551,6 +567,7 @@ $$x'=r_1-b_1m_1 \equiv r_1\pmod {m_1}\equiv r_2\pmod {m_2}\rightarrow x\equiv x'
 
 时间复杂度：$O(k\log n)$。
 
+:::details 点击展开代码
 ```cpp
 int eyyc(int a, int b, int c) {
     int g = gcd(a, b);
@@ -580,6 +597,7 @@ struct ExCRT {
     }
 };
 ```
+:::
 
 
 ## 同余最短路：

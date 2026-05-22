@@ -8,6 +8,7 @@
 
 手写 bitset
 
+:::details 点击展开代码
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -446,3 +447,4 @@ struct FastBitset
     }
 };
 ```
+:::

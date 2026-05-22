@@ -10,6 +10,7 @@
 
 仅供参考，可能有需要注意的点。
 
+:::details 点击展开代码
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -940,6 +941,7 @@ vector<long double> area_union(const vector<Circle> &circs) {
     return ans;
 }
 ```
+:::
 
 ## 补充
 
@@ -947,6 +949,7 @@ vector<long double> area_union(const vector<Circle> &circs) {
 
 增量法，$O(n^2)$ 实现：
 
+:::details 点击展开代码
 ```cpp
 struct point {
     ldb x, y, z;
@@ -1020,11 +1023,13 @@ for (int i = 3; i < n; i++) {
     f.swap(g);
 }
 ```
+:::
 
 ### 动态凸包
 
 增量法，$O(n\log n)$：
 
+:::details 点击展开代码
 ```cpp
 struct point {
     int x, y;
@@ -1072,11 +1077,13 @@ void insert_chain(set<point> &s, point p, bool lower) {
     }
 }
 ```
+:::
 
 ### 最小圆覆盖
 
 $O(n)$：
 
+:::details 点击展开代码
 ```cpp
 point circle_center(point a, point b, point c) {
     ldb A = a.len2(), B = b.len2(), C = c.len2();
@@ -1115,11 +1122,13 @@ circle min_circle(vector<point> a) {
     return {now, r};
 }
 ```
+:::
 
 ### 自适应辛普森积分
 
 时间复杂度视作：$O(\log\epsilon T f(x))$，其中 $T$ 是迭代步长，$f(x)$ 是求解 $f(x)$ 的时间复杂度。
 
+:::details 点击展开代码
 ```cpp
 struct Simpson {
     ldb f(ldb x) { // 对 f 求积分
@@ -1142,3 +1151,4 @@ struct Simpson {
     }
 };
 ```
+:::

@@ -26,6 +26,7 @@
 
 总时间复杂度：$O(n\log nT(n))$，其中 $T(n)$ 表示「数据结构」插入的时间复杂度。
 
+:::details 点击展开代码
 ```cpp
 void merge(/*x 的数据结构*/, /*儿子 u 子树的数据结构*/) {
     if (/*x 的数据结构.size */ < /*儿子 u 子树的数据结构.size*/)
@@ -51,6 +52,7 @@ void dfs(int x, int y) {
     // 添加 x 的信息
 }
 ```
+:::
 
 
 ## dsu on tree：
@@ -77,6 +79,7 @@ dsu on tree 的时间复杂度分析是基于轻重链剖分的。
 
 时间复杂度：$O(n\log nT(n))$，其中 $T(n)$ 表示维护信息的时间复杂度。
 
+:::details 点击展开代码
 ```cpp
 void dfs(int x, int y) { // 维护重儿子
     fa[x] = y;
@@ -132,3 +135,4 @@ void dfs0(int x, bool y) {
 dfs(1, 0);
 dfs0(1, 1);
 ```
+:::

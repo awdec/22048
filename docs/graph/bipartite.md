@@ -18,6 +18,7 @@
 
 dfs 朴素染色即可，若出现相邻节点颜色相同则图不是二分图，因为每个点只会被染一次，所以时间复杂度：$O(n)$。
 
+:::details 点击展开代码
 ```cpp
 bool dfs(int x, int c) {
     col[x] = c;
@@ -39,6 +40,7 @@ for (int i = 1; i <= n; i++) {
     }
 }
 ```
+:::
 
 
 ### 图 G 中不存在奇环 $\Leftrightarrow$ 图 G 是二分图。
@@ -57,6 +59,7 @@ for (int i = 1; i <= n; i++) {
 
 时间复杂度：$O(n)$。
 
+:::details 点击展开代码
 ```cpp
 // 维护 dfs 生成树
 for (int i = 1; i <= n; i++) {
@@ -70,6 +73,7 @@ for (int i = 1; i <= n; i++) {
     }
 }
 ```
+:::
 
 ### 扩展域并查集判二分图
 
@@ -81,6 +85,7 @@ for (int i = 1; i <= n; i++) {
 
 时间复杂度：$O(n\alpha(n))$。
 
+:::details 点击展开代码
 ```cpp
 for (auto [u, v] : edge) {
     if (dsu.same(u, v) || dsu.same(u + n, v + n)) {
@@ -91,6 +96,7 @@ for (auto [u, v] : edge) {
     dsu.merge(u + n, v);
 }
 ```
+:::
 
 使用扩展域并查集可以在线判断二分图。
 

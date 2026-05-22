@@ -45,6 +45,7 @@ countr_zero 可以传入 $0$，返回对应类型的总位数。
 
 ## mt19937
 
+:::details 点击展开代码
 ```cpp
 mt19937 rng(time(nullptr));
 
@@ -57,10 +58,12 @@ int rnd(int l, int r) {
 vector<int> a;
 shuffle(a.begin(), a.end(), rng);
 ```
+:::
 
 
 ## nth-element
 
+:::details 点击展开代码
 ```cpp
 // 默认升序规则（less<>）
 nth_element(first, nth, last);
@@ -70,5 +73,6 @@ nth_element(first, nth, last, cmp);
 nth_element(nums.begin(), nums.begin() + k - 1, nums.end(),
                 [](int a, int b) { return a > b; });
 ```
+:::
 
 $O(n)$ 找到第 $k$ 小。

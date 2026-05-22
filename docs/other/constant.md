@@ -93,6 +93,7 @@
 
 同时，因为部分平台问题，实际情况会有差异。
 
+:::details 点击展开代码
 ```cpp
 namespace IO
 {
@@ -179,6 +180,7 @@ using IO::read;
 using IO::read_char;
 using IO::write;
 ```
+:::
 
 ## 快速取模
 

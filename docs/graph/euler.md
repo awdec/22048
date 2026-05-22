@@ -51,6 +51,7 @@
 
 有向图：
 
+:::details 点击展开代码
 ```cpp
 void dfs(int x) {
     for (unsigned i = del[x]; i < p[x].size(); i = del[x]) {
@@ -60,8 +61,10 @@ void dfs(int x) {
     ans.push_back(x);
 }
 ```
+:::
 无向图：
 
+:::details 点击展开代码
 ```cpp
 void dfs(int x) {
     for (unsigned i = del[x]; i < p[x].size(); i = del[x]) {
@@ -75,3 +78,4 @@ void dfs(int x) {
     }
 }
 ```
+:::

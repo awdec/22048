@@ -20,6 +20,7 @@
 
 ​时间复杂度分析同 Z 函数，$r$ 指针只变化了 $O(n)$ 次，时间复杂度：$O(n)$。
 
+:::details 点击展开代码
 ```cpp
 vector<vector<int>> manacher(string &s) {
     int n = s.size();
@@ -54,3 +55,4 @@ vector<vector<int>> manacher(string &s) {
     return {len0, len1};
 }
 ```
+:::

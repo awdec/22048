@@ -60,6 +60,7 @@ dfs 整个图，递归到 $x$ 时，将 $x$ 入栈。
 
 当回溯到 $low_x=dfn_x$ 时，将栈中的元素弹出，形成一个强连通分量。
 
+:::details 点击展开代码
 ```cpp
 void dfs(int x) {
     low[x] = dfn[x] = ++idx;
@@ -94,6 +95,7 @@ for (int i = 1; i <= n; i++) {
         dfs(i);
 }
 ```
+:::
 
 ### 性质：
 
@@ -130,6 +132,7 @@ $dfn_x=low_x$ 时说明环不能再扩大了，所以形成了一个强连通分
 
 注意一点：$x$ 不能走反边到 $fa_x$，一方面，这会和子树中回到到 $fa_x$ 的 dfn 产生混淆；另一方面，这不符合 low 在 dfs 子树中的定义。
 
+:::details 点击展开代码
 ```cpp
 void dfs(int x, int y) {
     dfn[x] = low[x] = ++idx;
@@ -164,6 +167,7 @@ for (int i = 1; i <= n; i++) {
         dfs(i, 0);
 }
 ```
+:::
 
 
 ### 性质：
@@ -195,6 +199,7 @@ for (int i = 1; i <= n; i++) {
 - 只有一个子节点，这个点双没有割点。
 - 没有子节点，这个点自身构成一个点双。
 
+:::details 点击展开代码
 ```cpp
 void dfs(int x, int y, int root) {
     dfn[x] = low[x] = ++idx;
@@ -236,6 +241,7 @@ for (int i = 1; i <= n; i++)
     if (!dfn[i])
         dfs(i, 0, i);
 ```
+:::
 
 
 ### 性质：

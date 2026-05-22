@@ -36,6 +36,7 @@ $\gcd(x,y)=\gcd(y\bmod x,x)$。
 
 实现如下：
 
+:::details 点击展开代码
 ```cpp
 int gcd(int a, int b) {
     if (!a | !b)
@@ -52,6 +53,7 @@ int gcd(int a, int b) {
     return a << z;
 }
 ```
+:::
 
 ## 基于值域的 gcd 求法
 
@@ -92,6 +94,7 @@ int gcd(int a, int b) {
 
 综上，预处理时空复杂度：$O(v)$，单次询问时间复杂度：$O(1)$。
 
+:::details 点击展开代码
 ```cpp
 void primes(int n) {
     is_prime.set();
@@ -157,6 +160,7 @@ int gcd(int x, int y) {
     return a * b * c;
 }
 ```
+:::
 
 但是事实上，容易发现，这里把 $x$ 分解成了三个整数 $a,b,c$，还需要 `if-else` 分支。
 

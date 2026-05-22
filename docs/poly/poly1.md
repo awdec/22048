@@ -10,6 +10,7 @@
 
 ## FFT
 
+:::details 点击展开代码
 ```cpp
 const ldb pi = acos(-1.0);
 struct Complex {
@@ -45,6 +46,7 @@ void fft(vector<Complex> &a, int sign, int tot) {
     }
 }
 ```
+:::
 
 ## NTT
 
@@ -55,6 +57,7 @@ void fft(vector<Complex> &a, int sign, int tot) {
 - $4179340454199820289=29\times 2^{57}+1,g=3$
 - $167772161=5\times 2^{25}+1,g=3$
 
+:::details 点击展开代码
 ```cpp
 void init(int n) { // 预处理 n 到大于卷积后的最高位的 2 的幂次
     for (int mid = 1; mid < n; mid <<= 1) {
@@ -83,9 +86,11 @@ void ntt(vector<int> &a, int sign, int tot) {
     }
 }
 ```
+:::
 
 ## 多项式乘法
 
+:::details 点击展开代码
 ```cpp
 vector<int> mul(vector<int> a, vector<int> b) {
     int tot = 0, bit = 0;
@@ -105,9 +110,11 @@ vector<int> mul(vector<int> a, vector<int> b) {
     return c;
 }
 ```
+:::
 
 FFT 处理多项式乘法时，特殊处理：
 
+:::details 点击展开代码
 ```cpp
 vector<int> mul(vector<int> a, vector<int> b) {
     vector<Complex> A(a.size()), B(b.size());
@@ -134,6 +141,7 @@ vector<int> mul(vector<int> a, vector<int> b) {
     return c;
 }
 ```
+:::
 
 ## 任意模数多项式乘法
 
@@ -145,10 +153,12 @@ vector<int> mul(vector<int> a, vector<int> b) {
 
 这里仅提供使用的三个 NTT 模数。
 
+:::details 点击展开代码
 ```cpp
 const int mod[3] = {998244353, 469762049, 1004535809},
           inv_G[3] = {332748118, 156587350, 334845270}, G = 3;
 ```
+:::
 
 拆系数 FFT，需要 $4$ 次 DFT，常数较小。
 
@@ -156,6 +166,7 @@ const int mod[3] = {998244353, 469762049, 1004535809},
 
 时间复杂度：$O(n\log n)$。
 
+:::details 点击展开代码
 ```cpp
 vector<int> inv(vector<int> &a) {
     int n = a.size();
@@ -179,11 +190,13 @@ vector<int> inv(vector<int> &a) {
     return b;
 }
 ```
+:::
 
 ## 多项式开根
 
 保证 $a_0=1$：
 
+:::details 点击展开代码
 ```cpp
 vector<int> sqrt(vector<int> &a) {
     int n = a.size();
@@ -209,9 +222,11 @@ vector<int> sqrt(vector<int> &a) {
     return b;
 }
 ```
+:::
 
 保证 $a_0$ 是模意义下的二次剩余，$a_0\ne 0$，其它部分完全一致，区别在于求解 $a_0$ 的二次剩余。
 
+:::details 点击展开代码
 ```cpp
 int I_mul_I;
 struct Complex {
@@ -248,9 +263,11 @@ int solve(int n) { // 求解 n 的二次剩余
 }
 
 ```
+:::
 
 ## 多项式除法
 
+:::details 点击展开代码
 ```cpp
 pair<vector<int>, vector<int>> divide(vector<int> a, vector<int> b) {
     int n = a.size(), m = b.size();
@@ -266,11 +283,13 @@ pair<vector<int>, vector<int>> divide(vector<int> a, vector<int> b) {
     return {cr, cur};
 }
 ```
+:::
 
 ## 多项式 ln
 
 保证 $a_0=1$。
 
+:::details 点击展开代码
 ```cpp
 vector<int> ln(vector<int> &a) {
     int n = a.size();
@@ -298,11 +317,13 @@ vector<int> ln(vector<int> &a) {
     return b;
 }
 ```
+:::
 
 ## 多项式 exp
 
 保证 $a_0=0$。
 
+:::details 点击展开代码
 ```cpp
 vector<int> exp(vector<int> &a) {
     int n = a.size();
@@ -327,6 +348,7 @@ vector<int> exp(vector<int> &a) {
     return b;
 }
 ```
+:::
 
 ## 多项式幂
 
@@ -339,6 +361,7 @@ $a_0=1$ 时，应用 ln + exp，可以先将模数 $k$ 对 $mod$ 取模。
 
 快速幂，时间复杂度：$O(n\log^2 n)$。
 
+:::details 点击展开代码
 ```cpp
 vector<int> qz(vector<int> &a, int k) {
     int n = a.size();
@@ -368,9 +391,11 @@ vector<int> qz(vector<int> &a, int k) {
     return res;
 }
 ```
+:::
 
 ln + exp，时间复杂度：$O(n\log n)$。
 
+:::details 点击展开代码
 ```cpp
 vector<int> qz(vector<int> &a, int k) {
     auto A = ln(a);
@@ -380,6 +405,7 @@ vector<int> qz(vector<int> &a, int k) {
     return exp(A);
 }
 ```
+:::
 
 不保证 $a_0=1$。
 
@@ -404,6 +430,7 @@ $$f(k)=\sum\limits_{i=0}^n y_i\prod\limits_{i\ne j}\frac{k-x_j}{x_i-x_j}$$
 按照公式计算即可。
 
 
+:::details 点击展开代码
 ```cpp
 int f(vector<int> &x, vector<int> &y, int k) {
     int n = x.size();
@@ -423,6 +450,7 @@ int f(vector<int> &x, vector<int> &y, int k) {
     return ans;
 }
 ```
+:::
 
 
 特别地，若给定的坐标连续，可以 $O(n)$ 求 $f(k)$。

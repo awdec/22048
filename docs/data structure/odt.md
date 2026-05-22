@@ -14,26 +14,31 @@
 
 ## init
 
+:::details 点击展开代码
 ```cpp
 void init(int l, int r){
     mp.clear();
     mp[l] = mp[r + 1] = - 1;
 }
 ```
+:::
 
 ## split
 
+:::details 点击展开代码
 ```cpp
 void split(int x) {
     auto it = prev(mp.upper_bound(x));
     mp[x] = it->second; 
 }
 ```
+:::
 
 ## assign
 
 区间推平，一般是区间赋值。
 
+:::details 点击展开代码
 ```cpp
 void assign(int l, int r, int v) {
     r++;
@@ -46,11 +51,13 @@ void assign(int l, int r, int v) {
     mp[l] = v;
 }
 ```
+:::
 
 ## perform
 
 遍历区间 $[l,r]$，在遍历过程中进行具体操作。
 
+:::details 点击展开代码
 ```cpp
 void perform(int l, int r, int v) {
     r++;
@@ -63,6 +70,7 @@ void perform(int l, int r, int v) {
     }
 }
 ```
+:::
 
 
 

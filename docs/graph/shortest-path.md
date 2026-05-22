@@ -10,6 +10,7 @@
 
 $O(m\log m)$ 实现：
 
+:::details 点击展开代码
 ```cpp
 vector<int> dijkstra(int s, int n) {
     vector<int> dis(n + 1, inf);
@@ -30,9 +31,11 @@ vector<int> dijkstra(int s, int n) {
     return dis;
 }
 ```
+:::
 
 稠密图上，$O(n^2)$ 实现优于 $O(m\log m)$ 实现：
 
+:::details 点击展开代码
 ```cpp
 vector<int> dijkstra(int s, int n) {
     vector<int> dis(n + 1, inf);
@@ -56,11 +59,13 @@ vector<int> dijkstra(int s, int n) {
     return dis;
 }
 ```
+:::
 
 ## Bellman-Ford 
 
 Bellman-Ford 基于松弛次数，特殊地，可以用来求解经过边数不超过某个数量的最短路。
 
+:::details 点击展开代码
 ```cpp
 vector<int> bellman_ford(int s, int n) {
     vector<int> dis(n + 1, inf);
@@ -77,6 +82,7 @@ vector<int> bellman_ford(int s, int n) {
     return dis;
 }
 ```
+:::
 
 ### spfa
 
@@ -90,6 +96,7 @@ vector<int> bellman_ford(int s, int n) {
 
 朴素实现：
 
+:::details 点击展开代码
 ```cpp
 vector<int> spfa(int s, int n) {
     vector<int> dis(n + 1, inf);
@@ -109,6 +116,7 @@ vector<int> spfa(int s, int n) {
     return dis;
 }
 ```
+:::
 
 注：事实上使用 `vis` 标记松弛点是否在队列中（在就不再加入队列）也是一种 spfa 的神秘优化。
 
@@ -118,6 +126,7 @@ spfa 不劣于 Bellman-Ford 判负环，通常直接使用 spfa 判断。
 
 Bellman-Ford 版：
 
+:::details 点击展开代码
 ```cpp
 bool bellman_ford(int s, int n) {
     vector<int> dis(n + 1, inf);
@@ -138,9 +147,11 @@ bool bellman_ford(int s, int n) {
     return 0;
 }
 ```
+:::
 
 spfa 版：
 
+:::details 点击展开代码
 ```cpp
 bool spfa(int s, int n) {
     vector<int> dis(n + 1, inf), cnt(n + 1);
@@ -163,9 +174,11 @@ bool spfa(int s, int n) {
     return 0;
 }
 ```
+:::
 
 ## Floyd
 
+:::details 点击展开代码
 ```cpp
 for (int k = 1; k <= n; k++) {
     for (int i = 1; i <= n; i++) {
@@ -176,11 +189,13 @@ for (int k = 1; k <= n; k++) {
     }
 }
 ```
+:::
 
 ### 传递闭包
 
 Floyd 可用于求解传递闭包，即全源可达性。特别地，使用 `bitset` 优化，时间复杂度：$O(\frac{n^3}{w})$。
 
+:::details 点击展开代码
 ```cpp
 for (int k = 1; k <= n; k++) {
     for (int i = 1; i <= n; i++) {
@@ -189,11 +204,13 @@ for (int k = 1; k <= n; k++) {
     }
 }
 ```
+:::
 
 注：Floyd 常数极小，$O(n^3)$ 的时间复杂度可以通过 $n=1000$ 的数据。
 
 ### 最小环：
 
+:::details 点击展开代码
 ```cpp
 auto get_path = [&](auto self, int x, int y) -> void {
     if (!pos[x][y])
@@ -226,6 +243,7 @@ for (int k = 1; k <= n; k++) {
     }
 }
 ```
+:::
 
 时间复杂度：$O(n^3)$。
 

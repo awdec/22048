@@ -36,6 +36,7 @@ $a\mid n\rightarrow p_a\mid n$，其中 $p_a$ 是 $a$ 的质因子。
 
 概率性素性测试，时间复杂度：$O(k\log n)$，其中 $k$ 是随机的轮数，$n$ 是待测试的数值。
 
+:::details 点击展开代码
 ```cpp
 int mul(int x, int y,
         int mod) { // 若测试的数值域在 long long 范围内相乘的结果可用 __int128
@@ -97,6 +98,7 @@ bool is_prime(int n) {
     return 1;
 }
 ```
+:::
 
 ## 质因数分解
 
@@ -112,6 +114,7 @@ bool is_prime(int n) {
 
 概率性质因数分解，需要结合 Miller-Rabin，时间复杂度：$O(n^{\frac{1}{4}})$。
 
+:::details 点击展开代码
 ```cpp
 struct Pollard_Rho {
     // Miller-Rabin
@@ -164,6 +167,7 @@ struct Pollard_Rho {
     }
 };
 ```
+:::
 
 ## 质数筛：
 
@@ -176,6 +180,7 @@ struct Pollard_Rho {
 - 只标记 $\ge p^2$
 - 使用 `bitset` 替代标记数组
 
+:::details 点击展开代码
 ```cpp
 void ai(int n) {
     not_prime[0] = not_prime[1] = 1;
@@ -189,6 +194,7 @@ void ai(int n) {
     }
 }
 ```
+:::
 
 实现较好的常数较小的挨氏筛会比欧拉筛效率更高，实测【洛谷】评测环境下，$10^8$ 的挨氏筛 300ms，欧拉筛 900ms。
 
@@ -196,6 +202,7 @@ void ai(int n) {
 
 仅用 $x$ 的最小质因子标记 $x$，时间复杂度：$O(n)$，但是由于常数问题，在大数据范围下效率可能不如挨氏筛。
 
+:::details 点击展开代码
 ```cpp
 void euler(int n) {
     fill(is_prime + 2, is_prime + n + 1, 1);
@@ -214,11 +221,13 @@ void euler(int n) {
     }
 }
 ```
+:::
 
 ### min_25 筛
 
 使用 `min_25` 筛求解 $[1,n]$ 中质数数量，时间复杂度：$O(\frac{n^{\frac{3}{4}}}{\log n})$。
 
+:::details 点击展开代码
 ```cpp
 int count_pi(int n) {
     int len = 0, lim, lenp = 0;
@@ -244,6 +253,7 @@ int count_pi(int n) {
     return g[len];
 }
 ```
+:::
 
 ### Meissel-Lehmer
 
@@ -251,6 +261,7 @@ Meissel-Lehmer 是专门用于计算 $[1,n]$ 中质数数量的特殊筛法。
 
 这里仅记录模板，仅供参考，时间复杂度：$O(\frac{n^{\frac{2}{3}}}{\log^2n})$。
 
+:::details 点击展开代码
 ```cpp
 i64 count_pi(i64 N) {
     if (N <= 1)
@@ -360,3 +371,4 @@ i64 count_pi(i64 N) {
     return l[1];
 }
 ```
+:::

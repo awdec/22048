@@ -10,52 +10,63 @@
 
 1. 追加 string
 
+:::details 点击展开代码
 ```cpp
 string s1 = "Hello";
 string s2 = " World";
 s1.append(s2); // 追加s2的全部内容
 cout << s1; // 输出：Hello World
 ```
+:::
 
 2. 追加 string 子串
 
+:::details 点击展开代码
 ```cpp
 string s1 = "Hello";
 string s2 = "123456789";
 s1.append(s2, 2, 4);// 从s2的第2个位置（字符'3'）开始，截取4个字符（3,4,5,6）
 cout << s1; // 输出：Hello3456
 ```
+:::
 
 3. 追加 $n$ 个相同的字符
 
+:::details 点击展开代码
 ```cpp
 string s1 = "XXX";
 s1.append(5, '!'); // 追加5个'!'
 cout << s1; // 输出：XXX!!!!!
 ```
+:::
 
 4. 追加迭代器范围的字符
 
+:::details 点击展开代码
 ```cpp
 string s1 = "abc";
 vector<char> v = {'d','e','f','g'};
 s1.append(v.begin(), v.end()-1);// 追加 v 中从 begin() 到 end() - 1 的字符（d, e, f）
 cout << s1; // 输出：abcdef
 ```
+:::
 
 ## substr
 
 提取字符串中的部分内容
 
+:::details 点击展开代码
 ```cpp
 string s = "2026-02-05";
 string year = s.substr(0, 4);  // "2026"
 string month = s.substr(5, 2); // "02"
 string day = s.substr(8);      // "05"（到末尾）
 ```
+:::
 
 ## 查找、替换
 
+:::details 点击展开代码
 ```cpp
 string s = "C++11 is good, C++11 is powerful";
 
@@ -74,6 +85,7 @@ bool has_11 = s.contains("11");     // true
 s.replace(pos, 2, "23");            // 把第一个"11"替换为"23"
 cout << s << endl;                  // "C++23 is good, C++11 is powerful"
 ```
+:::
 
 ## 字符串-整数转换
 
@@ -85,6 +97,7 @@ cout << s << endl;                  // "C++23 is good, C++11 is powerful"
 
 stoi 完整版参数可指定整数进制：
 
+:::details 点击展开代码
 ```cpp
 string bin = "1010";    // 二进制
 string oct = "12";      // 八进制
@@ -101,6 +114,7 @@ int b36 = stoi(base36, nullptr,36);//36进制转int →35
 cout << b << " " << o << " " << h1 << " " << h2 << " " << b36;
 // 输出：10 10 255 163 35
 ```
+:::
 
 第二个参数作用略。
 

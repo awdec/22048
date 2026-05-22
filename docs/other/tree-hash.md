@@ -42,6 +42,7 @@
 
 最坏情况下，若树是“毛毛虫”，那么拼接括号序的过程是 $O(n^2)$ 的。
 
+:::details 点击展开代码
 ```cpp
 string q[N];
 void dfs1(int x, int y) {
@@ -59,6 +60,7 @@ void dfs1(int x, int y) {
     q[x] += "0";
 }
 ```
+:::
 
 ### 优化：
 
@@ -68,6 +70,7 @@ void dfs1(int x, int y) {
 
 结合排序的时间复杂度，总时间复杂度：$O(n\log n)$。
 
+:::details 点击展开代码
 ```cpp
 int q[N], idx;
 map<vector<int>, int> mp;
@@ -90,6 +93,7 @@ void dfs1(int x, int y) { // 以重心为根 dfs
 }
 
 ```
+:::
 
 注：使用基数排序，可以做到 $O(n)$。
 
@@ -101,6 +105,7 @@ void dfs1(int x, int y) { // 以重心为根 dfs
 
 关于 $h(x)$ 可自行选取，参考 oi-wiki:
 
+:::details 点击展开代码
 ```cpp
 const u64 mask = std::chrono::steady_clock::now().time_since_epoch().count();
 u64 shift(u64 x) {
@@ -122,6 +127,7 @@ void dfs1(int x, int y) { // 以重心为根 dfs
     }
 }
 ```
+:::
 
 注：根据模哈相关知识，至少需要使用双哈希，或自然溢出。
 

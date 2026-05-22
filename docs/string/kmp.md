@@ -14,6 +14,7 @@
 
 ​$a_i\neq b_j$ 时被称为失配，所以 border 也被称作失配指针（fail 指针）。
 
+:::details 点击展开代码
 ```cpp
 void kmp(string &a, string &b) { // a 是文本串 b 是模式串，在 a 上找 b
     int j = 0, n = a.size() - 1, m = b.size() - 1;
@@ -29,6 +30,7 @@ void kmp(string &a, string &b) { // a 是文本串 b 是模式串，在 a 上找
     }
 }
 ```
+:::
 
 ​时间复杂度和求 Border 类似，$O(\max\{|a|,|b|\})$。
 
@@ -50,6 +52,7 @@ void kmp(string &a, string &b) { // a 是文本串 b 是模式串，在 a 上找
 
 ​时间复杂度分析：$r$ 指针只会增加 $O(n)$ 次，$z(i)$ 的暴力扩展次数和 $r$ 的变化次数相同，所以时间复杂度 $O(n)$。
 
+:::details 点击展开代码
 ```cpp
 void init(string &s) { // 下标从 1 开始
     int n = s.size() - 1;
@@ -67,9 +70,11 @@ void init(string &s) { // 下标从 1 开始
     z[1] = n;
 }
 ```
+:::
 
 ​更一般地，利用 $b$ 的 Z 函数可用于求 $b$ 和 $a$ 的每一个后缀的 LCP。
 
+:::details 点击展开代码
 ```cpp
 void exkmp(string &a, string &b) {
     int n = a.size() - 1, m = b.size() - 1;
@@ -88,6 +93,7 @@ void exkmp(string &a, string &b) {
         ++Z[1];
 }
 ```
+:::
 
 ## Kmp 自动机 / Border 树（失配树）：
 

@@ -33,6 +33,7 @@
 
 ​对于当前 $x$ 所在的 Splay，将 $x$ 转到根后，右子树是链上深度比 $x$ 大的节点，按照 Access 的定义，应把右子树从 $x$ 上断开。而后，把 $x$ 在 LCT 上的父节点 $y$，在其所在的 Splay 中转到根，把 $x$ 替换 $y$ 的右儿子即可。以此迭代，直到 LCT 的根节点。
 
+:::details 点击展开代码
 ```cpp
 int access(int x) {
     int y = 0, z = x;
@@ -45,16 +46,19 @@ int access(int x) {
     return y;
 }
 ```
+:::
 
 ### isroot(x)：
 
 ​LCT 节点树的 Splay 与常规 Splay 略有区别，因为 LCT 有多棵 Splay，所以将节点转到 Splay 根时，是转到其所在节点树的根。但是节点树 Splay 内根节点要储存在结构树上的父节点。所以节点树 Splay 还需要一个判断是否是节点树根的函数。
 
+:::details 点击展开代码
 ```cpp
 bool isroot(int p) {
     return ls(tr[p].fa) != p && rs(tr[p].fa) != p;
 }
 ```
+:::
 
 ### make_root(x)：
 
@@ -62,12 +66,14 @@ bool isroot(int p) {
 
 ​具体实现，只要 `access(x)`，此时 $x$ 是到 LCT $root$ 链上的另一个端点，对其所在 Splay 做全局翻转操作即可把 $x$ 变成 LCT root。
 
+:::details 点击展开代码
 ```cpp
 void make_root(int x) {
     access(x);
     tree.rev(x);
 }
 ```
+:::
 
 ​LCT 核心操作，只有上述 `access(x)` 和 `make_root(x)` 两个，还有一些扩展操作。
 
@@ -75,6 +81,7 @@ void make_root(int x) {
 
 ​LCT 是一片森林，find_root 是找到 $x$ 所在树的根。具体而言，`access(x)` 后，$root$ 是深度最小的节点，也就是 Splay 中左链的端点，一直在 Splay 上向左儿子走即可。
 
+:::details 点击展开代码
 ```cpp
 int find_root(int x) {
     access(x);
@@ -83,31 +90,37 @@ int find_root(int x) {
     return x;
 }
 ```
+:::
 
 ### split(x,y):
 
 ​split 就是前文中提到的，将 $(x,y)$ 路径构造到一条链上，$x,y$ 是链的两端点。
 
+:::details 点击展开代码
 ```cpp
 void split(int x, int y) {
     make_root(x);
     access(y);
 }
 ```
+:::
 
 ### link(x,y):
 
 ​将森林的两棵树连接起来，若保证 $(x,y)$ 之间没有边，将 $x,y$ 分别 make_root，后将其中之一作为另一节点的父节点即可。
 
+:::details 点击展开代码
 ```cpp
 void link(int x, int y) {
     make_root(x);
     tree.tr[x].fa = y;
 }
 ```
+:::
 
 ​若不保证 $(x,y)$ 之间没有边，需要先判断是否有边，或者对两者均作 make_root，用后 make_root 的节点作为另一节点的父节点，可以避免特判。但若是存在 $x,y$ 连通但 $(x,y)$ 无边，不能这么写。
 
+:::details 点击展开代码
 ```cpp
 void link(int x, int y) {
 	make_root(x);
@@ -115,11 +128,13 @@ void link(int x, int y) {
 	tree.tr[x].fa = y;
 }
 ```
+:::
 
 ### cut(x,y):
 
 ​将连接 $(x,y)$ 的边断开，若保证 $(x,y)$ 之间存在边，那么先 `make_root(x)`，再 `access(y)`，因为 $x,y$ 直接相连，所以直接将 $y$ 从 $x$ 的右儿子断开即可。
 
+:::details 点击展开代码
 ```cpp
 void cut(int x, int y){
     make_root(x);
@@ -127,9 +142,11 @@ void cut(int x, int y){
     tree.ls(y) = tree.tr[x].fa = 0;
 }
 ```
+:::
 
 ​若不保证 $(x,y)$ 之间存在边，可以先在操作前判断 $x,y$ 的结构树的根是否相同再操作。也可以在 cut 内判断，如下：
 
+:::details 点击展开代码
 ```cpp
 void cut(int x, int y) {
     make_root(x);
@@ -138,6 +155,7 @@ void cut(int x, int y) {
     }
 }
 ```
+:::
 
 ​注意以上两者的区别。Splay 每次操作一个节点后，都要将其转到根，会影响节点树上的父子关系。
 
@@ -145,6 +163,7 @@ void cut(int x, int y) {
 
 如下：
 
+:::details 点击展开代码
 ```cpp
 struct node {
     int s[2];
@@ -208,6 +227,7 @@ struct Splay {
     }
 };
 ```
+:::
 
 ### LCT 的替代品：
 

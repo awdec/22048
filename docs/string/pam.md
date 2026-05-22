@@ -21,6 +21,7 @@
 
 朴素跳 Border，时间复杂度：$O(|S|)$。
 
+:::details 点击展开代码
 ```cpp
 struct PAM {
     int son[N][26], border[N], len[N];
@@ -59,9 +60,11 @@ struct PAM {
     }
 };
 ```
+:::
 
 补全 Trie 图，时间复杂度：$O(|S||c|)$。
 
+:::details 点击展开代码
 ```cpp
 int c = s[i] - 'a';
 int pos = s[(i - 1) - len[cur]] == s[i] ? cur : trans[cur][c];
@@ -83,6 +86,7 @@ else {
     }
 }
 ```
+:::
 
 ## 本质不同回文子串：
 
@@ -116,6 +120,7 @@ else {
 
 ​注意特判 $i-dif(x)$ 是 $slink(x)$ 的情况，$slink(x)$ 算作下一个点，所以不计算到答案。
 
+:::details 点击展开代码
 ```cpp
 void build(string &s) {
     int cur = 0, pos;
@@ -147,9 +152,11 @@ void build(string &s) {
     }
 }
 ```
+:::
 
 ​对 dp 式：$f[i]=\sum_j f[j-1],s[j,i] \text{is Palindrome}, j\equiv i\pmod 2$，的优化转移：
 
+:::details 点击展开代码
 ```cpp
 f[0] = 1;
 for (int i = 1, j; i <= n; i++) {
@@ -163,3 +170,4 @@ for (int i = 1, j; i <= n; i++) {
     }
 }
 ```
+:::

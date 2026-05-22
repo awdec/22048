@@ -36,6 +36,7 @@ $$\min\{h_{i+1},...,h_j\}$$
 
 ​至于 height 数组的求法，也略。是 $O(n)$ 的。
 
+:::details 点击展开代码
 ```cpp
 struct SA {
     int sa[N], h[N], rk[N], oldrk[N << 1], id[N], key1[N], cnt[N];
@@ -98,4 +99,5 @@ struct SA {
     }
 } ;
 ```
+:::
 

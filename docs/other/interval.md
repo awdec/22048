@@ -8,6 +8,7 @@
 
 ### 选最少的点覆盖所有区间
 
+:::details 点击展开代码
 ```cpp
 int calc(vector<pii> a) {
     sort(a.begin(), a.end(), [&](pii x, pii y) -> bool {
@@ -21,6 +22,7 @@ int calc(vector<pii> a) {
     return res;
 }
 ```
+:::
 
 ### 选最多的区间互不相交
 
@@ -28,6 +30,7 @@ int calc(vector<pii> a) {
 
 ### 区间分成组内区间无交的最少组数
 
+:::details 点击展开代码
 ```cpp
 int calc(vector<pii> a) {
     sort(a.begin(), a.end());
@@ -40,9 +43,11 @@ int calc(vector<pii> a) {
     return q.size();
 }
 ```
+:::
 
 ### 选最少的区间覆盖整段区间
 
+:::details 点击展开代码
 ```cpp
 int calc(int s, int t, vector<pii> a) {
     sort(a.begin(), a.end());
@@ -63,9 +68,11 @@ int calc(int s, int t, vector<pii> a) {
     return -1;
 }
 ```
+:::
 
 ### 区间求并
 
+:::details 点击展开代码
 ```cpp
 int calc(vector<pii> a) { 
     sort(a.begin(), a.end());
@@ -82,3 +89,4 @@ int calc(vector<pii> a) {
     return res;
 }
 ```
+:::

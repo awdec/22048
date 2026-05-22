@@ -42,6 +42,7 @@
 
 ​时间复杂度：$O(n)$。
 
+:::details 点击展开代码
 ```cpp
 struct SAM {
     int maxlen[N], fail[N], son[N][26];
@@ -76,6 +77,7 @@ struct SAM {
     }
 };
 ```
+:::
 
 ### 性质：
 

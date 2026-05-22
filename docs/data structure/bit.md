@@ -10,6 +10,7 @@
 
 ​树上共有 $n$ 个节点，父节点比子节点编号大，树状数组上 $x$ 的父亲是 $x+lowbit(x)$，所以从小到大枚举节点，用当前节点更新父亲的值即可。
 
+:::details 点击展开代码
 ```cpp
 void init(int n, vector<int> &a) {
     this->n = n;
@@ -21,9 +22,11 @@ void init(int n, vector<int> &a) {
     }
 }
 ```
+:::
 
 ​还有一个更简单的 $O(n)$ 建树，即根据树状数组管辖区间定义，$tr_x$ 表示 $[x-lowbit(x)+1,x]$ 的区间，所以预处理前缀和数组 $sum$，$tr_x=sum_x-sum_{x-lowbit(x)}$ 即可。
 
+:::details 点击展开代码
 ```cpp
 void init(int n, vector<int> &sum) {
     this->n = n;
@@ -32,6 +35,7 @@ void init(int n, vector<int> &sum) {
     }
 }
 ```
+:::
 
 ## 树状数组倍增
 
@@ -41,6 +45,7 @@ void init(int n, vector<int> &sum) {
 
 ​空间复杂度：$O(n)$。单次时间复杂度：$O(\log n)$。只能维护前缀。
 
+:::details 点击展开代码
 ```cpp
 int ask(int v) {
     int now = 0;
@@ -56,6 +61,7 @@ int ask(int v) {
     return now + 1;
 }
 ```
+:::
 
 ## 树状数组维护区间加、区间和：
 
@@ -82,6 +88,7 @@ int ask(int v) {
 
 ​不难得到，$x$ 的所有儿子节点为：$x-2^k,2^k<lowbit(x)$。时间复杂度：$O(\log^2n)$。
 
+:::details 点击展开代码
 ```cpp
 void update(int x, int v) {
     a[x] = v;
@@ -92,6 +99,7 @@ void update(int x, int v) {
     }
 }
 ```
+:::
 
 ### 区间询问：
 
@@ -99,6 +107,7 @@ void update(int x, int v) {
 
 ​和树状数组倍增类似，假设询问区间 $[l,r]$，从 $r$ 不断 $-lowbit(r)$ 直到继续减会小于 $l$。而后 $r-1$，继续迭代。时间复杂度：$O(\log^2n)$。
 
+:::details 点击展开代码
 ```cpp
 int query(int l, int r) {
     int res = 0;
@@ -110,6 +119,7 @@ int query(int l, int r) {
     return res;
 }
 ```
+:::
 
 <!-- ​容易发现，可差分信息也可以通过这个求（但是没有必要）。实测洛谷【树状数组 1】上述 $O(n\log^2n)$ 比 $O(n\log n)$ 线段树快一点，但是慢于 zkw 线段树，所以没有什么实际意义。 -->
 

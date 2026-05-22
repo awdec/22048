@@ -12,11 +12,13 @@
 
 ## 01 背包
 
+:::details 点击展开代码
 ```cpp
 for (int i = 1; i <= n; i++)
     for (int j = V; j >= v[i]; j--)
         dp[j] = max(dp[j], dp[j - v[i]] + w[i]);
 ```
+:::
 
 时间复杂度：$O(nV)$。
 
@@ -24,11 +26,13 @@ for (int i = 1; i <= n; i++)
 
 ## 完全背包
 
+:::details 点击展开代码
 ```cpp
 for (int i = 1; i <= n; i++)
     for (int j = v[i]; j <= V; j++)
         dp[j] = max(dp[j], dp[j - v[i]] + w[i]);
 ```
+:::
 
 时间复杂度：$O(nV)$。
 
@@ -36,12 +40,14 @@ for (int i = 1; i <= n; i++)
 
 ## 多重背包
 
+:::details 点击展开代码
 ```cpp
 for (int i = 1; i <= n; i++)
     for (int j = V; j >= v[i]; j--)
         for (int k = 1; k <= j / v[i]; k++)
             dp[j] = max(dp[j], dp[j - k * v[i]] + k * w[i]);
 ```
+:::
 
 时间复杂度：$O(nV^2)$。
 
@@ -49,6 +55,7 @@ for (int i = 1; i <= n; i++)
 
 ### 二进制优化
 
+:::details 点击展开代码
 ```cpp
 for (int i = 1; i <= n; i++) {
     int lim = __lg(s[i]);
@@ -62,6 +69,7 @@ for (int i = 1; i <= n; i++) {
         dp[k] = max(dp[k], dp[k - s[i] * v[i]] + s[i] * w[i]);
 }
 ```
+:::
 
 时间复杂度：$O(nV\log s_i)$。
 
@@ -69,6 +77,7 @@ for (int i = 1; i <= n; i++) {
 
 ### 单调队列优化
 
+:::details 点击展开代码
 ```cpp
 for (int i = 1; i <= n; i++) {
     int now = (i & 1);
@@ -89,6 +98,7 @@ for (int i = 1; i <= n; i++) {
     }
 }
 ```
+:::
 
 时间复杂度：$O(nV)$。
 
@@ -100,6 +110,7 @@ for (int i = 1; i <= n; i++) {
 
 ## 分组背包
 
+:::details 点击展开代码
 ```cpp
 for (int i = 1; i <= n; i++)
     for (int j = V; j >= 0; j--)
@@ -107,18 +118,21 @@ for (int i = 1; i <= n; i++)
             if (j >= v[k])
                 dp[j] = max(dp[j], dp[j - v[i][k]] + w[i][k]);
 ```
+:::
 时间复杂度：$O(\sum m V)$。
 
 空间复杂度：$O(V)$。
 
 ## 多维背包
 
+:::details 点击展开代码
 ```cpp
 for (int i = 1; i <= n; i++)
     for (int j = V1; j >= v1[i]; j--)
         for (int k = V2; k >= v2[i]; k--)
             dp[j][k] = max(dp[j][k], dp[j - v1[i]][k - v2[i]] + w[i]);
 ```
+:::
 
 时间复杂度：$O(n\prod V_i)$。
 
@@ -130,12 +144,14 @@ for (int i = 1; i <= n; i++)
 
 ## 可行性背包
 
+:::details 点击展开代码
 ```cpp
 dp[0] = 1;
 for (int i = 1; i <= n; i++)
     for (int j = V; j >= v[i]; j--)
         dp[j] |= dp[j - v[i]];
 ```
+:::
 
 时间复杂度：$O(nV)$。
 
@@ -143,11 +159,13 @@ for (int i = 1; i <= n; i++)
 
 ### `bitset` 优化
 
+:::details 点击展开代码
 ```cpp
 dp[0] = 1;
 for (int i = 1; i <= n; i++)
     dp |= (dp << v[i]);
 ```
+:::
 
 时间复杂度：$O(\dfrac{nV}{w})$。
 
@@ -186,12 +204,14 @@ for (int i = 1; i <= n; i++)
 
 以 01 背包为例：
 
+:::details 点击展开代码
 ```cpp
 dp[0] = 1;
 for (int i = 1; i <= n; i++)
     for (int j = V; j >= v[i]; j--)
         dp[j] += dp[j - v[i]];
 ```
+:::
 
 时间复杂度：$O(nV)$。
 
@@ -231,21 +251,26 @@ $\ln F(x)=\ln(1-x^{(s + 1)v_i})-\ln(1-x^{v})$，按泰勒展开，可得 $\sum\l
 
 01 背包：
 
+:::details 点击展开代码
 ```cpp
 for (int j = v[i]; j <= V; j++)
     dp[j] -= dp[j - v[i]];
 ```
+:::
 完全背包：
 
+:::details 点击展开代码
 ```cpp
 for (int j = V; j >= v[i]; j--)
     dp[j] -= dp[j - v[i]]
 ```
+:::
 
 多重背包二进制优化和 01 背包一样处理即可。
 
 但是多重背包实际上按物品体积同余类直接维护区间和即可，枚举顺序同 01 背包：
 
+:::details 点击展开代码
 ```cpp
 for (int j = 0; j < v[i]; j++) {
     int sum = dp[j];
@@ -257,6 +282,7 @@ for (int j = 0; j < v[i]; j++) {
     }
 }
 ```
+:::
 
 tips：上述代码未经验证。
 
@@ -270,17 +296,20 @@ tips：上述代码未经验证。
 
 预处理时间复杂度：$O(nV)$。
 
+:::details 点击展开代码
 ```cpp
 dp = pre[i];
 for (int j = 0; j <= V; j++)
     for (int k = 0; k <= j; k++)
         dp[j] = max(dp[j], dp[j - k] + suf[i][k]);
 ```
+:::
 
 单次拼起来，本质就是卷积，时间复杂度：$O(V^2)$。
 
 ## 树上背包
 
+:::details 点击展开代码
 ```cpp
 sz[x] = 1;
 dp[x][1] = w[x];
@@ -294,6 +323,7 @@ for (auto u : p[x]) {
     sz[x] += sz[u];
 }
 ```
+:::
 
 需要注意的是，经过上下界优化后的树上背包，时间复杂度是 $O(nV)$ 的。
 

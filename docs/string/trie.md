@@ -14,6 +14,7 @@
 
 ​特别地，若字符集只含 01，为 01-Trie，一般用于解决 01 串的字典序或计数问题。
 
+:::details 点击展开代码
 ```cpp
 struct Trie {
     int root, son[N][26], idx;
@@ -41,4 +42,5 @@ struct Trie {
     }
 };
 ```
+:::
 

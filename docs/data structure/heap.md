@@ -37,6 +37,7 @@
 |rc_binomial_heap_tag|$O(1)$|$O(\log n)$|$O(\log n)$|$O(\log n)$|$O(\log n)$|
 |thin_heap_tag|$O(1)$|均摊 $O(\log n)$|均摊 $O(1)$|均摊 $O(1)$|$O(n)$|
 
+:::details 点击展开代码
 ```cpp
 #include <algorithm>
 #include <cstdio>
@@ -77,5 +78,6 @@ int main() {
   // q1中无元素，q2中元素 ：[1, 1, 1, 2, 3, 3, 5];
 }
 ```
+:::
 
 注：迭代器可被记录，在 `push` 元素时，将其迭代器用数组存起来，可在后续访问。 

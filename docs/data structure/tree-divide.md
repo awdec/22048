@@ -22,6 +22,7 @@
 
 时间复杂度：$O(n\log nT(n))$，其中 $T(n)$ 表示合并信息的时间复杂度。
 
+:::details 点击展开代码
 ```cpp
 
 int get_size(int x, int fa) {
@@ -101,6 +102,7 @@ void calc(int x) {
         calc(u);
 }
 ```
+:::
 
 ## 动态点分治（点分树）
 
@@ -114,6 +116,7 @@ void calc(int x) {
 
 结合具体题目，维护点分树上每个点的子树信息即可。
 
+:::details 点击展开代码
 ```cpp
 int get_size(int x, int fa) {
     if (vis[x])
@@ -155,3 +158,4 @@ void calc(int x, int y) { // 只需要保留重心递归部分
         calc(u, x);
 }
 ```
+:::

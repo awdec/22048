@@ -18,6 +18,7 @@
 
 因为整体二分离线的特性，所以在部分情况下，可以使用更低的空间复杂度。
 
+:::details 点击展开代码
 ```cpp
 void solve(int ql, int qr, int L, int R, int al, int ar) {
     if (ql > qr){
@@ -71,6 +72,7 @@ void solve(int ql, int qr, int L, int R, int al, int ar) {
     solve(ql + cnt1, qr, mid + 1, R, al + ret1, ar);
 }
 ```
+:::
 
 ## 扩展
 

@@ -38,6 +38,7 @@
 
 基于开放寻址法的哈希表实现：
 
+:::details 点击展开代码
 ```cpp
 mt19937_64 rnd(chrono::steady_clock::now().time_since_epoch().count());
 struct Hash_Map {
@@ -80,6 +81,7 @@ struct Hash_Map {
     int &operator[](const u64 x) { return b[get(x)]; }
 };
 ```
+:::
 
 
 ## 多项式模数哈希：

@@ -66,6 +66,7 @@ $$a_x^{-1}=(\prod\limits_{i=1}^{x-1}a_i)\times (\prod\limits_{i=1}^x a_i)^{-1}$$
 枚举 $u\in[1,p^\frac{1}{3}]$，找到 $a$ 满足 $a\times tu\in[p-p^{\frac{2}{3}},p)\lor [0,p^{\frac{2}{3}}]$，因为 $tu$ 在枚举 $u$ 时是定值，这个 $a$ 可以直接通过除法得到。
 
 
+:::details 点击展开代码
 ```cpp
 const int N = (1 << 21) | 1;
 const int B = 300; // 需要满足 B^3 >= mod
@@ -125,3 +126,4 @@ int inv(int x, int mod) {
 barret.init(p);
 init(p);
 ```
+:::

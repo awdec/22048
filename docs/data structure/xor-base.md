@@ -33,6 +33,7 @@
 使用 `bitset` 维护，时间复杂度：$O(\frac{m^2n}{w})$。
 
 
+:::details 点击展开代码
 ```cpp
 void build(int n, vector<int> &t) {
     a.resize(n);
@@ -69,6 +70,7 @@ void build(int n, vector<int> &t) {
     }
 }
 ```
+:::
 
 ### 贪心法：
 
@@ -83,6 +85,7 @@ void build(int n, vector<int> &t) {
 - 支持回退
 - 空间复杂度：$O(w)$
 
+:::details 点击展开代码
 ```cpp
 void insert(int v) {
     for (int i = 63; i >= 0; i--) {
@@ -97,6 +100,7 @@ void insert(int v) {
     }
 }
 ```
+:::
 
 
 虽然一般情况下，线性基会从最高位开始消元，但实际上，因为秩的大小不一定为 $n$，那么消元后的自由元取决于对哪些位进行了消元。
@@ -132,6 +136,7 @@ void insert(int v) {
 
 时间复杂度：$O(m)$。
 
+:::details 点击展开代码
 ```cpp
 int query_max() {
     int res = 0;
@@ -168,6 +173,7 @@ int query_kth(int k) {
     return res;
 }
 ```
+:::
 
 ## 解的构造
 
@@ -180,6 +186,7 @@ int query_kth(int k) {
 时间复杂度：$O(nw^2\log w)$。
 
 
+:::details 点击展开代码
 ```cpp
 void insert(int x, int v) {
     set<int> now;
@@ -203,6 +210,7 @@ void insert(int x, int v) {
     }
 }
 ```
+:::
 
 时间复杂度证明在于线性基维护过程中，每个行向量最多由 $w$ 个原集合中的数异或得到。
 
@@ -214,6 +222,7 @@ void insert(int x, int v) {
 
 时间复杂度：$O(nw)$。
 
+:::details 点击展开代码
 ```cpp
 void insert(int x, int v) {
     bitset<30> now;
@@ -233,3 +242,4 @@ void insert(int x, int v) {
     }
 }
 ```
+:::
