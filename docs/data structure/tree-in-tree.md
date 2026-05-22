@@ -88,12 +88,13 @@ struct BitVec
             n = max(n, u);
         }
         tr.resize(n + 1);
+        vec.resize(n + 1);
         cnt.assign(n + 1, 0);
         for (auto [u, v] : a)
             for (; u <= n; u += lowbit(u))
                 cnt[u]++;
         for (int i = 1; i <= n; i++)
-            vec[i].resize(cnt[i]);
+            vec[i].reserve(cnt[i]);
         for (auto [u, v] : a)
             for (; u <= n; u += lowbit(u))
                 vec[u].push_back(v);
@@ -109,7 +110,7 @@ struct BitVec
         for (; x <= n; x += lowbit(x))
         {
             int now = lower_bound(vec[x].begin(), vec[x].end(), y) - vec[x].begin() + 1;
-            for (int i = now; i <= vec[i].size(); i += lowbit(i))
+            for (int i = now; i <= vec[x].size(); i += lowbit(i))
                 tr[x][i] += v;
         }
     }
@@ -118,7 +119,7 @@ struct BitVec
         int res = 0;
         for (; x; x -= lowbit(x))
         {
-            int now = lower_bound(vec[x].begin(), vec[x].end(), y) - vec[x].begin() + 1;
+            int now = upper_bound(vec[x].begin(), vec[x].end(), y) - vec[x].begin();
             for (int i = now; i; i -= lowbit(i))
                 res += tr[x][i];
         }
@@ -130,7 +131,121 @@ struct BitVec
 
 ### 树状数组套动态开点线段树
 
+和套 vector 类似地，只是内层使用动态开点线段树在线维护。
 
+但是实际实现上，不用生硬地给每一个树状数组节点单独开一个动态开点线段树结构。
+
+可以给树状数组节点一个 $root$ 数组，每个节点分配一个根，这样就可以使用同一个动态开点线段树结构。
+
+求解区间第 $k$ 大时，对于涉及到的 $O(\log n)$ 个树状数组节点，可以同步维护左右子树走向。这时可以发现，这和“主席树”的结构就很像了（虽然两者之间没有什么实际关系），所以被俗称“带修主席树”。
+
+注：实际上在特化维护带修区间第 $k$ 大时，还有一些常数的技巧，这里不做展开。
+
+:::details 点击展开代码
+```cpp
+struct BitSeg
+{
+    struct node
+    {
+        int sum, ls, rs;
+    } tr[N * 400];
+    int root[N];
+    int n, m, idx;
+    void push_up(int p)
+    {
+        tr[p].sum = tr[ls(p)].sum + tr[rs(p)].sum;
+    }
+    void update(int &p, int l, int r, int x, int v)
+    {
+        int mid = l + r >> 1;
+        if (!p)
+            p = ++idx;
+        if (l == r)
+        {
+            tr[p].sum += v;
+            return;
+        }
+        if (x <= mid)
+            update(ls(p), l, mid, x, v);
+        else
+            update(rs(p), mid + 1, r, x, v);
+        push_up(p);
+    }
+    int lowbit(int x)
+    {
+        return x & -x;
+    }
+    void init(int n, int m)
+    {
+        this->n = n;
+        this->m = m;
+        for (int i = 1; i <= idx; i++)
+            tr[i] = {0, 0, 0};
+        idx = 0;
+        for (int i = 1; i <= n; i++)
+            root[i] = 0;
+    }
+    void add(int x, int v)
+    {
+        for (; x <= n; x += lowbit(x))
+        {
+            update(root[x], 0, m, v, 1);
+        }
+    }
+    void del(int x, int v)
+    {
+        for (; x <= n; x += lowbit(x))
+        {
+            update(root[x], 0, m, v, -1);
+        }
+    }
+    int query(int l, int r, int k)
+    {
+        static int al[40], ar[40];
+
+        int cntl = 0, cntr = 0;
+        for (int x = l - 1; x; x -= lowbit(x))
+            al[++cntl] = root[x];
+        for (int x = r; x; x -= lowbit(x))
+            ar[++cntr] = root[x];
+        int L = 0, R = m;
+        while (L != R)
+        {
+            int mid = L + R >> 1;
+            int cnt = 0;
+            for (int i = 1; i <= cntr; i++)
+            {
+                cnt += tr[ls(ar[i])].sum;
+            }
+            for (int i = 1; i <= cntl; i++)
+            {
+                cnt -= tr[ls(al[i])].sum;
+            }
+            if (k <= cnt)
+            {
+                for (int i = 1; i <= cntl; i++)
+                    al[i] = ls(al[i]);
+                for (int i = 1; i <= cntr; i++)
+                    ar[i] = ls(ar[i]);
+                R = mid;
+            }
+            else
+            {
+                k -= cnt;
+                for (int i = 1; i <= cntl; i++)
+                    al[i] = rs(al[i]);
+                for (int i = 1; i <= cntr; i++)
+                    ar[i] = rs(ar[i]);
+                L = mid + 1;
+            }
+        }
+        return L;
+    }
+};
+```
+:::
+
+空间复杂度：$O(n\log^2n)$，单点修改和区间询问时间复杂度均为 $O(\log^2n)$。
 
 ## 线段树套 DS
 
@@ -142,13 +257,13 @@ struct BitVec
 
 时空复杂度均为：$O(n\log^2 n)$。
 
+### 线段树套平衡树
+
 外层线段树上，每一个节点维护了一棵平衡树。
 
 时间复杂度：$O(n\log^2n)$。
 
 空间复杂度：$O(n\log n)$。
-
-### 线段树套平衡树
 
 ## 分块套 DS
 
@@ -159,14 +274,3 @@ struct BitVec
 询问时，散块暴力，整块
 
 时间复杂度：
-
-
-## 单点修改区间 k-th：
-
-​要求支持单点赋值的区间 rank、区间 k-th、区间前驱、区间后继。
-
-​全局询问版本是平衡树经典问题，对于区间版本，使用线段树套平衡树后，即划分成了 $O(\log n)$ 个独立的平衡树，合并结果即可。但是因为平衡树的形式不是唯一的，所以区间 k-th 不能简单合并。一个简单的解决办法是用二分转换成区间 rank 问题，单次时间复杂度 $O(\log^3n)$。维护内层平衡树时，可以回收空间重复利用（卡常）。
-
-​若使用线段树套权值线段树，其它操作时间复杂度不变，但是因为权值线段树形态相同，所以 $O(\log n)$ 棵权值线段树可以一起做 k-th。具体而言，$O(\log n)$ 棵权值线段树维护同一个节点，若 $O(\log n)$ 棵权值线段树左儿子 $sz$ 之和大于等于，则一起递归左儿子，反之一起递归右儿子。单次时间复杂度：$O(\log^2n)$。
-
-因为这个全局二分求解 k-th 的思想和主席树相同，且和解决静态区间 k-th 的主席树相比，这里支持了修改，所以把这种 trick 俗称为“带修主席树”。
