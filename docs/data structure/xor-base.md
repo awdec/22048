@@ -462,6 +462,8 @@ LinearBasis intersection_basis(LinearBasis &A, LinearBasis &B)
 
 $n,q$ 视作同阶，最优时间复杂度：$O(n\sqrt n w^{\frac{3}{2}})$。
 
+此时，空间复杂度为：$O(\sqrt{nw})$。
+
 时间复杂度较劣，优势是空间优秀。
 
 :::details 点击展开代码

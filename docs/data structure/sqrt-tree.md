@@ -4,7 +4,9 @@
 }
 </style>
 
-<h1><center>Sqrt Tree</center></h1>
+<h1><center>根号树</center></h1>
+
+根号叉树。
 
 
 ## Sqrt Tree
