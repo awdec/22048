@@ -1,19 +1,18 @@
 # awdec's Blog
 
-一个基于 VitePress 搭建的算法与竞赛编程笔记站点，内容涵盖数据结构、字符串、数学、图论、多项式、计算几何、动态规划等专题。
+这是一个基于 VitePress 搭建的考研学习笔记站点，主要用于整理 408 数据结构、高等数学、线性代数等内容。
+
+站点内容以章节笔记、考点总结和例题练习为主，适合在复习过程中按知识模块查阅和补充。
 
 ## 内容概览
 
-- 数据结构：线段树、树状数组、并查集、平衡树、动态树、莫队、树链剖分、点分治等
-- 字符串：KMP、Hash、Manacher、Trie、AC 自动机、PAM、SAM、SA 等
-- 数学：数论、组合数学、生成函数、多项式相关内容
-- 图论：最短路、最小生成树、二分图、Tarjan、欧拉路、LCA 等
-- 计算几何：凸包、半平面交、旋转卡壳、扫描线、圆、三维几何等
-- 动态规划与其他竞赛常用技巧
+- 数据结构：408 数据结构考点分析、绪论、线性表、字符串、树、图、查找、排序等。
+- 高等数学：函数、极限、连续等章节考点与例题。
+- 线性代数：线性代数相关考点与练习内容。
 
 ## 技术栈
 
-- [VitePress](https://vitepress.dev/)
+- VitePress
 - Markdown
 - markdown-it-mathjax3
 
@@ -37,7 +36,7 @@ npm run docs:dev
 npm run docs:build
 ```
 
-本地预览构建结果：
+预览构建结果：
 
 ```bash
 npm run docs:preview
@@ -49,23 +48,20 @@ npm run docs:preview
 .
 ├── docs/
 │   ├── .vitepress/          # VitePress 配置
-│   ├── data structure/      # 数据结构
-│   ├── dp/                  # 动态规划
-│   ├── geometry/            # 计算几何
-│   ├── graph/               # 图论
-│   ├── math/                # 数学专题
-│   ├── other/               # 杂项
-│   ├── poly/                # 多项式
+│   ├── advanced-math/       # 高等数学笔记与例题
+│   ├── data structrue/      # 数据结构笔记与例题
+│   ├── linear-algebra/      # 线性代数笔记与例题
 │   ├── public/              # 静态资源
-│   └── string/              # 字符串
+│   └── index.md             # 站点首页
 ├── package.json
+├── package-lock.json
 └── README.md
 ```
 
-## 贡献
+## 说明
 
-欢迎通过 Issue 或 Pull Request 交流、补充内容或修正文档中的问题。
+项目仍在持续整理中，章节内容会随着复习进度逐步补充和调整。
 
-## 开源协议
+## License
 
 本项目基于 [MIT License](./LICENSE) 开源。
