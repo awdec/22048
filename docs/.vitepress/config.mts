@@ -6,7 +6,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lastUpdated: true,
   
-  base: "/22048/",
+  // base: "/22048/",
   
   // head: [
   //   ['link', { rel: 'icon', href: '/logo2.ico' }]
