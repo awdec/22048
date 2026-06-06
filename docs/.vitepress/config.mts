@@ -8,208 +8,198 @@ export default defineConfig({
   
   // base: "/blog-algorithm/",
   
-  head: [
-    ['link', { rel: 'icon', href: '/logo2.ico' }]
-  ],
+  // head: [
+  //   ['link', { rel: 'icon', href: '/logo2.ico' }]
+  // ],
 
 
   title: "awdec's Blog",
   
-  description: "awdec 算法-理论",
+  description: "考研",
 
 
 
   themeConfig: {
     outlineTitle: '目录',
     outline: [2,6],
-    logo: '/awdec.png',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '首页', link: '/' },
-      { text: '数据结构', link: '/data structure/home' },
-      { text: '字符串', link: '/string/home'},
-      { 
-        text: '数学', 
+      { text: '数据结构',
         items: [
-          {text: '数论', link: '/math/number theory/home'},
-          {text: '组合数学', link: '/math/combinatorial mathematics/home'},
-          {text: '杂项', link: '/math/other/home'},
-        ]
-        
+          {text: '考点', link: '/data structrue/content/' },
+          {text: '例题', link: '/data structrue/practice/'},
+        ] 
       },
-      { text: '图论', link: '/graph/home'},
-      { text: '多项式', link: '/poly/home'},
-      { text: '计算几何', link: '/geometry/home'},
-      { text: '动态规划', link: '/dp/home'},
-      { text: '网络流', link: '/flow/home'},
-      { text: '杂项', link: '/other/home'},
+      { text: '操作系统', link: '/string/home'},
+      { text: '计算机网络', link: '/graph/home'},
+      { text: '计算机组成原理', link: '/poly/home'},
+      { text: '高等数学',
+        items: [
+          { text: '考点', link: '/advanced-math/content/' },
+          { text: '例题', link: '/advanced-math/practice/' },
+          { text: '习题', link: '/advanced-math/practise/' },
+        ],
+      },
+      { text: '线性代数',
+        items: [
+          { text: '考点', link: '/linear-algebra/content/' },
+          { text: '例题', link: '/linear-algebra/practice/' },
+        ],
+      },
     ],
 
     sidebar: {
-      '/data structure/': [
+      '/data structrue/content': [
         {
           text: '数据结构',
           items: [
-            { text: '平衡树', link: '/data structure/binary-search-tree' },
-            { text: '线段树', link: '/data structure/segment-tree'},
-            { text: '树状数组', link: '/data structure/bit'},
-            { text: '树套树', link: '/data structure/tree-in-tree'},
-            { text: '并查集', link: '/data structure/dsu'},
-            { text: '堆', link: '/data structure/heap'},
-            { text: '动态树', link :'/data structure/lct'},
-            { text: '根号树', link: '/data structure/sqrt-tree'},
-            { text: '莫队', link: '/data structure/mo'},
-            { text: '树链剖分', link: '/data structure/tree-chain'},
-            { text: '点分治', link: '/data structure/tree-divide'},
-            { text: 'dsu on tree', link: '/data structure/dsu-on-tree'},
-            { text: '01 Trie', link: '/data structure/01-trie'},
-            { text: '线性基', link: '/data structure/xor-base'},
-            { text: '分块', link: '/data structure/block'},
-            { text: '树分块', link: '/data structure/block'},
-            { text: 'cdq 分治', link: '/data structure/cdq'},
-            { text: '整体二分', link: '/data structure/dfs'},
-            { text: '珂朵莉树', link: '/data structure/odt'},
-            { text: 'bitset', link: '/data structure/bitset'},
-            { text: '小波树', link: '/data structure/wavelet'},
-            { text: 'K-D Tree', link: '/data structure/kdtree'},
+            { text: '408 数据结构考点分析', link: '/data structrue/content/exam-analysis' },
+            {
+              text: '第一章 绪论',
+              link: '/data structrue/content/introduction',
+              items: [
+                { text: '第一节 基本概念', link: '/data structrue/content/introduction-section-1' },
+                { text: '第二节 算法概念', link: '/data structrue/content/introduction-section-2' },
+                { text: '第三节 本章总结', link: '/data structrue/content/introduction-section-3' },
+              ],
+            },
+            {
+              text: '第二章 线性表',
+              link: '/data structrue/content/linear-list',
+              items: [
+                { text: '第一节 顺序表', link: '/data structrue/content/linear-list-sequential-list' },
+                { text: '第二节 链表', link: '/data structrue/content/linear-list-linked-list' },
+                { text: '第三节 栈', link: '/data structrue/content/linear-list-stack' },
+                { text: '第四节 栈的应用', link: '/data structrue/content/linear-list-stack-application' },
+                { text: '第五节 队列', link: '/data structrue/content/linear-list-queue' },
+                { text: '第六节 队列的应用', link: '/data structrue/content/linear-list-queue-application' },
+                { text: '第七节 数组和特殊矩阵', link: '/data structrue/content/linear-list-array-special-matrix' },
+                { text: '第八节 本章总结', link: '/data structrue/content/linear-list-section-8' },
+              ],
+            },
+            {
+              text: '第三章 字符串',
+              link: '/data structrue/content/string',
+              items: [
+                { text: '第一节 字符串', link: '/data structrue/content/string-section-1' },
+                { text: '第二节 本章总结', link: '/data structrue/content/string-section-2' },
+              ],
+            },
+            {
+              text: '第四章 树',
+              link: '/data structrue/content/tree',
+              items: [
+                { text: '第一节 树与二叉树', link: '/data structrue/content/tree-binary-tree' },
+                { text: '第二节 并查集', link: '/data structrue/content/tree-disjoint-set' },
+                { text: '第三节 本章总结', link: '/data structrue/content/tree-section-3' },
+              ],
+            },
+            {
+              text: '第五章 图',
+              link: '/data structrue/content/graph',
+              items: [
+                { text: '第一节 图的定义', link: '/data structrue/content/graph-definition' },
+                { text: '第二节 图结构的存储', link: '/data structrue/content/graph-storage' },
+                { text: '第三节 图的遍历', link: '/data structrue/content/graph-traversal' },
+                { text: '第四节 图的相关应用', link: '/data structrue/content/graph-application' },
+              ],
+            },
+            {
+              text: '第六章 查找',
+              link: '/data structrue/content/search',
+              items: [
+                { text: '第一节 查找的基本概念', link: '/data structrue/content/search-basic' },
+                { text: '第二节 顺序查找和折半查找', link: '/data structrue/content/search-linear-binary' },
+                { text: '第三节 树形查找', link: '/data structrue/content/search-tree' },
+                { text: '第四节 B 树和 B+ 树', link: '/data structrue/content/search-b-tree' },
+                { text: '第五节 散列表', link: '/data structrue/content/search-hash' },
+              ],
+            },
+            {
+              text: '第七章 排序',
+              link: '/data structrue/content/sort',
+              items: [
+                { text: '第一节 排序的基本概念', link: '/data structrue/content/sort-basic' },
+                { text: '第二节 插入排序', link: '/data structrue/content/sort-insertion' },
+                { text: '第三节 交换排序', link: '/data structrue/content/sort-exchange' },
+                { text: '第四节 选择排序', link: '/data structrue/content/sort-selection' },
+                { text: '第五节 归并、基数、计数排序', link: '/data structrue/content/sort-merge-radix-count' },
+                { text: '第六节 内部排序', link: '/data structrue/content/sort-internal' },
+                { text: '第七节 外部排序', link: '/data structrue/content/sort-external' },
+              ],
+            },
           ]
         }
       ],
 
-      '/string/': [
+      '/data structrue/practice': [
         {
-          text: '字符串',
+          text: '数据结构',
           items: [
-            { text: '字符串处理', link: '/string/string'},
-            { text: 'Border', link: '/string/border'},
-            { text: 'Kmp', link: '/string/kmp'},
-            { text: 'Hash', link: '/string/hash'},
-            { text: 'Manacher', link: '/string/manacher'},
-            { text: 'Trie', link: '/string/trie'},
-            { text: 'ACAM', link: '/string/acam'},
-            { text: 'PAM', link: '/string/pam'},
-            { text: 'SAM', link: '/string/sam'},
-            { text: 'SA', link: '/string/sa'}, 
+            { text: '线性表', link: '/data structrue/practice/linear-list'},
           ]
         }
       ],
 
-      '/math/number theory/': [
+      '/advanced-math/content': [
         {
-          text: '数论',
+          text: '高等数学',
           items: [
-            { text: '质数', link: '/math/number theory/prime'},
-            { text: '初等数论函数', link: '/math/number theory/function'},
-            { text: 'Gcd', link: '/math/number theory/gcd'},
-            { text: '取模运算', link: '/math/number theory/mod1'},
-            { text: '同余', link: '/math/number theory/mod'},
-            { text: 'Dirichlet 前缀和', link: '/math/number theory/dirichlet'},
-            { text: '筛法', link: '/math/number theory/sieve'},
+            { text: '高数考纲/考点', link: '/advanced-math/content/' },
+            {
+              text: '第一章 函数 极限 连续',
+              link: '/advanced-math/content/function-limit-continuity',
+              items: [
+                { text: '第一节 函数及其性质', link: '/advanced-math/content/function-limit-continuity-section-1' },
+                { text: '第二节 数列极限与函数极限', link: '/advanced-math/content/function-limit-continuity-section-2' },
+                { text: '第三节 无穷小量及无穷小的阶', link: '/advanced-math/content/function-limit-continuity-section-3' },
+                { text: '第四节 极限计算', link: '/advanced-math/content/function-limit-continuity-section-4' },
+                { text: '第五节 连续和间断', link: '/advanced-math/content/function-limit-continuity-section-5' },
+                { text: '本章总结', link: '/advanced-math/content/function-limit-continuity-section-6' },
+              ],
+            },
           ]
         }
       ],
 
-      '/math/combinatorial mathematics/': [
+      '/advanced-math/practice': [
         {
-          text: '组合数学',
+          text: '高等数学',
           items: [
-            { text: '组合数列', link: '/math/combinatorial mathematics/sequence'},
-            { text: '反演', link: '/math/combinatorial mathematics/transfer'},
-            
+            { text: '高数例题', link: '/advanced-math/practice/' },
+            {
+              text: '第一章 函数 极限 连续',
+              link: '/advanced-math/practice/function-limit-continuity',
+              items: [
+                { text: '第一节 函数及其性质', link: '/advanced-math/practice/function-limit-continuity-section-1' },
+                { text: '第二节 数列极限与函数极限', link: '/advanced-math/practice/function-limit-continuity-section-2' },
+                { text: '第三节 无穷小量及无穷小的阶', link: '/advanced-math/practice/function-limit-continuity-section-3' },
+                { text: '第四节 极限计算', link: '/advanced-math/practice/function-limit-continuity-section-4' },
+                { text: '第五节 连续和间断', link: '/advanced-math/practice/function-limit-continuity-section-5' },
+              ],
+            },
           ]
         }
       ],
 
-      '/math/other':[
+      '/linear-algebra/content': [
         {
-          text: "杂项",
+          text: '线性代数',
           items: [
-            
+            { text: '线代考纲/考点', link: '/linear-algebra/content/' },
           ]
         }
       ],
 
-      '/other':[
+      '/linear-algebra/practice': [
         {
-          text: "杂项",
+          text: '线性代数',
           items: [
-            {text: '区间变换', link: '/other/interval'},
-            {text: '树同构', link: '/other/tree-hash'},
-            {text: '哈希', link: '/other/hashing'},
-            {text: '优秀的编码习惯（卡常）', link: '/other/constant'},
-            {text: '范数', link: '/other/distance'},
-            {text: '一些有用的库函数', link: '/other/functions'},
+            { text: '线代例题', link: '/linear-algebra/practice/' },
           ]
         }
       ],
-
-      '/graph/':[
-        {
-          text: '图论',
-          items:[
-            { text: '最短路', link: '/graph/shortest-path'},
-            { text: '最小生成树', link: '/graph/mst'},
-            { text: '二分图', link:'/graph/bipartite'},
-            { text: 'Tarjan', link: '/graph/tarjan'},
-            { text: '环计数问题', link: '/graph/circle'},
-            { text: '欧拉路', link: '/graph/euler'},
-            { text: 'LCA', link: '/graph/lca'},
-          ]
-        }
-      ],
-
-      '/poly':[
-        {
-          text: '多项式',
-          items:[
-            { text: '生成函数', link: '/poly/Generating-function'},
-            { text: '基础-多项式全家桶', link: '/poly/poly1'},
-            { text: '', link: ''},
-          ]
-        }
-      ],
-
-      '/geometry':[
-        {
-          text: '计算几何',
-          items:[
-            { text: '计算几何全家桶', link: '/geometry/model'},
-            { text: '计算几何基础概念', link: '/geometry/base'},
-            { text: '极角序', link: '/geometry/jijiao'},
-            { text: '凸包', link: '/geometry/tubao'},
-            { text: '闵可夫斯基和', link: '/geometry/minkowski'},
-            { text: '半平面交', link: '/geometry/half'},
-            { text: '旋转卡壳', link: '/geometry/rotate'},
-            { text: '扫描线', link: '/geometry/scan'},
-            { text: '圆', link: '/geometry/circle'},
-            { text: '基础三维几何', link: '/geometry/3d'},
-            { text: '杂项', link: '/geometry/other'},
-          ]
-        }
-      ],
-
-      '/dp':[
-        {
-          text: '动态规划',
-          items:[
-            { text: '线性 dp', link: '/'},
-            { text: '背包 dp', link: '/dp/bag'},
-            { text: '区间 dp', link: '/'},
-            { text: '状态机 dp', link: '/'},
-            { text: '状压 dp', link: '/'},
-            { text: 'SOS dp', link: '/'},
-            { text: '矩阵 dp', link: '/'},
-            { text: '数位 dp', link: '/'},
-            { text: '树形 dp', link: '/'},
-            { text: '数据结构优化 dp', link: '/'},
-            { text: '斜率优化 dp', link: '/'},
-            { text: '决策单调性 dp', link: '/'},
-            { text: '插头 dp', link: '/'},
-          ]
-        }
-        
-      ],
-
     },
 
     // socialLinks: [

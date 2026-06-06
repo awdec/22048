@@ -1,0 +1,45 @@
+:root {
+  --vp-font-family-base: KaiTi, "Kaiti SC", STKaiti, "楷体",
+    "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --vp-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body,
+.VPApp {
+  font-family: var(--vp-font-family-base);
+}
+
+.VPContent,
+.VPDoc,
+.VPDoc .container,
+.VPDoc .content,
+.VPDoc .content-container,
+.vp-doc {
+  background-color: transparent !important;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--vp-font-family-mono);
+}
+
+:root {
+  --home-hero-image-width: min(500px, 88vw);
+  --home-hero-image-height: min(260px, 50vw);
+}
+
+.VPHomeHero .image-container {
+  width: var(--home-hero-image-width) !important;
+  height: var(--home-hero-image-height) !important;
+}
+
+.VPHomeHero .image-src {
+  width: var(--home-hero-image-width) !important;
+  height: auto !important;
+  max-width: var(--home-hero-image-width) !important;
+  max-height: var(--home-hero-image-height) !important;
+  object-fit: contain;
+}

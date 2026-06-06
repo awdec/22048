@@ -1,1 +1,0 @@
-$\sum\limits_{i=1}^n a_i= 100$

@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "dosc:dev": "NODE_OPTIONS=--max-old-space-size=4096 vitepress dev docs",
+    "docs:dev": "NODE_OPTIONS=--max-old-space-size=4096 vitepress dev docs",
+    "docs:build": "NODE_OPTIONS=--max-old-space-size=4096 vitepress build docs",
+    "docs:preview": "NODE_OPTIONS=--max-old-space-size=4096 vitepress preview docs"
   },
   "dependencies": {
     "vitepress": "^1.6.3"
