@@ -21,7 +21,7 @@
 安装依赖：
 
 ```bash
-npm install
+npm install 
 ```
 
 启动开发服务器：
