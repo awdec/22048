@@ -33,7 +33,12 @@ export default defineConfig({
       },
       { text: '操作系统', link: '/string/home'},
       { text: '计算机网络', link: '/graph/home'},
-      { text: '计算机组成原理', link: '/poly/home'},
+      { text: '计算机组成原理',
+        items: [
+          { text: '考点', link: '/computer-organization/content/' },
+          { text: '例题', link: '/computer-organization/practice/' },
+        ],
+      },
       { text: '高等数学',
         items: [
           { text: '考点', link: '/advanced-math/content/' },
@@ -142,6 +147,92 @@ export default defineConfig({
         }
       ],
 
+      '/computer-organization/content': [
+        {
+          text: '计算机组成原理',
+          items: [
+            { text: '408 计算机组成原理考点分析', link: '/computer-organization/content/exam-analysis' },
+            {
+              text: '第一章 计算机系统概述',
+              link: '/computer-organization/content/introduction',
+              items: [
+                { text: '第一节 计算机系统层次结构', link: '/computer-organization/content/introduction-section-1' },
+                { text: '第二节 计算机的性能指标', link: '/computer-organization/content/introduction-section-2' },
+              ],
+            },
+            {
+              text: '第二章 数据的表示和运算',
+              link: '/computer-organization/content/data-representation-operation',
+              items: [
+                { text: '第一节 数制与编码', link: '/computer-organization/content/data-representation-operation-section-1' },
+                { text: '第二节 运算方法和运算电路', link: '/computer-organization/content/data-representation-operation-section-2' },
+                { text: '第三节 浮点数的表示与运算', link: '/computer-organization/content/data-representation-operation-section-3' },
+              ],
+            },
+            {
+              text: '第三章 存储系统',
+              link: '/computer-organization/content/memory-system',
+              items: [
+                { text: '第一节 存储器概述', link: '/computer-organization/content/memory-system-section-1' },
+                { text: '第二节 主存储器', link: '/computer-organization/content/memory-system-section-2' },
+                { text: '第三节 主存储器与 CPU 的连接', link: '/computer-organization/content/memory-system-section-3' },
+                { text: '第四节 外部存储器', link: '/computer-organization/content/memory-system-section-4' },
+                { text: '第五节 高速缓冲存储器', link: '/computer-organization/content/memory-system-section-5' },
+                { text: '第六节 虚拟存储器', link: '/computer-organization/content/memory-system-section-6' },
+              ],
+            },
+            {
+              text: '第四章 指令系统',
+              link: '/computer-organization/content/instruction-system',
+              items: [
+                { text: '第一节 指令系统', link: '/computer-organization/content/instruction-system-section-1' },
+                { text: '第二节 寻址方式', link: '/computer-organization/content/instruction-system-section-2' },
+                { text: '第三节 程序的机器级代码表示', link: '/computer-organization/content/instruction-system-section-3' },
+                { text: '第四节 CISC 和 RISC 的基本概念', link: '/computer-organization/content/instruction-system-section-4' },
+              ],
+            },
+            {
+              text: '第五章 中央处理器',
+              link: '/computer-organization/content/cpu',
+              items: [
+                { text: '第一节 CPU 的功能和基本结构', link: '/computer-organization/content/cpu-section-1' },
+                { text: '第二节 指令执行过程', link: '/computer-organization/content/cpu-section-2' },
+                { text: '第三节 数据通路的功能和基本结构', link: '/computer-organization/content/cpu-section-3' },
+                { text: '第四节 控制器的功能和工作原理', link: '/computer-organization/content/cpu-section-4' },
+                { text: '第五节 异常和中断机制', link: '/computer-organization/content/cpu-section-5' },
+                { text: '第六节 指令流水线', link: '/computer-organization/content/cpu-section-6' },
+                { text: '第七节 多处理器的基本概念', link: '/computer-organization/content/cpu-section-7' },
+              ],
+            },
+            {
+              text: '第六章 总线',
+              link: '/computer-organization/content/bus',
+              items: [
+                { text: '第一节 总线概述', link: '/computer-organization/content/bus-section-1' },
+                { text: '第二节 总线事务和定时', link: '/computer-organization/content/bus-section-2' },
+              ],
+            },
+            {
+              text: '第七章 输入/输出系统',
+              link: '/computer-organization/content/io-system',
+              items: [
+                { text: '第一节 I/O 接口', link: '/computer-organization/content/io-system-section-1' },
+                { text: '第二节 I/O 方式', link: '/computer-organization/content/io-system-section-2' },
+              ],
+            },
+          ]
+        }
+      ],
+
+      '/computer-organization/practice': [
+        {
+          text: '计算机组成原理',
+          items: [
+            { text: '计组例题', link: '/computer-organization/practice/' },
+          ]
+        }
+      ],
+
       '/advanced-math/content': [
         {
           text: '高等数学',
@@ -159,6 +250,62 @@ export default defineConfig({
                 { text: '本章总结', link: '/advanced-math/content/function-limit-continuity-section-6' },
               ],
             },
+            {
+              text: '第二章 一元函数微分学',
+              link: '/advanced-math/content/single-variable-differential-calculus',
+              items: [
+                { text: '第一节 导数，导数和微分的计算', link: '/advanced-math/content/single-variable-differential-calculus-section-1' },
+                { text: '第二节 中值定理，单调性和凹凸性', link: '/advanced-math/content/single-variable-differential-calculus-section-2' },
+                { text: '第三节 渐近线和曲率、曲率半径', link: '/advanced-math/content/single-variable-differential-calculus-section-3' },
+                { text: '本章总结', link: '/advanced-math/content/single-variable-differential-calculus-section-4' },
+              ],
+            },
+            {
+              text: '第三章 一元函数积分学',
+              link: '/advanced-math/content/integral-calculus',
+              items: [
+                { text: '第一节 原函数和不定积分', link: '/advanced-math/content/integral-calculus-section-1' },
+                { text: '第二节 定积分定义及性质', link: '/advanced-math/content/integral-calculus-section-2' },
+                { text: '第三节 变限积分及其导数', link: '/advanced-math/content/integral-calculus-section-3' },
+                { text: '第四节 定积分的计算', link: '/advanced-math/content/integral-calculus-section-4' },
+                { text: '第五节 定积分及其应用', link: '/advanced-math/content/integral-calculus-section-5' },
+                { text: '第六节 反常积分的敛散性', link: '/advanced-math/content/integral-calculus-section-6' },
+                { text: '第七节 积分的几何应用', link: '/advanced-math/content/integral-calculus-section-7' },
+                { text: '本章总结', link: '/advanced-math/content/integral-calculus-section-8' },
+              ],
+            },
+            {
+              text: '第四章 多元函数微分学',
+              link: '/advanced-math/content/multivariable-differential-calculus',
+              items: [
+                { text: '第一节 多元函数的基本理论', link: '/advanced-math/content/multivariable-differential-calculus-section-1' },
+                { text: '第二节 多元函数的偏导数', link: '/advanced-math/content/multivariable-differential-calculus-section-2' },
+                { text: '第三节 多元函数微分的基本理论和计算', link: '/advanced-math/content/multivariable-differential-calculus-section-3' },
+                { text: '第四节 多元函数的极值和最值', link: '/advanced-math/content/multivariable-differential-calculus-section-4' },
+                { text: '本章总结', link: '/advanced-math/content/multivariable-differential-calculus-section-5' },
+              ],
+            },
+            {
+              text: '第五章 二重积分',
+              link: '/advanced-math/content/double-integral',
+              items: [
+                { text: '第一节 二重积分的概念和性质', link: '/advanced-math/content/double-integral-section-1' },
+                { text: '第二节 二重积分的计算', link: '/advanced-math/content/double-integral-section-2' },
+                { text: '第三节 二重积分的应用', link: '/advanced-math/content/double-integral-section-3' },
+                { text: '本章总结', link: '/advanced-math/content/double-integral-section-4' },
+              ],
+            },
+            {
+              text: '第六章 常微分方程',
+              link: '/advanced-math/content/differential-equations',
+              items: [
+                { text: '第一节 一阶微分方程', link: '/advanced-math/content/differential-equations-section-1' },
+                { text: '第二节 高阶微分方程', link: '/advanced-math/content/differential-equations-section-2' },
+                { text: '第三节 微分方程综合题', link: '/advanced-math/content/differential-equations-section-3' },
+                { text: '本章总结', link: '/advanced-math/content/differential-equations-section-4' },
+              ],
+            },
+            { text: '高等数学总复习总结', link: '/advanced-math/content/advanced-math-summary' },
           ]
         }
       ],
@@ -177,8 +324,65 @@ export default defineConfig({
                 { text: '第三节 无穷小量及无穷小的阶', link: '/advanced-math/practice/function-limit-continuity-section-3' },
                 { text: '第四节 极限计算', link: '/advanced-math/practice/function-limit-continuity-section-4' },
                 { text: '第五节 连续和间断', link: '/advanced-math/practice/function-limit-continuity-section-5' },
+                { text: '本章总结', link: '/advanced-math/practice/function-limit-continuity-section-6' },
               ],
             },
+            {
+              text: '第二章 一元函数微分学',
+              link: '/advanced-math/practice/single-variable-differential-calculus',
+              items: [
+                { text: '第一节 导数，导数和微分的计算', link: '/advanced-math/practice/single-variable-differential-calculus-section-1' },
+                { text: '第二节 中值定理，单调性和凹凸性', link: '/advanced-math/practice/single-variable-differential-calculus-section-2' },
+                { text: '第三节 渐近线和曲率、曲率半径', link: '/advanced-math/practice/single-variable-differential-calculus-section-3' },
+                { text: '本章总结', link: '/advanced-math/practice/single-variable-differential-calculus-section-4' },
+              ],
+            },
+            {
+              text: '第三章 一元函数积分学',
+              link: '/advanced-math/practice/integral-calculus',
+              items: [
+                { text: '第一节 原函数和不定积分', link: '/advanced-math/practice/integral-calculus-section-1' },
+                { text: '第二节 定积分定义及性质', link: '/advanced-math/practice/integral-calculus-section-2' },
+                { text: '第三节 变限积分及其导数', link: '/advanced-math/practice/integral-calculus-section-3' },
+                { text: '第四节 定积分的计算', link: '/advanced-math/practice/integral-calculus-section-4' },
+                { text: '第五节 定积分及其应用', link: '/advanced-math/practice/integral-calculus-section-5' },
+                { text: '第六节 反常积分的敛散性', link: '/advanced-math/practice/integral-calculus-section-6' },
+                { text: '第七节 积分的几何应用', link: '/advanced-math/practice/integral-calculus-section-7' },
+                { text: '本章总结', link: '/advanced-math/practice/integral-calculus-section-8' },
+              ],
+            },
+            {
+              text: '第四章 多元函数微分学',
+              link: '/advanced-math/practice/multivariable-differential-calculus',
+              items: [
+                { text: '第一节 多元函数的基本理论', link: '/advanced-math/practice/multivariable-differential-calculus-section-1' },
+                { text: '第二节 多元函数的偏导数', link: '/advanced-math/practice/multivariable-differential-calculus-section-2' },
+                { text: '第三节 多元函数微分的基本理论和计算', link: '/advanced-math/practice/multivariable-differential-calculus-section-3' },
+                { text: '第四节 多元函数的极值和最值', link: '/advanced-math/practice/multivariable-differential-calculus-section-4' },
+                { text: '本章总结', link: '/advanced-math/practice/multivariable-differential-calculus-section-5' },
+              ],
+            },
+            {
+              text: '第五章 二重积分',
+              link: '/advanced-math/practice/double-integral',
+              items: [
+                { text: '第一节 二重积分的概念和性质', link: '/advanced-math/practice/double-integral-section-1' },
+                { text: '第二节 二重积分的计算', link: '/advanced-math/practice/double-integral-section-2' },
+                { text: '第三节 二重积分的应用', link: '/advanced-math/practice/double-integral-section-3' },
+                { text: '本章总结', link: '/advanced-math/practice/double-integral-section-4' },
+              ],
+            },
+            {
+              text: '第六章 常微分方程',
+              link: '/advanced-math/practice/differential-equations',
+              items: [
+                { text: '第一节 一阶微分方程', link: '/advanced-math/practice/differential-equations-section-1' },
+                { text: '第二节 高阶微分方程', link: '/advanced-math/practice/differential-equations-section-2' },
+                { text: '第三节 微分方程综合题', link: '/advanced-math/practice/differential-equations-section-3' },
+                { text: '本章总结', link: '/advanced-math/practice/differential-equations-section-4' },
+              ],
+            },
+            { text: '高等数学总复习总结', link: '/advanced-math/practice/advanced-math-summary' },
           ]
         }
       ],
