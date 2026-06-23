@@ -119,7 +119,41 @@ $$
 \frac{\frac{n(n+1)}{2}}{n^2+n+1}
 $$
 
-左右两边极限均为 $\dfrac12$，由夹逼准则：
+左边：
+
+$$
+\begin{aligned}
+\lim_{n\to\infty}
+\frac{\frac{n(n+1)}{2}}{n^2+2n}
+&=
+\lim_{n\to\infty}
+\frac{n(n+1)}{2n(n+2)}\\
+&=
+\lim_{n\to\infty}
+\frac{n+1}{2(n+2)}\\
+&=
+\frac12
+\end{aligned}
+$$
+
+右边：
+
+$$
+\begin{aligned}
+\lim_{n\to\infty}
+\frac{\frac{n(n+1)}{2}}{n^2+n+1}
+&=
+\lim_{n\to\infty}
+\frac{n(n+1)}{2(n^2+n+1)}\\
+&=
+\lim_{n\to\infty}
+\frac{1+\frac1n}{2\left(1+\frac1n+\frac1{n^2}\right)}\\
+&=
+\frac12
+\end{aligned}
+$$
+
+所以左右两边极限均为 $\dfrac12$，由夹逼准则：
 
 $$
 \lim_{n\to\infty}\sum_{k=1}^{n}\frac{k}{n^2+n+k}
@@ -377,7 +411,7 @@ $$
 
 ::: info 例 15.
 $$
-\lim_{x\to\infty} x\sin \frac{2x}{x^2+1}.
+求 \lim_{x\to\infty} x\sin \frac{2x}{x^2+1}.
 $$
 :::
 
@@ -412,7 +446,7 @@ $$
 
 ::: info 例 16.
 $$
-\lim_{n\to\infty}\left(\frac{n-2}{n+1}\right)^n.
+求 \lim_{n\to\infty}\left(\frac{n-2}{n+1}\right)^n.
 $$
 :::
 
@@ -458,22 +492,41 @@ $$
 
 ::: info 例 17.
 $$
-\lim_{x\to 0}(\cos x)^{\frac{1}{\ln(1+x^2)}}.
+求 \lim_{x\to 0}(\cos x)^{\frac{1}{\ln(1+x^2)}}.
 $$
 :::
 
 ::: details 解析
-
+$$
+\begin{aligned}
+L=\lim_{x\to 0}(\cos x)^{\frac{1}{\ln(1+x^2)}}\\
+\ln L=\lim_{x\to 0}\dfrac{\ln\cos x}{\ln(1+x^2)}\\\sim
+\dfrac{\cos x - 1}{x^2}\\\sim
+\dfrac{-\frac{x^2}{2}}{x^2}\\=
+-\dfrac{1}{2}\\
+L=e^{-\frac12}
+\end{aligned}
+$$
 :::
 
 ::: info 例 18.
 $$
-\lim_{n\to\infty}\left(n\tan\frac1n\right)^{n^2}.
+求 \lim_{n\to\infty}\left(n\tan\frac1n\right)^{n^2}.
 $$
 :::
 
 ::: details 解析
-
+$$
+\begin{aligned}
+L = \lim_{n\to\infty}\left(n\tan\frac1n\right)^{n^2}\\
+\ln L=\lim_{n\to\infty}n^2\ln(n\tan\dfrac{1}{n})\\
+\tan\dfrac{1}{n}\sim\dfrac{1}{n}+\dfrac{1}{3}\times(\dfrac{1}{n})^3\\
+n\tan\dfrac{1}{n}\sim 1+\dfrac{1}{3}(\dfrac{1}{n})^2\\
+\ln(1+\dfrac{1}{3}(\dfrac{1}{n})^2)\sim \dfrac{1}{3}(\dfrac{1}{n})^2\\
+\lim_{n\to\infty}n^2\ln(n\tan\dfrac{1}{n})=\dfrac13\\
+L=e^{\frac{1}{3}}
+\end{aligned}
+$$
 :::
 
 ## 答题技巧总结

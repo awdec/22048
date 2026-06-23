@@ -4,4 +4,4 @@
 }
 </style>
 
-<h1><center>408 计算机组成原理例题</center></h1>
+<h1><center>408 计算机组成原理习题</center></h1>
