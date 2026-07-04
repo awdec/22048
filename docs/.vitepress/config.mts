@@ -13,7 +13,7 @@ export default defineConfig({
   // ],
 
 
-  title: "awdec's Blog",
+  title: "awdec 的 22408",
   
   description: "考研",
 
