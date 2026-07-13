@@ -14,7 +14,8 @@
 
 - VitePress
 - Markdown
-- markdown-it-mathjax3
+- KaTeX
+- markdown-it-katex
 
 ## 本地运行
 
@@ -49,6 +50,7 @@ npm run docs:preview
 ├── docs/
 │   ├── .vitepress/          # VitePress 配置
 │   ├── advanced-math/       # 高等数学笔记与例题
+│   ├── computer-organization/ # 计算机组成原理笔记与练习
 │   ├── data structrue/      # 数据结构笔记与例题
 │   ├── linear-algebra/      # 线性代数笔记与例题
 │   ├── public/              # 静态资源
@@ -57,6 +59,9 @@ npm run docs:preview
 ├── package-lock.json
 └── README.md
 ```
+
+课程内容按“章”组织：章节概览使用 `index.md`，各小节统一使用
+`section-N.md`。
 
 ## 说明
 

@@ -1,14 +1,16 @@
 {
   "scripts": {
-    "dosc:dev": "NODE_OPTIONS=--max-old-space-size=4096 vitepress dev docs",
-    "docs:dev": "NODE_OPTIONS=--max-old-space-size=4096 vitepress dev docs",
-    "docs:build": "NODE_OPTIONS=--max-old-space-size=4096 vitepress build docs",
-    "docs:preview": "NODE_OPTIONS=--max-old-space-size=4096 vitepress preview docs"
+    "dosc:dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress dev docs",
+    "docs:dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress dev docs",
+    "docs:build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress build docs",
+    "docs:preview": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress preview docs"
   },
   "dependencies": {
     "vitepress": "^1.6.3"
   },
   "devDependencies": {
-    "markdown-it-mathjax3": "^4.3.2"
+    "cross-env": "^7.0.3",
+    "katex": "^0.16.22",
+    "markdown-it-katex": "^2.0.3"
   }
 }
