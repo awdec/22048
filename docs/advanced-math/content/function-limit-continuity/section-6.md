@@ -4,7 +4,7 @@
 }
 </style>
 
-<h1><center>本章总结【重要度：★★★★★】</center></h1>
+<h1><center>本章总结</center></h1>
 
 ## 本章知识地图
 
