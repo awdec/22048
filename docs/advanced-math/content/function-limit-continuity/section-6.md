@@ -255,7 +255,7 @@ $$
 1-\cos\sqrt{x}\sim \frac12(\sqrt{x})^2=\frac{x}{2}
 $$
 
-### 3. 小 $o$ 记号
+### 3. 小 o 记号
 
 $$
 \alpha(x)=o(\beta(x))
