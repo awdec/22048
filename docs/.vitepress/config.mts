@@ -33,8 +33,18 @@ export default defineConfig({
           {text: '例题', link: '/data structrue/practice/'},
         ] 
       },
-      { text: '操作系统', link: '/string/home'},
-      { text: '计算机网络', link: '/graph/home'},
+      { text: '操作系统',
+        items: [
+          { text: '考点', link: '/operating-system/content/' },
+          { text: '例题', link: '/operating-system/practice/' },
+        ],
+      },
+      { text: '计算机网络',
+        items: [
+          { text: '考点', link: '/computer-network/content/' },
+          { text: '例题', link: '/computer-network/practice/' },
+        ],
+      },
       { text: '计算机组成原理',
         items: [
           { text: '考点', link: '/computer-organization/content/' },
@@ -57,6 +67,276 @@ export default defineConfig({
     ],
 
     sidebar: {
+      '/computer-network/content': [
+        {
+          text: '计算机网络',
+          items: [
+            { text: '计算机网络考点总览', link: '/computer-network/content/' },
+            {
+              text: '第一章 计算机网络体系结构',
+              link: '/computer-network/content/network-architecture/',
+              items: [
+                { text: '第一节 网络概念、组成与分类', link: '/computer-network/content/network-architecture/section-1' },
+                { text: '第二节 性能指标与时延', link: '/computer-network/content/network-architecture/section-2' },
+                { text: '第三节 分层、协议与体系结构', link: '/computer-network/content/network-architecture/section-3' },
+                { text: '本章总结', link: '/computer-network/content/network-architecture/section-4' },
+              ],
+            },
+            {
+              text: '第二章 物理层',
+              link: '/computer-network/content/physical-layer/',
+              items: [
+                { text: '第一节 信号与编码', link: '/computer-network/content/physical-layer/section-1' },
+                { text: '第二节 信道容量与传输方式', link: '/computer-network/content/physical-layer/section-2' },
+                { text: '第三节 介质、复用与设备', link: '/computer-network/content/physical-layer/section-3' },
+                { text: '本章总结', link: '/computer-network/content/physical-layer/section-4' },
+              ],
+            },
+            {
+              text: '第三章 数据链路层',
+              link: '/computer-network/content/data-link-layer/',
+              items: [
+                { text: '第一节 成帧与差错检测', link: '/computer-network/content/data-link-layer/section-1' },
+                { text: '第二节 流量控制与可靠传输', link: '/computer-network/content/data-link-layer/section-2' },
+                { text: '第三节 介质访问控制', link: '/computer-network/content/data-link-layer/section-3' },
+                { text: '第四节 局域网、无线局域网、广域网与 PPP', link: '/computer-network/content/data-link-layer/section-4' },
+                { text: '本章总结', link: '/computer-network/content/data-link-layer/section-5' },
+              ],
+            },
+            {
+              text: '第四章 网络层',
+              link: '/computer-network/content/network-layer/',
+              items: [
+                { text: '第一节 网络层功能、SDN、拥塞控制与 IPv4', link: '/computer-network/content/network-layer/section-1' },
+                { text: '第二节 IPv4 地址与子网', link: '/computer-network/content/network-layer/section-2' },
+                { text: '第三节 转发、网络协议与路由器', link: '/computer-network/content/network-layer/section-3' },
+                { text: '第四节 路由算法与协议', link: '/computer-network/content/network-layer/section-4' },
+                { text: '第五节 NAT、IPv6、组播与移动 IP', link: '/computer-network/content/network-layer/section-5' },
+                { text: '本章总结', link: '/computer-network/content/network-layer/section-6' },
+              ],
+            },
+            {
+              text: '第五章 传输层',
+              link: '/computer-network/content/transport-layer/',
+              items: [
+                { text: '第一节 传输服务与 UDP', link: '/computer-network/content/transport-layer/section-1' },
+                { text: '第二节 TCP 可靠传输', link: '/computer-network/content/transport-layer/section-2' },
+                { text: '第三节 流量与拥塞控制', link: '/computer-network/content/transport-layer/section-3' },
+                { text: '第四节 TCP 连接管理', link: '/computer-network/content/transport-layer/section-4' },
+                { text: '本章总结', link: '/computer-network/content/transport-layer/section-5' },
+              ],
+            },
+            {
+              text: '第六章 应用层',
+              link: '/computer-network/content/application-layer/',
+              items: [
+                { text: '第一节 应用模型与套接字', link: '/computer-network/content/application-layer/section-1' },
+                { text: '第二节 DNS', link: '/computer-network/content/application-layer/section-2' },
+                { text: '第三节 HTTP', link: '/computer-network/content/application-layer/section-3' },
+                { text: '第四节 电子邮件与 FTP', link: '/computer-network/content/application-layer/section-4' },
+                { text: '本章总结', link: '/computer-network/content/application-layer/section-5' },
+              ],
+            },
+          ],
+        },
+      ],
+
+      '/computer-network/practice': [
+        {
+          text: '计算机网络',
+          items: [
+            { text: '计算机网络例题总览', link: '/computer-network/practice/' },
+            {
+              text: '第一章 计算机网络体系结构',
+              link: '/computer-network/practice/network-architecture/',
+              items: [
+                { text: '第一节 网络组成与分类', link: '/computer-network/practice/network-architecture/section-1' },
+                { text: '第二节 性能指标与时延', link: '/computer-network/practice/network-architecture/section-2' },
+                { text: '第三节 分层与协议', link: '/computer-network/practice/network-architecture/section-3' },
+                { text: '综合训练', link: '/computer-network/practice/network-architecture/section-4' },
+              ],
+            },
+            {
+              text: '第二章 物理层',
+              link: '/computer-network/practice/physical-layer/',
+              items: [
+                { text: '第一节 信号、码元与编码', link: '/computer-network/practice/physical-layer/section-1' },
+                { text: '第二节 信道容量与传输方式', link: '/computer-network/practice/physical-layer/section-2' },
+                { text: '第三节 介质、复用与设备', link: '/computer-network/practice/physical-layer/section-3' },
+                { text: '综合训练', link: '/computer-network/practice/physical-layer/section-4' },
+              ],
+            },
+            {
+              text: '第三章 数据链路层',
+              link: '/computer-network/practice/data-link-layer/',
+              items: [
+                { text: '第一节 成帧与差错检测', link: '/computer-network/practice/data-link-layer/section-1' },
+                { text: '第二节 流量控制与可靠传输', link: '/computer-network/practice/data-link-layer/section-2' },
+                { text: '第三节 介质访问控制', link: '/computer-network/practice/data-link-layer/section-3' },
+                { text: '第四节 局域网、无线局域网、广域网与 PPP', link: '/computer-network/practice/data-link-layer/section-4' },
+                { text: '综合训练', link: '/computer-network/practice/data-link-layer/section-5' },
+              ],
+            },
+            {
+              text: '第四章 网络层',
+              link: '/computer-network/practice/network-layer/',
+              items: [
+                { text: '第一节 网络层功能与 IPv4 数据报', link: '/computer-network/practice/network-layer/section-1' },
+                { text: '第二节 IPv4 地址与子网', link: '/computer-network/practice/network-layer/section-2' },
+                { text: '第三节 转发、ARP、DHCP 与 ICMP', link: '/computer-network/practice/network-layer/section-3' },
+                { text: '第四节 路由算法与协议', link: '/computer-network/practice/network-layer/section-4' },
+                { text: '第五节 NAT、IPv6 与移动 IP', link: '/computer-network/practice/network-layer/section-5' },
+                { text: '综合训练', link: '/computer-network/practice/network-layer/section-6' },
+              ],
+            },
+            {
+              text: '第五章 传输层',
+              link: '/computer-network/practice/transport-layer/',
+              items: [
+                { text: '第一节 传输服务与 UDP', link: '/computer-network/practice/transport-layer/section-1' },
+                { text: '第二节 TCP 可靠传输', link: '/computer-network/practice/transport-layer/section-2' },
+                { text: '第三节 流量与拥塞控制', link: '/computer-network/practice/transport-layer/section-3' },
+                { text: '第四节 TCP 连接管理', link: '/computer-network/practice/transport-layer/section-4' },
+                { text: '综合训练', link: '/computer-network/practice/transport-layer/section-5' },
+              ],
+            },
+            {
+              text: '第六章 应用层',
+              link: '/computer-network/practice/application-layer/',
+              items: [
+                { text: '第一节 应用模型与套接字', link: '/computer-network/practice/application-layer/section-1' },
+                { text: '第二节 DNS', link: '/computer-network/practice/application-layer/section-2' },
+                { text: '第三节 HTTP', link: '/computer-network/practice/application-layer/section-3' },
+                { text: '第四节 电子邮件与 FTP', link: '/computer-network/practice/application-layer/section-4' },
+                { text: '综合训练', link: '/computer-network/practice/application-layer/section-5' },
+              ],
+            },
+          ],
+        },
+      ],
+
+      '/operating-system/content': [
+        {
+          text: '操作系统',
+          items: [
+            { text: '操作系统考点总览', link: '/operating-system/content/' },
+            {
+              text: '第一章 计算机系统概述',
+              link: '/operating-system/content/computer-system-overview/',
+              items: [
+                { text: '第一节 概念、功能与特征', link: '/operating-system/content/computer-system-overview/section-1' },
+                { text: '第二节 运行环境与中断', link: '/operating-system/content/computer-system-overview/section-2' },
+                { text: '第三节 系统调用、结构、引导与虚拟机', link: '/operating-system/content/computer-system-overview/section-3' },
+                { text: '本章总结', link: '/operating-system/content/computer-system-overview/section-4' },
+              ],
+            },
+            {
+              text: '第二章 进程与线程',
+              link: '/operating-system/content/processes-threads/',
+              items: [
+                { text: '第一节 进程、线程与状态', link: '/operating-system/content/processes-threads/section-1' },
+                { text: '第二节 处理机调度', link: '/operating-system/content/processes-threads/section-2' },
+                { text: '第三节 同步与互斥', link: '/operating-system/content/processes-threads/section-3' },
+                { text: '第四节 通信与死锁', link: '/operating-system/content/processes-threads/section-4' },
+                { text: '本章总结', link: '/operating-system/content/processes-threads/section-5' },
+              ],
+            },
+            {
+              text: '第三章 内存管理',
+              link: '/operating-system/content/memory-management/',
+              items: [
+                { text: '第一节 基础与连续分配', link: '/operating-system/content/memory-management/section-1' },
+                { text: '第二节 分页、分段与地址转换', link: '/operating-system/content/memory-management/section-2' },
+                { text: '第三节 虚拟内存与请求分页', link: '/operating-system/content/memory-management/section-3' },
+                { text: '第四节 页面置换与抖动', link: '/operating-system/content/memory-management/section-4' },
+                { text: '本章总结', link: '/operating-system/content/memory-management/section-5' },
+              ],
+            },
+            {
+              text: '第四章 文件管理',
+              link: '/operating-system/content/file-management/',
+              items: [
+                { text: '第一节 文件、目录与打开文件', link: '/operating-system/content/file-management/section-1' },
+                { text: '第二节 逻辑与物理结构', link: '/operating-system/content/file-management/section-2' },
+                { text: '第三节 空间管理、VFS 与挂载', link: '/operating-system/content/file-management/section-3' },
+                { text: '本章总结', link: '/operating-system/content/file-management/section-4' },
+              ],
+            },
+            {
+              text: '第五章 输入/输出管理',
+              link: '/operating-system/content/io-management/',
+              items: [
+                { text: '第一节 I/O 控制与驱动', link: '/operating-system/content/io-management/section-1' },
+                { text: '第二节 缓冲、分配与 SPOOLing', link: '/operating-system/content/io-management/section-2' },
+                { text: '第三节 磁盘调度', link: '/operating-system/content/io-management/section-3' },
+                { text: '本章总结', link: '/operating-system/content/io-management/section-4' },
+              ],
+            },
+          ],
+        },
+      ],
+
+      '/operating-system/practice': [
+        {
+          text: '操作系统',
+          items: [
+            { text: '操作系统例题总览', link: '/operating-system/practice/' },
+            {
+              text: '第一章 计算机系统概述',
+              link: '/operating-system/practice/computer-system-overview/',
+              items: [
+                { text: '第一节 概念、功能与特征', link: '/operating-system/practice/computer-system-overview/section-1' },
+                { text: '第二节 运行环境与中断', link: '/operating-system/practice/computer-system-overview/section-2' },
+                { text: '第三节 系统调用与系统结构', link: '/operating-system/practice/computer-system-overview/section-3' },
+                { text: '综合训练', link: '/operating-system/practice/computer-system-overview/section-4' },
+              ],
+            },
+            {
+              text: '第二章 进程与线程',
+              link: '/operating-system/practice/processes-threads/',
+              items: [
+                { text: '第一节 进程、线程与状态', link: '/operating-system/practice/processes-threads/section-1' },
+                { text: '第二节 处理机调度', link: '/operating-system/practice/processes-threads/section-2' },
+                { text: '第三节 同步与互斥', link: '/operating-system/practice/processes-threads/section-3' },
+                { text: '第四节 通信与死锁', link: '/operating-system/practice/processes-threads/section-4' },
+                { text: '综合训练', link: '/operating-system/practice/processes-threads/section-5' },
+              ],
+            },
+            {
+              text: '第三章 内存管理',
+              link: '/operating-system/practice/memory-management/',
+              items: [
+                { text: '第一节 基础与连续分配', link: '/operating-system/practice/memory-management/section-1' },
+                { text: '第二节 分页、分段与地址转换', link: '/operating-system/practice/memory-management/section-2' },
+                { text: '第三节 虚拟内存与请求分页', link: '/operating-system/practice/memory-management/section-3' },
+                { text: '第四节 页面置换与抖动', link: '/operating-system/practice/memory-management/section-4' },
+                { text: '综合训练', link: '/operating-system/practice/memory-management/section-5' },
+              ],
+            },
+            {
+              text: '第四章 文件管理',
+              link: '/operating-system/practice/file-management/',
+              items: [
+                { text: '第一节 文件、目录与打开文件', link: '/operating-system/practice/file-management/section-1' },
+                { text: '第二节 逻辑与物理结构', link: '/operating-system/practice/file-management/section-2' },
+                { text: '第三节 空间管理、VFS 与挂载', link: '/operating-system/practice/file-management/section-3' },
+                { text: '综合训练', link: '/operating-system/practice/file-management/section-4' },
+              ],
+            },
+            {
+              text: '第五章 输入/输出管理',
+              link: '/operating-system/practice/io-management/',
+              items: [
+                { text: '第一节 I/O 控制与驱动', link: '/operating-system/practice/io-management/section-1' },
+                { text: '第二节 缓冲、分配与 SPOOLing', link: '/operating-system/practice/io-management/section-2' },
+                { text: '第三节 磁盘调度', link: '/operating-system/practice/io-management/section-3' },
+                { text: '综合训练', link: '/operating-system/practice/io-management/section-4' },
+              ],
+            },
+          ],
+        },
+      ],
+
       '/data structrue/content': [
         {
           text: '数据结构',
@@ -462,6 +742,70 @@ export default defineConfig({
           text: '线性代数',
           items: [
             { text: '线代考纲/考点', link: '/linear-algebra/content/' },
+            {
+              text: '第一章 行列式',
+              link: '/linear-algebra/content/determinants/',
+              items: [
+                { text: '第一节 概念与基本计算', link: '/linear-algebra/content/determinants/section-1' },
+                { text: '第二节 性质与展开定理', link: '/linear-algebra/content/determinants/section-2' },
+                { text: '第三节 特殊行列式与克拉默法则', link: '/linear-algebra/content/determinants/section-3' },
+                { text: '本章总结', link: '/linear-algebra/content/determinants/section-4' },
+              ],
+            },
+            {
+              text: '第二章 矩阵',
+              link: '/linear-algebra/content/matrices/',
+              items: [
+                { text: '第一节 矩阵运算与特殊矩阵', link: '/linear-algebra/content/matrices/section-1' },
+                { text: '第二节 逆矩阵与伴随矩阵', link: '/linear-algebra/content/matrices/section-2' },
+                { text: '第三节 初等变换、等价与秩', link: '/linear-algebra/content/matrices/section-3' },
+                { text: '第四节 分块矩阵与矩阵方程', link: '/linear-algebra/content/matrices/section-4' },
+                { text: '本章总结', link: '/linear-algebra/content/matrices/section-5' },
+              ],
+            },
+            {
+              text: '第三章 向量',
+              link: '/linear-algebra/content/vectors/',
+              items: [
+                { text: '第一节 线性组合与向量组等价', link: '/linear-algebra/content/vectors/section-1' },
+                { text: '第二节 线性相关与极大无关组', link: '/linear-algebra/content/vectors/section-2' },
+                { text: '第三节 内积与正交规范化', link: '/linear-algebra/content/vectors/section-3' },
+                { text: '本章总结', link: '/linear-algebra/content/vectors/section-4' },
+              ],
+            },
+            {
+              text: '第四章 线性方程组',
+              link: '/linear-algebra/content/linear-systems/',
+              items: [
+                { text: '第一节 解的判定与高斯消元', link: '/linear-algebra/content/linear-systems/section-1' },
+                { text: '第二节 齐次线性方程组', link: '/linear-algebra/content/linear-systems/section-2' },
+                { text: '第三节 非齐次线性方程组', link: '/linear-algebra/content/linear-systems/section-3' },
+                { text: '第四节 含参数方程组', link: '/linear-algebra/content/linear-systems/section-4' },
+                { text: '本章总结', link: '/linear-algebra/content/linear-systems/section-5' },
+              ],
+            },
+            {
+              text: '第五章 特征值和特征向量',
+              link: '/linear-algebra/content/eigenvalues-eigenvectors/',
+              items: [
+                { text: '第一节 特征值与特征向量', link: '/linear-algebra/content/eigenvalues-eigenvectors/section-1' },
+                { text: '第二节 性质与相似矩阵', link: '/linear-algebra/content/eigenvalues-eigenvectors/section-2' },
+                { text: '第三节 相似对角化', link: '/linear-algebra/content/eigenvalues-eigenvectors/section-3' },
+                { text: '第四节 实对称矩阵', link: '/linear-algebra/content/eigenvalues-eigenvectors/section-4' },
+                { text: '本章总结', link: '/linear-algebra/content/eigenvalues-eigenvectors/section-5' },
+              ],
+            },
+            {
+              text: '第六章 二次型',
+              link: '/linear-algebra/content/quadratic-forms/',
+              items: [
+                { text: '第一节 矩阵表示', link: '/linear-algebra/content/quadratic-forms/section-1' },
+                { text: '第二节 标准形与规范形', link: '/linear-algebra/content/quadratic-forms/section-2' },
+                { text: '第三节 正交变换与惯性定理', link: '/linear-algebra/content/quadratic-forms/section-3' },
+                { text: '第四节 正定性', link: '/linear-algebra/content/quadratic-forms/section-4' },
+                { text: '本章总结', link: '/linear-algebra/content/quadratic-forms/section-5' },
+              ],
+            },
           ]
         }
       ],
@@ -471,6 +815,70 @@ export default defineConfig({
           text: '线性代数',
           items: [
             { text: '线代例题', link: '/linear-algebra/practice/' },
+            {
+              text: '第一章 行列式',
+              link: '/linear-algebra/practice/determinants/',
+              items: [
+                { text: '第一节 基本计算', link: '/linear-algebra/practice/determinants/section-1' },
+                { text: '第二节 性质与展开', link: '/linear-algebra/practice/determinants/section-2' },
+                { text: '第三节 特殊行列式与克拉默法则', link: '/linear-algebra/practice/determinants/section-3' },
+                { text: '综合训练与答题技巧', link: '/linear-algebra/practice/determinants/section-4' },
+              ],
+            },
+            {
+              text: '第二章 矩阵',
+              link: '/linear-algebra/practice/matrices/',
+              items: [
+                { text: '第一节 矩阵运算', link: '/linear-algebra/practice/matrices/section-1' },
+                { text: '第二节 逆矩阵与伴随矩阵', link: '/linear-algebra/practice/matrices/section-2' },
+                { text: '第三节 初等变换、等价与秩', link: '/linear-algebra/practice/matrices/section-3' },
+                { text: '第四节 分块矩阵与矩阵方程', link: '/linear-algebra/practice/matrices/section-4' },
+                { text: '综合训练与答题技巧', link: '/linear-algebra/practice/matrices/section-5' },
+              ],
+            },
+            {
+              text: '第三章 向量',
+              link: '/linear-algebra/practice/vectors/',
+              items: [
+                { text: '第一节 线性组合与等价', link: '/linear-algebra/practice/vectors/section-1' },
+                { text: '第二节 线性相关与极大无关组', link: '/linear-algebra/practice/vectors/section-2' },
+                { text: '第三节 内积与正交规范化', link: '/linear-algebra/practice/vectors/section-3' },
+                { text: '综合训练与答题技巧', link: '/linear-algebra/practice/vectors/section-4' },
+              ],
+            },
+            {
+              text: '第四章 线性方程组',
+              link: '/linear-algebra/practice/linear-systems/',
+              items: [
+                { text: '第一节 解的判定与消元', link: '/linear-algebra/practice/linear-systems/section-1' },
+                { text: '第二节 齐次方程组', link: '/linear-algebra/practice/linear-systems/section-2' },
+                { text: '第三节 非齐次方程组', link: '/linear-algebra/practice/linear-systems/section-3' },
+                { text: '第四节 含参数方程组', link: '/linear-algebra/practice/linear-systems/section-4' },
+                { text: '综合训练与答题技巧', link: '/linear-algebra/practice/linear-systems/section-5' },
+              ],
+            },
+            {
+              text: '第五章 特征值和特征向量',
+              link: '/linear-algebra/practice/eigenvalues-eigenvectors/',
+              items: [
+                { text: '第一节 特征值与特征向量', link: '/linear-algebra/practice/eigenvalues-eigenvectors/section-1' },
+                { text: '第二节 性质与相似矩阵', link: '/linear-algebra/practice/eigenvalues-eigenvectors/section-2' },
+                { text: '第三节 相似对角化', link: '/linear-algebra/practice/eigenvalues-eigenvectors/section-3' },
+                { text: '第四节 实对称矩阵', link: '/linear-algebra/practice/eigenvalues-eigenvectors/section-4' },
+                { text: '综合训练与答题技巧', link: '/linear-algebra/practice/eigenvalues-eigenvectors/section-5' },
+              ],
+            },
+            {
+              text: '第六章 二次型',
+              link: '/linear-algebra/practice/quadratic-forms/',
+              items: [
+                { text: '第一节 矩阵表示', link: '/linear-algebra/practice/quadratic-forms/section-1' },
+                { text: '第二节 标准形与规范形', link: '/linear-algebra/practice/quadratic-forms/section-2' },
+                { text: '第三节 正交变换与惯性定理', link: '/linear-algebra/practice/quadratic-forms/section-3' },
+                { text: '第四节 正定性', link: '/linear-algebra/practice/quadratic-forms/section-4' },
+                { text: '综合训练与答题技巧', link: '/linear-algebra/practice/quadratic-forms/section-5' },
+              ],
+            },
           ]
         }
       ],

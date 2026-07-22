@@ -52,31 +52,12 @@ r\,dr
 \right]d\theta
 $$
 
-### 2.1 极坐标面积公式
-
-若区域由：
-
-$$
-0\le r\le r(\theta),\quad \alpha\le\theta\le\beta
-$$
-
-围成，则：
-
 $$
 S_D=
 \frac{1}{2}
 \int_\alpha^\beta r^2(\theta)\,d\theta
 $$
 
-这个公式可由二重积分推出：
-
-$$
-S_D
-=
-\int_\alpha^\beta
-\int_0^{r(\theta)}
-r\,dr\,d\theta
-$$
 
 ## 3. 曲顶柱体体积
 
@@ -186,8 +167,6 @@ $$
 \iint_D y\,d\sigma
 $$
 
-### 5.1 利用对称性求质心
-
 若区域和密度关于 $y$ 轴对称，则：
 
 $$
@@ -260,16 +239,7 @@ $$
 \bar{y}=\frac{M_x}{m}
 $$
 
-## 8. 应用题常见步骤
-
-1. 明确区域 $D$。
-2. 判断要求的总量是什么。
-3. 写出局部微元。
-4. 根据区域选择直角坐标或极坐标。
-5. 建立二重积分。
-6. 利用对称性或坐标变换简化计算。
-
-### 8.1 常见微元表
+## 8 常见微元表
 
 | 问题 | 微元 | 二重积分 |
 | --- | --- | --- |
@@ -281,16 +251,6 @@ $$
 | 对 $x$ 轴转动惯量 | $dI_x=y^2dm$ | $I_x=\iint_D y^2\rho(x,y)\,d\sigma$ |
 | 对 $y$ 轴转动惯量 | $dI_y=x^2dm$ | $I_y=\iint_D x^2\rho(x,y)\,d\sigma$ |
 
-## 9. 本节小结
-
-| 应用 | 关键公式 |
-| --- | --- |
-| 面积 | $S_D=\iint_D1\,d\sigma$ |
-| 曲顶柱体体积 | $V=\iint_D f(x,y)\,d\sigma$ |
-| 两曲面间体积 | $V=\iint_D[f(x,y)-g(x,y)]\,d\sigma$ |
-| 质量 | $m=\iint_D\rho(x,y)\,d\sigma$ |
-| 质心 | $\bar{x}=\frac{1}{m}\iint_Dx\rho\,d\sigma$，$\bar{y}=\frac{1}{m}\iint_Dy\rho\,d\sigma$ |
-| 转动惯量 | $I_x=\iint_Dy^2\rho\,d\sigma$，$I_y=\iint_Dx^2\rho\,d\sigma$ |
 
 ::: tip 复习建议
 应用题不要先背大段文字，先抓“微元”。只要能写出 $dS,dV,dm,dM,dI$，题目就已经成功了一半。
