@@ -4,8 +4,8 @@
 
 <h1><center>第六章 应用层·例题</center></h1>
 
-1. [应用模型与套接字](./section-1)
-2. [DNS](./section-2)
-3. [HTTP](./section-3)
-4. [电子邮件与 FTP](./section-4)
-5. [综合训练](./section-5)
+1. [网络应用模型](./section-1)
+2. [域名系统](./section-2)
+3. [文件传输协议](./section-3)
+4. [电子邮件](./section-4)
+5. [万维网](./section-5)

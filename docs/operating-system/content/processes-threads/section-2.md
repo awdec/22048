@@ -2,7 +2,7 @@
  body { font-family: "楷体" }
 </style>
 
-<h1><center>第二节 处理机调度</center></h1>
+<h1><center>第二节 CPU 调度</center></h1>
 
 ## 1. 调度层次
 

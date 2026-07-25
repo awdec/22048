@@ -2,7 +2,7 @@
  body { font-family: "楷体" }
 </style>
 
-<h1><center>第一节 网络应用模型与套接字</center></h1>
+<h1><center>第一节 网络应用模型</center></h1>
 
 ## 1. 客户—服务器模型
 
@@ -24,25 +24,7 @@
 
 应用程序不是应用层协议本身；协议只是应用通信规则的一部分。
 
-## 4. 套接字接口
-
-典型 TCP 服务器流程：
-
-```text
-socket → bind → listen → accept → read/write → close
-```
-
-典型 TCP 客户端流程：
-
-```text
-socket → connect → read/write → close
-```
-
-accept 返回一个新的已连接套接字，监听套接字仍可继续接收其他连接。
-
-UDP 无需 listen、accept 和连接建立，可用 sendto/recvfrom 按数据报通信。
-
-## 5. 应用选择传输服务
+## 4. 应用选择传输服务
 
 应用需考虑：
 
@@ -54,5 +36,5 @@ UDP 无需 listen、accept 和连接建立，可用 sendto/recvfrom 按数据报
 例如文件传输重视可靠性，实时语音更重视低时延并能容忍少量丢包。
 
 ::: warning 易错点
-服务器端口可相同而并发连接仍可区分，因为 TCP 用四元组标识连接；accept 创建的是连接套接字，不会替换监听套接字。
+客户—服务器和 P2P 描述的是网络应用的组织方式，不等同于某个固定的传输层协议；应用仍需根据可靠性、吞吐量和时延等需求选择传输服务。
 :::

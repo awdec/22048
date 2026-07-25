@@ -2,7 +2,7 @@
  body { font-family: "楷体" }
 </style>
 
-<h1><center>第二节 DNS</center></h1>
+<h1><center>第二节 域名系统</center></h1>
 
 ::: info 例 1
 把域名映射到 IPv4 和 IPv6 地址分别使用什么记录？

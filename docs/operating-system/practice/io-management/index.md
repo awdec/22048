@@ -4,7 +4,6 @@
 
 <h1><center>第五章 输入/输出管理·例题</center></h1>
 
-1. [I/O 控制与驱动](./section-1)
-2. [缓冲、分配与 SPOOLing](./section-2)
-3. [磁盘调度](./section-3)
-4. [综合训练](./section-4)
+1. [I/O管理概述](./section-1)
+2. [设备独立性软件](./section-2)
+3. [磁盘和固态硬盘](./section-3)

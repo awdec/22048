@@ -2,7 +2,7 @@
  body { font-family: "楷体" }
 </style>
 
-<h1><center>第四节 路由算法与协议</center></h1>
+<h1><center>第四节 路由算法与路由协议</center></h1>
 
 ::: info 例 1
 路由器 X 到邻居 V 的代价为 2，V 通告到目的 Y 的距离为 5，则经 V 到 Y 的候选距离是多少？

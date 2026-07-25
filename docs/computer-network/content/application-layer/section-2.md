@@ -2,7 +2,7 @@
  body { font-family: "楷体" }
 </style>
 
-<h1><center>第二节 域名系统 DNS</center></h1>
+<h1><center>第二节 域名系统</center></h1>
 
 ## 1. DNS 功能
 

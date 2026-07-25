@@ -24,9 +24,41 @@ $$
 D=-D\quad\Rightarrow\quad D=0.
 $$
 
+例如，交换前两行有：
+
+$$
+\begin{vmatrix}
+a_1&a_2&a_3\\
+b_1&b_2&b_3\\
+c_1&c_2&c_3
+\end{vmatrix}
+=-
+\begin{vmatrix}
+b_1&b_2&b_3\\
+a_1&a_2&a_3\\
+c_1&c_2&c_3
+\end{vmatrix}.
+$$
+
 ### 1.3 某行乘常数
 
 某一行所有元素乘 $k$，行列式变为原来的 $k$ 倍。特别地：
+
+$$
+\begin{vmatrix}
+ka_1&ka_2&ka_3\\
+b_1&b_2&b_3\\
+c_1&c_2&c_3
+\end{vmatrix}
+=k
+\begin{vmatrix}
+a_1&a_2&a_3\\
+b_1&b_2&b_3\\
+c_1&c_2&c_3
+\end{vmatrix}.
+$$
+
+若整个 $n$ 阶矩阵都乘 $k$，则：
 
 $$
 |kA|=k^n|A|,
@@ -38,9 +70,47 @@ $$
 
 若某行是两组数之和，则行列式可拆成两个行列式之和。
 
+例如，第一行可按对应元素逐项拆分：
+
+$$
+\begin{vmatrix}
+a_1+b_1&a_2+b_2&a_3+b_3\\
+c_1&c_2&c_3\\
+d_1&d_2&d_3
+\end{vmatrix}
+=
+\begin{vmatrix}
+a_1&a_2&a_3\\
+c_1&c_2&c_3\\
+d_1&d_2&d_3
+\end{vmatrix}
++
+\begin{vmatrix}
+b_1&b_2&b_3\\
+c_1&c_2&c_3\\
+d_1&d_2&d_3
+\end{vmatrix}.
+$$
+
+同一行的公因数可提出；由转置性质可知，对任意一列也有完全相同的线性与可加性。
+
 ### 1.5 倍加变换不改变行列式
 
 把某一行的 $k$ 倍加到另一行，行列式的值不变。这是化三角形时最常用的性质。
+
+$$
+\begin{vmatrix}
+a_1&a_2&a_3\\
+b_1&b_2&b_3\\
+c_1&c_2&c_3
+\end{vmatrix}
+=
+\begin{vmatrix}
+a_1&a_2&a_3\\
+b_1+ka_1&b_2+ka_2&b_3+ka_3\\
+c_1&c_2&c_3
+\end{vmatrix}.
+$$
 
 ## 2. 余子式与代数余子式
 
