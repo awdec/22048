@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第四节 含参数方程组与综合结论</center></h1>
+<h1><center>第四节 含参数方程组</center></h1>
 
 ## 1. 含参数题的标准流程
 

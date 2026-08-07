@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第五章 特征值和特征向量·例题</center></h1>
 
 1. [特征值与特征向量](./section-1)

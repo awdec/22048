@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第三章 数据链路层</center></h1>
 
 ## 本章内容

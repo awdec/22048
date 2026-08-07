@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第四章 线性方程组·例题</center></h1>
 
 1. [解的判定与消元](./section-1)

@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>线性表-队列</center></h1>
 
 ## 5. 队列

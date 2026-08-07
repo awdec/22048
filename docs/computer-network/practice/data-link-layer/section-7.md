@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第七节 广域网</center></h1>
 
 ::: info 例 1

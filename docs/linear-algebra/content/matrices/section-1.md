@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第一节 矩阵运算与特殊矩阵</center></h1>
 
 ## 1. 矩阵的概念

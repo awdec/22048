@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第五章 输入/输出管理</center></h1>
 
 ## 本章内容

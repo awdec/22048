@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第四节 路由算法与路由协议</center></h1>
 
 ::: info 例 1

@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第二节 算法概念</center></h1>
 
 程序 = 数据结构 + 算法

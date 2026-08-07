@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>408 操作系统</center></h1>
 
 操作系统负责管理计算机软硬件资源，并向应用程序提供稳定、统一的运行环境。复习主线是“资源管理”：处理机、内存、文件和设备分别由不同机制协调。
@@ -10,7 +6,7 @@
 
 | 章节 | 主题 | 入口 |
 | --- | --- | --- |
-| 第一章 | 计算机系统概述 | [开始学习](./computer-system-overview/) |
+| 第一章 | 操作系统基础 | [开始学习](./computer-system-overview/) |
 | 第二章 | 进程与线程 | [开始学习](./processes-threads/) |
 | 第三章 | 内存管理 | [开始学习](./memory-management/) |
 | 第四章 | 文件管理 | [开始学习](./file-management/) |

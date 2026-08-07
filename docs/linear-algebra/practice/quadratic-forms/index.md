@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第六章 二次型·例题</center></h1>
 
 1. [二次型的矩阵表示](./section-1)

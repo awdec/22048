@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第四节 实对称矩阵的正交对角化</center></h1>
+<h1><center>第四节 实对称矩阵</center></h1>
 
 ## 1. 实对称矩阵的性质
 

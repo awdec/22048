@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第四节 B 树和 B+ 树</center></h1>
 
 ## 1. B 树

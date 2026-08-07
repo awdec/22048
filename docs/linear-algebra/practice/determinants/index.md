@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第一章 行列式·例题</center></h1>
 
 1. [基本计算](./section-1)

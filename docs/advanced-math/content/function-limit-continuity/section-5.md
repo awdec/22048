@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第五节 连续和间断</center></h1>
 
 ## 1. 连续的概念

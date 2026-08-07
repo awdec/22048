@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第三节 树形查找</center></h1>
 
 ## 1. 树形查找

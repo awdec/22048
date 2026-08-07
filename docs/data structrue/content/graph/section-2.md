@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第二节 图结构的存储</center></h1>
 
 ## 1. 图存储的核心问题

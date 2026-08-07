@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第一节 行列式的概念与基本计算</center></h1>
+<h1><center>第一节 概念与基本计算</center></h1>
 
 ## 1. 二阶与三阶行列式
 

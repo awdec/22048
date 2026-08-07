@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第二章 矩阵·例题</center></h1>
 
 1. [矩阵运算](./section-1)

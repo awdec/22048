@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第三节 无穷小量及无穷小的阶</center></h1>
 
 ## 1. 无穷小量

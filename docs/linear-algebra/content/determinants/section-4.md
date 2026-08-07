@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第一章总结：行列式</center></h1>
+<h1><center>本章总结</center></h1>
 
 ## 核心公式
 

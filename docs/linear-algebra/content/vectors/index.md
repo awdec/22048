@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第三章 向量</center></h1>
 
 本章研究向量之间的线性关系，是矩阵秩、线性方程组和特征向量的共同基础。

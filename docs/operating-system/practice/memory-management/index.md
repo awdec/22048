@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第三章 内存管理·例题</center></h1>
 
 1. [内存管理概念](./section-1)

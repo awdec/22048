@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第一节 解的判定与高斯消元</center></h1>
 
 ## 1. 矩阵形式
@@ -19,8 +15,10 @@ $$
 设未知数个数为 $n$。
 
 $$
+\boxed{
 A\boldsymbol x=\boldsymbol b\text{ 有解}
-\Longleftrightarrow r(A)=r(\widetilde A).
+\Longleftrightarrow r(A)=r(\widetilde A)
+}
 $$
 
 进一步：

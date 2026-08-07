@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第二节 顺序查找和折半查找</center></h1>
 
 ## 1. 顺序查找

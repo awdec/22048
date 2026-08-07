@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>408 数据结构考点分析</center></h1>
 
 ## 1. 408 中的数据结构分值

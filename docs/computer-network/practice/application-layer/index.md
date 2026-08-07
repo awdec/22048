@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第六章 应用层·例题</center></h1>
 
 1. [网络应用模型](./section-1)

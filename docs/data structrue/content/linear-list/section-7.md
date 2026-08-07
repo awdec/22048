@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>线性表-数组和特殊矩阵</center></h1>
 
 ## 6. 数组

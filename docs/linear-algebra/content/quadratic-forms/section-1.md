@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第一节 二次型及其矩阵表示</center></h1>
+<h1><center>第一节 矩阵表示</center></h1>
 
 ## 1. 二次型
 
@@ -49,6 +45,8 @@ $$
 \boldsymbol x=C\boldsymbol y,
 $$
 
+其中 $C$ 可逆。
+
 则：
 
 $$
@@ -86,7 +84,3 @@ $$
 $$
 r(C^TAC)=r(A).
 $$
-
-::: warning 易错点
-交叉项 $bx_ix_j$ 对应矩阵中的两个元素都为 $b/2$，不能把 $b$ 同时填入两个位置。
-:::

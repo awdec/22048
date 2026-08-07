@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第二节 数列极限与函数极限</center></h1>
 
 ## 数列极限

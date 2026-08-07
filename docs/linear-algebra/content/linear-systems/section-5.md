@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第四章总结：线性方程组</center></h1>
+<h1><center>本章总结</center></h1>
 
 ## 解的判定总表
 

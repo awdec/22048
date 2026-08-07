@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第三节 图的遍历</center></h1>
 
 ## 1. 图遍历的含义

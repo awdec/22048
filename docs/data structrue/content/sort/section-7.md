@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第七节 外部排序</center></h1>
 
 ## 1. 外部排序

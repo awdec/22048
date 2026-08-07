@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第四节 选择排序</center></h1>
 
 ## 1. 选择排序

@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第四节 图的相关应用</center></h1>
 
 ## 1. 图应用的考查重点

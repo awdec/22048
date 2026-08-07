@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第五节 散列表</center></h1>
 
 ## 1. 散列表

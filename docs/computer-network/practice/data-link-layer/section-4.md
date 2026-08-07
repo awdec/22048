@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第四节 流量控制与可靠传输机制</center></h1>
 
 ::: info 例 1

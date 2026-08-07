@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第四章 树</center></h1>
 
 ## 1. 本章定位

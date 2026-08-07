@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第四章 网络层</center></h1>
 
 ## 本章内容

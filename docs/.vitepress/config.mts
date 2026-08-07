@@ -1,12 +1,17 @@
 import katex from 'katex'
 import markdownItKatex from 'markdown-it-katex'
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
 // https://vitepress.dev/reference/site-config
 
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   lastUpdated: true,
+
+  mermaid: {
+    securityLevel: 'strict',
+  },
   
   // base: "/22048/",
   
@@ -73,11 +78,11 @@ export default defineConfig({
           items: [
             { text: '计算机网络考点总览', link: '/computer-network/content/' },
             {
-              text: '第一章 计算机网络体系结构',
+              text: '第一章 计算机网络概述',
               link: '/computer-network/content/network-architecture/',
               items: [
-                { text: '第一节 计算机网络概述', link: '/computer-network/content/network-architecture/section-1' },
-                { text: '第二节 计算机网络体系结构与参考模型', link: '/computer-network/content/network-architecture/section-2' },
+                { text: '第一节 计算机网络基本概念', link: '/computer-network/content/network-architecture/section-1' },
+                { text: '第二节 计算机网络体系结构', link: '/computer-network/content/network-architecture/section-2' },
               ],
             },
             {
@@ -146,11 +151,11 @@ export default defineConfig({
           items: [
             { text: '计算机网络例题总览', link: '/computer-network/practice/' },
             {
-              text: '第一章 计算机网络体系结构',
+              text: '第一章 计算机网络概述',
               link: '/computer-network/practice/network-architecture/',
               items: [
-                { text: '第一节 计算机网络概述', link: '/computer-network/practice/network-architecture/section-1' },
-                { text: '第二节 计算机网络体系结构与参考模型', link: '/computer-network/practice/network-architecture/section-2' },
+                { text: '第一节 计算机网络基本概念', link: '/computer-network/practice/network-architecture/section-1' },
+                { text: '第二节 计算机网络体系结构', link: '/computer-network/practice/network-architecture/section-2' },
               ],
             },
             {
@@ -909,4 +914,4 @@ export default defineConfig({
       }
     },
   },
-})
+}))

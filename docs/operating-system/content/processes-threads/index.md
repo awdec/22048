@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第二章 进程与线程</center></h1>
 
 ## 本章内容

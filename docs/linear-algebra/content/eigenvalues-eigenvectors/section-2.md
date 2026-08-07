@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第二节 特征值的性质与相似矩阵</center></h1>
+<h1><center>第二节 性质与相似矩阵</center></h1>
 
 ## 1. 特征值的和与积
 
@@ -24,7 +20,7 @@ $$
 A^k\boldsymbol\xi=\lambda^k\boldsymbol\xi.
 $$
 
-对多项式 $f$：
+对多项式 $f(x)=a_0+a_1x+\cdots+a_nx^n$：
 
 $$
 f(A)\boldsymbol\xi=f(\lambda)\boldsymbol\xi.
@@ -38,7 +34,7 @@ $$
 A^{-1}\boldsymbol\xi=\lambda^{-1}\boldsymbol\xi,
 $$
 
-即 $A^{-1}$ 的特征值是 $1/\lambda_i$。
+即 $A^{-1}$ 的特征值是 $\dfrac{1}{\lambda_i}$。
 
 ## 3. 相似矩阵
 
@@ -64,8 +60,8 @@ $A$ 与 $A^T$ 的特征多项式相同，因此特征值相同。
 
 若 $A$ 可逆，则：
 
-- $A^{-1}$ 的特征值为 $1/\lambda_i$。
-- $A^*$ 的特征值为 $|A|/\lambda_i$。
+- $A^{-1}$ 的特征值为 $\dfrac{1}{\lambda_i}$。
+- $A^*$ 的特征值为 $\dfrac{|A|}{\lambda_i}$。
 
 若 $A$ 不可逆，伴随矩阵特征值要结合秩分类，不宜直接使用除法公式。
 

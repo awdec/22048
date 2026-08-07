@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第五节 归并、基数、计数排序</center></h1>
 
 ## 1. 归并排序

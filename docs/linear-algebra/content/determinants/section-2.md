@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第二节 行列式的性质与展开定理</center></h1>
+<h1><center>第二节 性质与展开定理</center></h1>
 
 ## 1. 行列式的基本性质
 

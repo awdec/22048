@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第三章总结：向量</center></h1>
+<h1><center>本章总结</center></h1>
 
 ## 三个核心问题
 

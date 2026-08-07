@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第四章 文件管理·例题</center></h1>
 
 1. [文件系统基础](./section-1)

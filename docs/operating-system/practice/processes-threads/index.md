@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第二章 进程与线程·例题</center></h1>
 
 1. [进程与线程简介](./section-1)

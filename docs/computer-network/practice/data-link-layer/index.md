@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第三章 数据链路层·例题</center></h1>
 
 1. [数据链路层的功能](./section-1)

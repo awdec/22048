@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第三章 向量·例题</center></h1>
 
 1. [线性组合与向量组等价](./section-1)

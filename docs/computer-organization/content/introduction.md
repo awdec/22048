@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第一章 计算机系统概述</center></h1>
 
 ## 1. 本章定位
@@ -23,24 +17,22 @@
 主要内容：
 
 - 计算机系统的组成
-- 硬件系统与软件系统
+- 计算机硬件
+- 计算机软件
 - 计算机系统的层次结构
-- 冯·诺依曼计算机
-- 现代计算机的基本组成
-- 计算机系统结构与计算机组成的区别
+- 计算机系统的不同用户
+- 计算机系统的工作原理
 
 ### 第二节 计算机的性能指标
 
 主要内容：
 
-- 机器字长
-- 主频与时钟周期
-- CPI
-- 执行时间
-- MIPS
-- FLOPS
+- 计算机性能的基本概念
 - 吞吐量与响应时间
-- 存储容量与带宽
+- CPU 时钟周期与主频
+- CPI 与 CPU 执行时间
+- MIPS
+- MFLOPS、GFLOPS、TFLOPS、PFLOPS、EFLOPS、ZFLOPS
 
 ## 3. 学习主线
 
@@ -49,11 +41,13 @@
 $$
 \text{计算机系统}
 \longrightarrow
-\text{硬件与软件}
+\text{计算机硬件与软件}
 \longrightarrow
 \text{系统层次结构}
 \longrightarrow
-\text{冯·诺依曼结构}
+\text{不同用户与系统接口}
+\longrightarrow
+\text{计算机系统的工作原理}
 \longrightarrow
 \text{性能指标}
 $$

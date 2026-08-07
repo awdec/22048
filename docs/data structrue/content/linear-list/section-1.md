@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>线性表-顺序表</center></h1>
 
 $L=(a_1,a_2,\cdots,a_i,a_{i+1},\cdots,a_n)$

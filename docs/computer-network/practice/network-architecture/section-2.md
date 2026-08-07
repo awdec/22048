@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第二节 计算机网络体系结构与参考模型</center></h1>
+<h1><center>第二节 计算机网络体系结构</center></h1>
 
 ::: info 例 1
 “规定确认报文中各字段的含义”属于协议三要素中的哪一个？

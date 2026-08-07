@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第三章 字符串</center></h1>
 
 ## 1. 本章定位

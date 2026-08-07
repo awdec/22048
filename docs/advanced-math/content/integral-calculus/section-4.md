@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第四节 定积分的计算</center></h1>
 
 ## 1. 牛顿-莱布尼茨公式

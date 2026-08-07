@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第二节 UDP</center></h1>
 
 ::: info 例 1

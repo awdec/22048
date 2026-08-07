@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>线性表-栈-应用</center></h1>
 
 ## 4.6 栈的应用

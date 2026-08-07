@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第四节 电子邮件</center></h1>
 
 ::: info 例 1

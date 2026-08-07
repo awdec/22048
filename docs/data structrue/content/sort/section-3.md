@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第三节 交换排序</center></h1>
 
 ## 1. 交换排序

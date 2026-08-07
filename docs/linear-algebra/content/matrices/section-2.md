@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第二节 逆矩阵与伴随矩阵</center></h1>
 
 ## 1. 逆矩阵
@@ -17,10 +13,15 @@ $$
 方阵可逆的等价条件：
 
 $$
+\boxed{
+\begin{gathered}
 A\text{ 可逆}
 \Longleftrightarrow |A|\ne0
-\Longleftrightarrow r(A)=n
-\Longleftrightarrow A\boldsymbol{x}=\boldsymbol0\text{ 只有零解}.
+\Longleftrightarrow r(A)=n\\
+\Longleftrightarrow
+A\boldsymbol{x}=\boldsymbol0\text{ 只有零解}
+\end{gathered}
+}
 $$
 
 ## 2. 逆矩阵的性质
@@ -58,7 +59,7 @@ $$
 当 $|A|\ne0$ 时：
 
 $$
-A^{-1}=\frac1{|A|}A^*.
+\boxed{A^{-1}=\frac1{|A|}A^*.}
 $$
 
 常用性质：

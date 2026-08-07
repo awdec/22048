@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第四节 分块矩阵与矩阵方程</center></h1>
 
 ## 1. 分块矩阵

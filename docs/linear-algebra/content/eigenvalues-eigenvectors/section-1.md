@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第一节 特征值与特征向量的计算</center></h1>
+<h1><center>第一节 特征值与特征向量</center></h1>
 
 ## 1. 定义
 

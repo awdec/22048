@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第五节 万维网</center></h1>
 
 ::: info 例 1

@@ -1,18 +1,16 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第三节 相似对角化与矩阵的幂</center></h1>
+<h1><center>第三节 相似对角化</center></h1>
 
 ## 1. 可相似对角化
 
 若存在可逆矩阵 $P$，使：
 
 $$
-P^{-1}AP=\Lambda=operatorname{diag}(\lambda_1,\ldots,\lambda_n),
+P^{-1}AP=\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n),
 $$
 
 则称 $A$ 可相似对角化。
+
+其中 $P$ 的每一个列向量，都是 $A$ 的特征向量。
 
 其充要条件是：$A$ 有 $n$ 个线性无关的特征向量。
 
@@ -60,7 +58,7 @@ $$
 若 $A=P\Lambda P^{-1}$，则：
 
 $$
-A^k=P\Lambda^kP^{-1},
+\boxed{A^k=P\Lambda^kP^{-1}.}
 $$
 
 而：

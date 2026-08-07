@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第一节 字符串</center></h1>
 
 ## 1. 串的基本概念

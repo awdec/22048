@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第二节 插入排序</center></h1>
 
 ## 1. 插入排序

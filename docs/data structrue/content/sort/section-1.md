@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第一节 排序的基本概念</center></h1>
 
 ## 1. 排序

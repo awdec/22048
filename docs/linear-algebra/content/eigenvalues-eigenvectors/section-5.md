@@ -1,8 +1,4 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
-<h1><center>第五章总结：特征值和特征向量</center></h1>
+<h1><center>本章总结</center></h1>
 
 ## 核心公式
 
@@ -20,9 +16,11 @@
 ## 对角化判断
 
 $$
+\boxed{
 A\text{ 可对角化}
 \Longleftrightarrow
-A\text{ 有 }n\text{ 个线性无关的特征向量}.
+A\text{ 有 }n\text{ 个线性无关的特征向量}
+}
 $$
 
 对每个重特征值 $\lambda_i$ 检查：

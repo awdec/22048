@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>考研数学二-线性代数-习题</center></h1>
 
 ## 线代习题目录

@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第一节 函数及其性质</center></h1>
 
 ## 函数

@@ -1,9 +1,3 @@
-<style>
- body {
-  font-family: "楷体"
-}
-</style>
-
 <h1><center>第六节 内部排序</center></h1>
 
 ## 1. 内部排序

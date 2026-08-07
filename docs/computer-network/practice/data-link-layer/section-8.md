@@ -1,7 +1,3 @@
-<style>
- body { font-family: "楷体" }
-</style>
-
 <h1><center>第八节 数据链路层设备</center></h1>
 
 ::: info 例 1
