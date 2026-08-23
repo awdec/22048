@@ -1,1 +1,1 @@
-<h1><center>第六节 反常积分的敛散性</center></h1>
+<h1><center>第六节 定积分的应用</center></h1>
