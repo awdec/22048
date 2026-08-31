@@ -60,7 +60,7 @@ export default withMermaid(defineConfig({
         items: [
           { text: '考点', link: '/advanced-math/content/' },
           { text: '例题', link: '/advanced-math/practice/' },
-          { text: '习题', link: '/advanced-math/practise/' },
+          { text: '技巧', link: '/advanced-math/skills/' },
         ],
       },
       { text: '线性代数',
@@ -728,6 +728,19 @@ export default withMermaid(defineConfig({
             { text: '高等数学总复习总结', link: '/advanced-math/practice/advanced-math-summary' },
           ]
         }
+      ],
+
+      '/advanced-math/skills': [
+        {
+          text: '高等数学',
+          items: [
+            { text: '高数技巧', link: '/advanced-math/skills/' },
+            { text: '常见的非初等不定积分', link: '/advanced-math/skills/non-elementary-integrals' },
+            { text: '高斯积分标准公式', link: '/advanced-math/skills/gaussian-integral' },
+            // 后续在此平铺追加技巧文档，例如：
+            // { text: '等价无穷小替换技巧', link: '/advanced-math/skills/equivalent-infinitesimals' },
+          ],
+        },
       ],
 
       '/linear-algebra/content': [
