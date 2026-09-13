@@ -67,6 +67,7 @@ export default withMermaid(defineConfig({
         items: [
           { text: '考点', link: '/linear-algebra/content/' },
           { text: '例题', link: '/linear-algebra/practice/' },
+          { text: '技巧', link: '/linear-algebra/skills/' },
         ],
       },
     ],
@@ -737,6 +738,8 @@ export default withMermaid(defineConfig({
             { text: '高数技巧', link: '/advanced-math/skills/' },
             { text: '常见的非初等不定积分', link: '/advanced-math/skills/non-elementary-integrals' },
             { text: '高斯积分标准公式', link: '/advanced-math/skills/gaussian-integral' },
+            { text: '各类中值定理证明题总结', link: '/advanced-math/skills/mean-value-theorem-proofs' },
+            { text: '介值定理、最值定理和零点定理证明题总结', link: '/advanced-math/skills/ivt-evt-zero-theorems' },
             // 后续在此平铺追加技巧文档，例如：
             // { text: '等价无穷小替换技巧', link: '/advanced-math/skills/equivalent-infinitesimals' },
           ],
@@ -887,6 +890,24 @@ export default withMermaid(defineConfig({
             },
           ]
         }
+      ],
+
+      '/linear-algebra/skills': [
+        {
+          text: '线性代数',
+          items: [
+            { text: '线代技巧', link: '/linear-algebra/skills/' },
+            { text: '分块矩阵运算结论', link: '/linear-algebra/skills/block-matrix-operations' },
+            { text: '向量组的极大线性无关组的性质和应用', link: '/linear-algebra/skills/maximal-linearly-independent-subsets' },
+            { text: '向量组等价', link: '/linear-algebra/skills/equivalent-vector-systems' },
+            { text: '基础解系和列向量之间的关系', link: '/linear-algebra/skills/fundamental-solutions-and-columns' },
+            { text: '正交矩阵的性质', link: '/linear-algebra/skills/orthogonal-matrices' },
+            { text: '正定矩阵的证明', link: '/linear-algebra/skills/positive-definite-proofs' },
+            { text: '矩阵等价、相似、合同的对比总结', link: '/linear-algebra/skills/equivalence-similarity-congruence' },
+            // 后续在此平铺追加技巧文档，例如：
+            // { text: '……技巧', link: '/linear-algebra/skills/xxx' },
+          ],
+        },
       ],
     },
 
