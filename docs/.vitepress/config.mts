@@ -15,9 +15,9 @@ export default withMermaid(defineConfig({
   
   // base: "/22048/",
   
-  // head: [
-  //   ['link', { rel: 'icon', href: '/logo2.ico' }]
-  // ],
+  head: [
+    ['link', { rel: 'icon', type: 'image/x-icon', href: '/22408-logo.ico' }]
+  ],
 
 
   title: "awdec 的 22408",
