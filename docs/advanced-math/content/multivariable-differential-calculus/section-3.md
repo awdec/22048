@@ -30,6 +30,13 @@ $$
 \rho=\sqrt{(\Delta x)^2+(\Delta y)^2}
 $$
 
+即：
+
+
+$$
+\lim_{(x_0,y_0)\to(0,0)}\dfrac{f(x_0+h,y_0+k)-f(x_0,y_0)-f_x(x_0,y_0)h-f_y(x_0,y_0)k}{\rho}=0
+$$
+
 则称函数 $z=f(x,y)$ 在点 $(x,y)$ 处可微。
 
 全微分为：
