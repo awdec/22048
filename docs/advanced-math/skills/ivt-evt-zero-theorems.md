@@ -19,7 +19,7 @@ $$
 结论里出现 $f'(\xi)$ 时请移步[各类中值定理证明题总结](./mean-value-theorem-proofs)。两族的分工见第 7 节。
 :::
 
-定理的原始表述见[连续和间断 §9](../content/function-limit-continuity/section-5)、[第一章本章总结](../content/function-limit-continuity/section-6)。
+定理的原始表述见[连续和间断 §9](../content/function-limit-continuity/section-5)。
 
 ::: tip 配套习题
 本页讲方法，动手练见[介值定理、最值定理和零点定理（专题习题）](./ivt-evt-zero-theorems-exercises)——13 道题按题型分五组，全部配有折叠解析，并附一张题型与所用定理的对照表。建议读完本页第 3 节后即开始做题。

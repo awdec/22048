@@ -593,7 +593,6 @@ export default withMermaid(defineConfig({
                 { text: '第三节 无穷小量及无穷小的阶', link: '/advanced-math/content/function-limit-continuity/section-3' },
                 { text: '第四节 极限计算', link: '/advanced-math/content/function-limit-continuity/section-4' },
                 { text: '第五节 连续和间断', link: '/advanced-math/content/function-limit-continuity/section-5' },
-                { text: '本章总结', link: '/advanced-math/content/function-limit-continuity/section-6' },
               ],
             },
             {
@@ -603,7 +602,6 @@ export default withMermaid(defineConfig({
                 { text: '第一节 导数，导数和微分的计算', link: '/advanced-math/content/single-variable-differential-calculus/section-1' },
                 { text: '第二节 中值定理，单调性和凹凸性', link: '/advanced-math/content/single-variable-differential-calculus/section-2' },
                 { text: '第三节 渐近线和曲率、曲率半径', link: '/advanced-math/content/single-variable-differential-calculus/section-3' },
-                { text: '本章总结', link: '/advanced-math/content/single-variable-differential-calculus/section-4' },
               ],
             },
             {
@@ -616,7 +614,6 @@ export default withMermaid(defineConfig({
                 { text: '第四节 定积分的计算', link: '/advanced-math/content/integral-calculus/section-4' },
                 { text: '第五节 反常积分的敛散性', link: '/advanced-math/content/integral-calculus/section-5' },
                 { text: '第六节 定积分的应用', link: '/advanced-math/content/integral-calculus/section-6' },
-                { text: '本章总结', link: '/advanced-math/content/integral-calculus/section-8' },
               ],
             },
             {
@@ -627,7 +624,6 @@ export default withMermaid(defineConfig({
                 { text: '第二节 多元函数的偏导数', link: '/advanced-math/content/multivariable-differential-calculus/section-2' },
                 { text: '第三节 多元函数微分的基本理论和计算', link: '/advanced-math/content/multivariable-differential-calculus/section-3' },
                 { text: '第四节 多元函数的极值和最值', link: '/advanced-math/content/multivariable-differential-calculus/section-4' },
-                { text: '本章总结', link: '/advanced-math/content/multivariable-differential-calculus/section-5' },
               ],
             },
             {
@@ -637,7 +633,6 @@ export default withMermaid(defineConfig({
                 { text: '第一节 二重积分的概念和性质', link: '/advanced-math/content/double-integral/section-1' },
                 { text: '第二节 二重积分的计算', link: '/advanced-math/content/double-integral/section-2' },
                 { text: '第三节 二重积分的应用', link: '/advanced-math/content/double-integral/section-3' },
-                { text: '本章总结', link: '/advanced-math/content/double-integral/section-4' },
               ],
             },
             {
@@ -647,10 +642,8 @@ export default withMermaid(defineConfig({
                 { text: '第一节 一阶微分方程', link: '/advanced-math/content/differential-equations/section-1' },
                 { text: '第二节 高阶微分方程', link: '/advanced-math/content/differential-equations/section-2' },
                 { text: '第三节 微分方程综合题', link: '/advanced-math/content/differential-equations/section-3' },
-                { text: '本章总结', link: '/advanced-math/content/differential-equations/section-4' },
               ],
             },
-            { text: '高等数学总复习总结', link: '/advanced-math/content/advanced-math-summary' },
           ]
         }
       ],
@@ -669,7 +662,6 @@ export default withMermaid(defineConfig({
                 { text: '第三节 无穷小量及无穷小的阶', link: '/advanced-math/practice/function-limit-continuity/section-3' },
                 { text: '第四节 极限计算', link: '/advanced-math/practice/function-limit-continuity/section-4' },
                 { text: '第五节 连续和间断', link: '/advanced-math/practice/function-limit-continuity/section-5' },
-                { text: '本章总结', link: '/advanced-math/practice/function-limit-continuity/section-6' },
               ],
             },
             {
@@ -679,7 +671,6 @@ export default withMermaid(defineConfig({
                 { text: '第一节 导数，导数和微分的计算', link: '/advanced-math/practice/single-variable-differential-calculus/section-1' },
                 { text: '第二节 中值定理，单调性和凹凸性', link: '/advanced-math/practice/single-variable-differential-calculus/section-2' },
                 { text: '第三节 渐近线和曲率、曲率半径', link: '/advanced-math/practice/single-variable-differential-calculus/section-3' },
-                { text: '本章总结', link: '/advanced-math/practice/single-variable-differential-calculus/section-4' },
               ],
             },
             {
@@ -692,7 +683,6 @@ export default withMermaid(defineConfig({
                 { text: '第四节 定积分的计算', link: '/advanced-math/practice/integral-calculus/section-4' },
                 { text: '第五节 反常积分的敛散性', link: '/advanced-math/practice/integral-calculus/section-5' },
                 { text: '第六节 定积分的应用', link: '/advanced-math/practice/integral-calculus/section-6' },
-                { text: '本章总结', link: '/advanced-math/practice/integral-calculus/section-8' },
               ],
             },
             {
@@ -703,7 +693,6 @@ export default withMermaid(defineConfig({
                 { text: '第二节 多元函数的偏导数', link: '/advanced-math/practice/multivariable-differential-calculus/section-2' },
                 { text: '第三节 多元函数微分的基本理论和计算', link: '/advanced-math/practice/multivariable-differential-calculus/section-3' },
                 { text: '第四节 多元函数的极值和最值', link: '/advanced-math/practice/multivariable-differential-calculus/section-4' },
-                { text: '本章总结', link: '/advanced-math/practice/multivariable-differential-calculus/section-5' },
               ],
             },
             {
@@ -713,7 +702,6 @@ export default withMermaid(defineConfig({
                 { text: '第一节 二重积分的概念和性质', link: '/advanced-math/practice/double-integral/section-1' },
                 { text: '第二节 二重积分的计算', link: '/advanced-math/practice/double-integral/section-2' },
                 { text: '第三节 二重积分的应用', link: '/advanced-math/practice/double-integral/section-3' },
-                { text: '本章总结', link: '/advanced-math/practice/double-integral/section-4' },
               ],
             },
             {
@@ -723,10 +711,8 @@ export default withMermaid(defineConfig({
                 { text: '第一节 一阶微分方程', link: '/advanced-math/practice/differential-equations/section-1' },
                 { text: '第二节 高阶微分方程', link: '/advanced-math/practice/differential-equations/section-2' },
                 { text: '第三节 微分方程综合题', link: '/advanced-math/practice/differential-equations/section-3' },
-                { text: '本章总结', link: '/advanced-math/practice/differential-equations/section-4' },
               ],
             },
-            { text: '高等数学总复习总结', link: '/advanced-math/practice/advanced-math-summary' },
           ]
         }
       ],
