@@ -32,16 +32,10 @@ $$
 
 则称函数 $z=f(x,y)$ 在点 $(x,y)$ 处可微。
 
-此时：
-
-$$
-A=f_x(x,y),\quad B=f_y(x,y)
-$$
-
 全微分为：
 
 $$
-dz=f_x(x,y)\,dx+f_y(x,y)\,dy
+dz=\frac{\partial f}{\partial x}\,dx+\frac{\partial f}{\partial y}\,dy
 $$
 
 
@@ -53,7 +47,7 @@ $f_x,f_y$ 存在且连续 $\Rightarrow$ $f_x,f_y$ 存在，$f_x$ 连续或 $f_y$
 
 ### 2.2 定义式
 
-$dz=\lim_{\Delta x\to 0,\Delta y\to 0}\frac{f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)}{\rho}$ 极限存在 $\Rightarrow $ 可微
+$dz=\lim_{\Delta x\to 0,\Delta y\to 0}\frac{f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)}{\rho}$ 极限存在 $\Rightarrow$ 可微
 
 
 ## 3. 可微、连续、偏导存在的关系
@@ -140,12 +134,6 @@ $$
 \frac{\partial f}{\partial u}\frac{du}{dx}
 +
 \frac{\partial f}{\partial v}\frac{dv}{dx}
-$$
-
-也可写为：
-
-$$
-\frac{dz}{dx}=f_u u'+f_v v'
 $$
 
 ### 5.2 两个中间变量依赖两个自变量
