@@ -45,19 +45,16 @@ dz=f_x(x,y)\,dx+f_y(x,y)\,dy
 $$
 
 
-## 2. 可微的充分条件
+## 2. 可微的判定
 
-若 $f_x(x,y)$ 与 $f_y(x,y)$ 在点 $(x_0,y_0)$ 的某邻域内存在，并且在 $(x_0,y_0)$ 处连续，则 $f(x,y)$ 在 $(x_0,y_0)$ 处可微。
+### 2.1 必要条件
 
-简记为：
+$f_x,f_y$ 存在且连续 $\Rightarrow$ $f_x,f_y$ 存在，$f_x$ 连续或 $f_y$ 连续 $\Rightarrow$ 可微
 
-$$
-f_x,\ f_y\text{ 连续}
-\Rightarrow
-f\text{ 可微}
-$$
+### 2.2 定义式
 
-这是考试中最常用的可微判定。
+$dz=\lim_{\Delta x\to 0,\Delta y\to 0}\frac{f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)}{\rho}$ 极限存在 $\Rightarrow $ 可微
+
 
 ## 3. 可微、连续、偏导存在的关系
 
@@ -69,35 +66,33 @@ $$
 \text{连续}
 $$
 
-并且：
-
 $$
 \text{可微}
 \Rightarrow
 f_x,\ f_y\text{ 存在}
 $$
-
-但反过来一般不成立：
-
-$$
-f_x,\ f_y\text{ 存在}
-\nRightarrow
-\text{可微}
-$$
-
-$$
-f_x,\ f_y\text{ 存在}
-\nRightarrow
-\text{连续}
-$$
-
-如果偏导数在某点附近连续，则可推出可微：
 
 $$
 f_x,\ f_y\text{ 连续}
 \Rightarrow
 \text{可微}
 \Rightarrow
+\text{连续}
+$$
+
+$$
+可微 \nRightarrow 偏导数连续
+$$
+
+$$
+f_x,\ f_y\text{ 存在}
+\nRightarrow
+\text{可微}
+$$
+
+$$
+f_x,\ f_y\text{ 存在}
+\nRightarrow
 \text{连续}
 $$
 
@@ -207,39 +202,43 @@ $$
 已经有：
 
 $$
-z_x=f_u u_x+f_v v_x
+\frac{\partial z}{\partial x}
+=
+\frac{\partial f}{\partial u}\frac{\partial u}{\partial x}
++
+\frac{\partial f}{\partial v}\frac{\partial v}{\partial x}
 $$
 
 继续对 $x$ 求偏导：
 
 $$
-z_{xx}
+\frac{\partial^2 z}{\partial x^2}
 =
-f_{uu}u_x^2
+\frac{\partial^2 f}{\partial u^2}\left(\frac{\partial u}{\partial x}\right)^2
 +
-2f_{uv}u_xv_x
+2\frac{\partial^2 f}{\partial u\partial v}\frac{\partial u}{\partial x}\frac{\partial v}{\partial x}
 +
-f_{vv}v_x^2
+\frac{\partial^2 f}{\partial v^2}\left(\frac{\partial v}{\partial x}\right)^2
 +
-f_u u_{xx}
+\frac{\partial f}{\partial u}\frac{\partial^2 u}{\partial x^2}
 +
-f_v v_{xx}
+\frac{\partial f}{\partial v}\frac{\partial^2 v}{\partial x^2}
 $$
 
 继续对 $y$ 求偏导：
 
 $$
-z_{xy}
+\frac{\partial^2 z}{\partial x\partial y}
 =
-f_{uu}u_xu_y
+\frac{\partial^2 f}{\partial u^2}\frac{\partial u}{\partial x}\frac{\partial u}{\partial y}
 +
-f_{uv}(u_xv_y+v_xu_y)
+\frac{\partial^2 f}{\partial u\partial v}\left(\frac{\partial u}{\partial x}\frac{\partial v}{\partial y}+\frac{\partial v}{\partial x}\frac{\partial u}{\partial y}\right)
 +
-f_{vv}v_xv_y
+\frac{\partial^2 f}{\partial v^2}\frac{\partial v}{\partial x}\frac{\partial v}{\partial y}
 +
-f_u u_{xy}
+\frac{\partial f}{\partial u}\frac{\partial^2 u}{\partial x\partial y}
 +
-f_v v_{xy}
+\frac{\partial f}{\partial v}\frac{\partial^2 v}{\partial x\partial y}
 $$
 
 ## 6. 隐函数求导
