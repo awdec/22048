@@ -586,7 +586,7 @@ export default withMermaid(defineConfig({
             { text: '高数考纲/考点', link: '/advanced-math/content/' },
             {
               text: '第一章 函数 极限 连续',
-              link: '/advanced-math/content/function-limit-continuity/',
+              link: '/advanced-math/content/function-limit-continuity/section-1',
               items: [
                 { text: '第一节 函数及其性质', link: '/advanced-math/content/function-limit-continuity/section-1' },
                 { text: '第二节 数列极限与函数极限', link: '/advanced-math/content/function-limit-continuity/section-2' },
@@ -597,7 +597,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第二章 一元函数微分学',
-              link: '/advanced-math/content/single-variable-differential-calculus/',
+              link: '/advanced-math/content/single-variable-differential-calculus/section-1',
               items: [
                 { text: '第一节 导数，导数和微分的计算', link: '/advanced-math/content/single-variable-differential-calculus/section-1' },
                 { text: '第二节 中值定理，单调性和凹凸性', link: '/advanced-math/content/single-variable-differential-calculus/section-2' },
@@ -606,7 +606,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第三章 一元函数积分学',
-              link: '/advanced-math/content/integral-calculus/',
+              link: '/advanced-math/content/integral-calculus/section-1',
               items: [
                 { text: '第一节 原函数和不定积分', link: '/advanced-math/content/integral-calculus/section-1' },
                 { text: '第二节 定积分定义及性质', link: '/advanced-math/content/integral-calculus/section-2' },
@@ -618,7 +618,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第四章 多元函数微分学',
-              link: '/advanced-math/content/multivariable-differential-calculus/',
+              link: '/advanced-math/content/multivariable-differential-calculus/section-1',
               items: [
                 { text: '第一节 多元函数的基本理论', link: '/advanced-math/content/multivariable-differential-calculus/section-1' },
                 { text: '第二节 多元函数的偏导数', link: '/advanced-math/content/multivariable-differential-calculus/section-2' },
@@ -628,7 +628,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第五章 二重积分',
-              link: '/advanced-math/content/double-integral/',
+              link: '/advanced-math/content/double-integral/section-1',
               items: [
                 { text: '第一节 二重积分的概念和性质', link: '/advanced-math/content/double-integral/section-1' },
                 { text: '第二节 二重积分的计算', link: '/advanced-math/content/double-integral/section-2' },
@@ -637,7 +637,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第六章 常微分方程',
-              link: '/advanced-math/content/differential-equations/',
+              link: '/advanced-math/content/differential-equations/section-1',
               items: [
                 { text: '第一节 一阶微分方程', link: '/advanced-math/content/differential-equations/section-1' },
                 { text: '第二节 高阶微分方程', link: '/advanced-math/content/differential-equations/section-2' },
@@ -655,7 +655,7 @@ export default withMermaid(defineConfig({
             { text: '高数例题', link: '/advanced-math/practice/' },
             {
               text: '第一章 函数 极限 连续',
-              link: '/advanced-math/practice/function-limit-continuity/',
+              link: '/advanced-math/practice/function-limit-continuity/section-1',
               items: [
                 { text: '第一节 函数及其性质', link: '/advanced-math/practice/function-limit-continuity/section-1' },
                 { text: '第二节 数列极限与函数极限', link: '/advanced-math/practice/function-limit-continuity/section-2' },
@@ -666,7 +666,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第二章 一元函数微分学',
-              link: '/advanced-math/practice/single-variable-differential-calculus/',
+              link: '/advanced-math/practice/single-variable-differential-calculus/section-1',
               items: [
                 { text: '第一节 导数，导数和微分的计算', link: '/advanced-math/practice/single-variable-differential-calculus/section-1' },
                 { text: '第二节 中值定理，单调性和凹凸性', link: '/advanced-math/practice/single-variable-differential-calculus/section-2' },
@@ -675,7 +675,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第三章 一元函数积分学',
-              link: '/advanced-math/practice/integral-calculus/',
+              link: '/advanced-math/practice/integral-calculus/section-1',
               items: [
                 { text: '第一节 原函数和不定积分', link: '/advanced-math/practice/integral-calculus/section-1' },
                 { text: '第二节 定积分定义及性质', link: '/advanced-math/practice/integral-calculus/section-2' },
@@ -687,7 +687,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第四章 多元函数微分学',
-              link: '/advanced-math/practice/multivariable-differential-calculus/',
+              link: '/advanced-math/practice/multivariable-differential-calculus/section-1',
               items: [
                 { text: '第一节 多元函数的基本理论', link: '/advanced-math/practice/multivariable-differential-calculus/section-1' },
                 { text: '第二节 多元函数的偏导数', link: '/advanced-math/practice/multivariable-differential-calculus/section-2' },
@@ -697,7 +697,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第五章 二重积分',
-              link: '/advanced-math/practice/double-integral/',
+              link: '/advanced-math/practice/double-integral/section-1',
               items: [
                 { text: '第一节 二重积分的概念和性质', link: '/advanced-math/practice/double-integral/section-1' },
                 { text: '第二节 二重积分的计算', link: '/advanced-math/practice/double-integral/section-2' },
@@ -706,7 +706,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第六章 常微分方程',
-              link: '/advanced-math/practice/differential-equations/',
+              link: '/advanced-math/practice/differential-equations/section-1',
               items: [
                 { text: '第一节 一阶微分方程', link: '/advanced-math/practice/differential-equations/section-1' },
                 { text: '第二节 高阶微分方程', link: '/advanced-math/practice/differential-equations/section-2' },

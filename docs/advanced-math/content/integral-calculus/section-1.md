@@ -10,18 +10,6 @@ $$
 
 则称 $F(x)$ 是 $f(x)$ 在区间 $I$ 上的一个原函数。
 
-例如：
-
-$$
-(\sin x)'=\cos x
-$$
-
-所以 $\sin x$ 是 $\cos x$ 的一个原函数。
-
-::: tip 重点
-原函数不唯一。若 $F(x)$ 是 $f(x)$ 的一个原函数，则 $F(x)+C$ 也是 $f(x)$ 的原函数。
-:::
-
 ## 2. 不定积分
 
 函数 $f(x)$ 的全体原函数称为 $f(x)$ 的不定积分，记作：
@@ -36,10 +24,6 @@ $$
 \int f(x)\,dx=F(x)+C
 $$
 
-其中 $C$ 是任意常数。
-
-### 2.1 不定积分与导数的关系
-
 不定积分和导数互为逆运算：
 
 $$
@@ -50,27 +34,9 @@ $$
 \int F'(x)\,dx=F(x)+C
 $$
 
-## 3. 不定积分的性质
+## 3. 基本积分公式
 
-### 3.1 线性性质
-
-$$
-\int [af(x)+bg(x)]\,dx
-=
-a\int f(x)\,dx+b\int g(x)\,dx
-$$
-
-其中 $a,b$ 为常数。
-
-### 3.2 常数因子可提出
-
-$$
-\int kf(x)\,dx=k\int f(x)\,dx
-$$
-
-## 4. 基本积分公式
-
-### 4.1 幂函数
+### 3.1 幂函数
 
 当 $\alpha\ne-1$ 时：
 
@@ -86,7 +52,7 @@ $$
 \int \frac1x\,dx=\ln|x|+C
 $$
 
-### 4.2 指数函数
+### 3.2 指数函数
 
 $$
 \int e^x\,dx=e^x+C
@@ -97,7 +63,7 @@ $$
 \qquad(a>0,\ a\ne1)
 $$
 
-### 4.3 三角函数
+### 3.3 三角函数
 
 $$
 \int \sin x\,dx=-\cos x+C
@@ -108,40 +74,40 @@ $$
 $$
 
 $$
-\int \sec^2 x\,dx=\tan x+C
+\int \tan x\,dx=-\ln|\cos x|+C
 $$
 
 $$
-\int \csc^2 x\,dx=-\cot x+C
+\int \cot x\,dx=\ln|\sin x|+C
 $$
 
 $$
-\int \sec x\tan x\,dx=\sec x+C
+\int \sec x\,dx=\ln|\sec x+\tan x|+C
 $$
 
 $$
-\int \csc x\cot x\,dx=-\csc x+C
+\int \csc x\,dx=\ln|\csc x-\cot x|+C
 $$
 
-### 4.4 反三角相关
+### 3.4 反三角函数
+
+$$
+\int \frac{1}{\sqrt{1-x^2}}\,dx=\arcsin x+C
+$$
+
+$$
+\int \frac{-1}{\sqrt{1-x^2}}\,dx=\arccos x+C
+$$
 
 $$
 \int \frac{1}{1+x^2}\,dx=\arctan x+C
 $$
 
 $$
-\int \frac{1}{\sqrt{1-x^2}}\,dx=\arcsin x+C
+\int \frac{-1}{1+x^2}\,dx=\operatorname{arccot}x+C
 $$
 
-## 5. 第一类换元法
-
-第一类换元法也称“凑微分法”。
-
-若：
-
-$$
-\int f(\varphi(x))\varphi'(x)\,dx
-$$
+## 4. 第一类换元法
 
 令：
 
@@ -149,13 +115,8 @@ $$
 u=\varphi(x)
 $$
 
+
 则：
-
-$$
-du=\varphi'(x)\,dx
-$$
-
-于是：
 
 $$
 \int f(\varphi(x))\varphi'(x)\,dx
@@ -163,27 +124,10 @@ $$
 \int f(u)\,du
 $$
 
-常见凑微分：
 
-$$
-\int \frac{f'(x)}{f(x)}\,dx=\ln|f(x)|+C
-$$
+## 5. 第二类换元法
 
-$$
-\int e^{f(x)}f'(x)\,dx=e^{f(x)}+C
-$$
-
-$$
-\int [f(x)]^\alpha f'(x)\,dx
-=
-\frac{[f(x)]^{\alpha+1}}{\alpha+1}+C
-$$
-
-其中 $\alpha\ne-1$。
-
-## 6. 第二类换元法
-
-第二类换元法是令：
+令：
 
 $$
 x=\varphi(t)
@@ -192,18 +136,12 @@ $$
 则：
 
 $$
-dx=\varphi'(t)\,dt
-$$
-
-从而：
-
-$$
 \int f(x)\,dx
 =
 \int f(\varphi(t))\varphi'(t)\,dt
 $$
 
-常见代换：
+常用于三角换元。
 
 | 结构 | 常用代换 |
 | --- | --- |
@@ -211,80 +149,10 @@ $$
 | $\sqrt{a^2+x^2}$ | $x=a\tan t$ |
 | $\sqrt{x^2-a^2}$ | $x=a\sec t$ |
 
-::: warning 易错
-第二类换元最后要把结果换回原变量 $x$。
-:::
+## 6. 分部积分法
 
-## 7. 分部积分法
-
-由乘积求导公式：
-
-$$
-(uv)'=u'v+uv'
-$$
-
-得到分部积分公式：
+分部积分公式：
 
 $$
 \int u\,dv=uv-\int v\,du
-$$
-
-常用于：
-
-- 多项式乘指数函数
-- 多项式乘三角函数
-- 多项式乘对数函数
-- 反三角函数积分
-
-常见选择原则：
-
-$$
-\text{反三角、对数、幂函数、三角、指数}
-$$
-
-前面的常选作 $u$。
-
-例如：
-
-$$
-\int x e^x\,dx
-$$
-
-取：
-
-$$
-u=x,\qquad dv=e^x\,dx
-$$
-
-则：
-
-$$
-\int x e^x\,dx=xe^x-\int e^x\,dx=xe^x-e^x+C
-$$
-
-## 8. 有理函数积分
-
-有理函数是两个多项式的商：
-
-$$
-\frac{P(x)}{Q(x)}
-$$
-
-处理思路：
-
-1. 若分子次数不低于分母次数，先多项式除法。
-2. 对真分式进行部分分式分解。
-3. 化为基本积分。
-
-常见基本形式：
-
-$$
-\int \frac{1}{x-a}\,dx=\ln|x-a|+C
-$$
-
-$$
-\int \frac{1}{(x-a)^k}\,dx
-=
-\frac{(x-a)^{-k+1}}{-k+1}+C
-\qquad(k\ne1)
 $$

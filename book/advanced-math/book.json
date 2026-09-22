@@ -1,0 +1,66 @@
+{
+  "title": "高等数学复习笔记",
+  "sourceRoot": "docs/advanced-math/content",
+  "chapters": [
+    {
+      "id": "function-limit-continuity",
+      "title": "第一章 函数、极限与连续",
+      "sources": [
+        "function-limit-continuity/section-1.md",
+        "function-limit-continuity/section-2.md",
+        "function-limit-continuity/section-3.md",
+        "function-limit-continuity/section-4.md",
+        "function-limit-continuity/section-5.md"
+      ]
+    },
+    {
+      "id": "single-variable-differential-calculus",
+      "title": "第二章 一元函数微分学",
+      "sources": [
+        "single-variable-differential-calculus/section-1.md",
+        "single-variable-differential-calculus/section-2.md",
+        "single-variable-differential-calculus/section-3.md"
+      ]
+    },
+    {
+      "id": "integral-calculus",
+      "title": "第三章 一元函数积分学",
+      "sources": [
+        "integral-calculus/section-1.md",
+        "integral-calculus/section-2.md",
+        "integral-calculus/section-3.md",
+        "integral-calculus/section-4.md",
+        "integral-calculus/section-5.md",
+        "integral-calculus/section-6.md"
+      ]
+    },
+    {
+      "id": "multivariable-differential-calculus",
+      "title": "第四章 多元函数微分学",
+      "sources": [
+        "multivariable-differential-calculus/section-1.md",
+        "multivariable-differential-calculus/section-2.md",
+        "multivariable-differential-calculus/section-3.md",
+        "multivariable-differential-calculus/section-4.md"
+      ]
+    },
+    {
+      "id": "double-integral",
+      "title": "第五章 二重积分",
+      "sources": [
+        "double-integral/section-1.md",
+        "double-integral/section-2.md",
+        "double-integral/section-3.md"
+      ]
+    },
+    {
+      "id": "differential-equations",
+      "title": "第六章 常微分方程",
+      "sources": [
+        "differential-equations/section-1.md",
+        "differential-equations/section-2.md",
+        "differential-equations/section-3.md"
+      ]
+    }
+  ]
+}

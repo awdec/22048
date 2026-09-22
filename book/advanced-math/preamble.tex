@@ -1,0 +1,19 @@
+\usepackage{luatexja-fontspec}
+\setmainjfont[BoldFont=SimHei]{SimSun}
+\setsansjfont[BoldFont=Microsoft YaHei Bold]{Microsoft YaHei}
+\microtypesetup{activate=false}
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{\small 高等数学复习笔记}
+\ohead{\small\headmark}
+\cfoot*{\pagemark}
+\automark{chapter}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\RedeclareSectionCommand[beforeskip=8pt,afterskip=18pt]{chapter}
+\RedeclareSectionCommand[beforeskip=18pt,afterskip=8pt]{section}
+\setkomafont{disposition}{\sffamily\bfseries}
+\AtBeginEnvironment{longtable}{\small}
+\allowdisplaybreaks[2]
+\AtBeginDocument{\hypersetup{bookmarksdepth=3}}

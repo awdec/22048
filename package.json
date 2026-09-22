@@ -3,7 +3,9 @@
     "dosc:dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress dev docs --port 9982",
     "docs:dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress dev docs --port 9982",
     "docs:build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress build docs",
-    "docs:preview": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress preview docs"
+    "docs:preview": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress preview docs",
+    "book:math:check": "node scripts/build-math-book.mjs --check",
+    "book:math:pdf": "node scripts/build-math-book.mjs --format a4"
   },
   "dependencies": {
     "vitepress": "^1.6.3"
