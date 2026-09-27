@@ -8,12 +8,12 @@
 
 | 章节 | 主题 | 入口 |
 | --- | --- | --- |
-| 第一章 | 行列式 | [进入例题](./determinants/) |
-| 第二章 | 矩阵 | [进入例题](./matrices/) |
-| 第三章 | 向量 | [进入例题](./vectors/) |
-| 第四章 | 线性方程组 | [进入例题](./linear-systems/) |
-| 第五章 | 矩阵的特征值和特征向量 | [进入例题](./eigenvalues-eigenvectors/) |
-| 第六章 | 二次型 | [进入例题](./quadratic-forms/) |
+| 第一章 | 行列式 | [进入例题](./determinants/section-1) |
+| 第二章 | 矩阵 | [进入例题](./matrices/section-1) |
+| 第三章 | 向量 | [进入例题](./vectors/section-1) |
+| 第四章 | 线性方程组 | [进入例题](./linear-systems/section-1) |
+| 第五章 | 矩阵的特征值和特征向量 | [进入例题](./eigenvalues-eigenvectors/section-1) |
+| 第六章 | 二次型 | [进入例题](./quadratic-forms/section-1) |
 
 例题与[六章讲义](../content/)分节对应，每题均提供可折叠的完整解析。
 
