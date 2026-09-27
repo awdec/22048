@@ -142,6 +142,8 @@ $$
 
 ## 5. 隐函数求导
 
+### 5.1 一阶
+
 若：
 
 $$
@@ -162,4 +164,29 @@ $$
 =
 -
 \frac{F_y}{F_z}
+$$
+
+### 5.2 二阶
+
+把一阶结果再求导，注意 $F=F(x,y,z)$ 中的 $z$ 是 $z(x,y)$，用链式法则。
+
+$$
+\frac{\partial^2 z}{\partial x^2}
+=
+-
+\frac{F_{xx}+2F_{xz}z_x+F_{zz}z_x^2}{F_z}
+$$
+
+$$
+\frac{\partial^2 z}{\partial y^2}
+=
+-
+\frac{F_{yy}+2F_{yz}z_y+F_{zz}z_y^2}{F_z}
+$$
+
+$$
+\frac{\partial^2 z}{\partial x\partial y}
+=
+-
+\frac{F_{xy}+F_{xz}z_y+F_{yz}z_x+F_{zz}z_xz_y}{F_z}
 $$
