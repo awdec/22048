@@ -772,7 +772,6 @@ export default withMermaid(defineConfig({
                 { text: '第一节 解的判定与高斯消元', link: '/linear-algebra/content/linear-systems/section-1' },
                 { text: '第二节 齐次线性方程组', link: '/linear-algebra/content/linear-systems/section-2' },
                 { text: '第三节 非齐次线性方程组', link: '/linear-algebra/content/linear-systems/section-3' },
-                { text: '第四节 含参数方程组', link: '/linear-algebra/content/linear-systems/section-4' },
               ],
             },
             {
@@ -839,7 +838,6 @@ export default withMermaid(defineConfig({
                 { text: '第一节 解的判定与消元', link: '/linear-algebra/practice/linear-systems/section-1' },
                 { text: '第二节 齐次方程组', link: '/linear-algebra/practice/linear-systems/section-2' },
                 { text: '第三节 非齐次方程组', link: '/linear-algebra/practice/linear-systems/section-3' },
-                { text: '第四节 含参数方程组', link: '/linear-algebra/practice/linear-systems/section-4' },
               ],
             },
             {
