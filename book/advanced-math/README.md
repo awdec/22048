@@ -1,6 +1,6 @@
 # 高等数学 PDF 导出
 
-仅处理 `book.json` 中固定列出的六章、24 份小节，不导入总览、补充文档、practice 或 skills。
+仅处理 `book.json` 中固定列出的六章、23 份小节，不导入总览、补充文档、practice 或 skills。
 
 ```powershell
 npm run book:math:check

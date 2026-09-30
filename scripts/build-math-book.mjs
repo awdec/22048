@@ -10,7 +10,7 @@ const output = path.join(root, 'output/pdf');
 fs.mkdirSync(build, { recursive: true });
 fs.mkdirSync(output, { recursive: true });
 const seen = new Set();
-const report = { title: config.title, sources: [], chapters: [], scope: '24 explicit section files only', warnings: [] };
+const report = { title: config.title, sources: [], chapters: [], scope: '23 explicit section files only', warnings: [] };
 const qmds = [];
 for (const [ci, chapter] of config.chapters.entries()) {
   let text = `# ${chapter.title} {#chapter-${ci + 1}}\n\n`;
@@ -60,7 +60,7 @@ for (const [ci, chapter] of config.chapters.entries()) {
   fs.writeFileSync(path.join(build, name), text);
   qmds.push(name); report.chapters.push({ title: chapter.title, file: name, sources: chapter.sources.length });
 }
-if (seen.size !== 24) throw Error('Expected exactly 24 sources');
+if (seen.size !== 23) throw Error('Expected exactly 23 sources');
 fs.copyFileSync(path.join(root, 'book/advanced-math/preamble.tex'), path.join(build, 'preamble.tex'));
 fs.copyFileSync(path.join(root, 'book/advanced-math/notes.lua'), path.join(build, 'notes.lua'));
 const yaml = `project:\n  type: book\n  output-dir: ../../output/pdf\nbook:\n  title: "${config.title}"\n  author: "awdec"\n  output-file: advanced-math-a4\n  chapters:\n${qmds.map(f => '    - ' + f).join('\n')}\nlang: zh-CN\nfilters:\n  - notes.lua\nformat:\n  pdf:\n    documentclass: scrbook\n    pdf-engine: lualatex\n    latex-tinytex: false\n    latex-auto-install: false\n    classoption: [oneside, openany]\n    papersize: a4\n    fontsize: 11pt\n    number-sections: false\n    toc: true\n    toc-title: 目录\n    toc-depth: 2\n    keep-tex: true\n    mainfont: "Times New Roman"\n    sansfont: "Microsoft YaHei"\n    monofont: "Consolas"\n    CJKmainfont: "SimSun"\n    geometry: [left=22mm, right=22mm, top=23mm, bottom=24mm]\n    colorlinks: true\n    linkcolor: black\n    urlcolor: blue\n    include-in-header: preamble.tex\n    pdf-engine-opts: [-interaction=nonstopmode]\n`;

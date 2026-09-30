@@ -583,7 +583,7 @@ export default withMermaid(defineConfig({
         {
           text: '高等数学',
           items: [
-            { text: '高数考纲/考点', link: '/advanced-math/content/' },
+            { text: '数学二试卷说明', link: '/advanced-math/content/' },
             {
               text: '第一章 函数 极限 连续',
               link: '/advanced-math/content/function-limit-continuity/section-1',
@@ -641,7 +641,6 @@ export default withMermaid(defineConfig({
               items: [
                 { text: '第一节 一阶微分方程', link: '/advanced-math/content/differential-equations/section-1' },
                 { text: '第二节 高阶微分方程', link: '/advanced-math/content/differential-equations/section-2' },
-                { text: '第三节 微分方程综合题', link: '/advanced-math/content/differential-equations/section-3' },
               ],
             },
           ]
@@ -710,7 +709,6 @@ export default withMermaid(defineConfig({
               items: [
                 { text: '第一节 一阶微分方程', link: '/advanced-math/practice/differential-equations/section-1' },
                 { text: '第二节 高阶微分方程', link: '/advanced-math/practice/differential-equations/section-2' },
-                { text: '第三节 微分方程综合题', link: '/advanced-math/practice/differential-equations/section-3' },
               ],
             },
           ]
@@ -736,7 +734,7 @@ export default withMermaid(defineConfig({
         {
           text: '线性代数',
           items: [
-            { text: '线代考纲/考点', link: '/linear-algebra/content/' },
+            { text: '数学二试卷说明', link: '/linear-algebra/content/' },
             {
               text: '第一章 行列式',
               link: '/linear-algebra/content/determinants/section-1',

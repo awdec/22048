@@ -58,8 +58,7 @@
       "title": "第六章 常微分方程",
       "sources": [
         "differential-equations/section-1.md",
-        "differential-equations/section-2.md",
-        "differential-equations/section-3.md"
+        "differential-equations/section-2.md"
       ]
     }
   ]
