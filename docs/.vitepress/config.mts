@@ -12,6 +12,17 @@ export default withMermaid(defineConfig({
   mermaid: {
     securityLevel: 'strict',
   },
+
+  // 页面标题使用 <h1><center>…</center></h1> 写法。
+  // <center> 是废弃元素，Vue 模板编译器默认会把它当成"未注册组件"从而丢弃整段标题文字
+  // （构建结果为空 <h1><!----></h1>）。这里把 center 声明为自定义元素，按原样输出。
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag === 'center',
+      },
+    },
+  },
   
   // base: "/22048/",
   
@@ -77,7 +88,7 @@ export default withMermaid(defineConfig({
         {
           text: '计算机网络',
           items: [
-            { text: '计算机网络考点总览', link: '/computer-network/content/' },
+            { text: '408 试卷题型与分数', link: '/computer-network/content/' },
             {
               text: '第一章 计算机网络概述',
               link: '/computer-network/content/network-architecture/',
@@ -223,10 +234,10 @@ export default withMermaid(defineConfig({
         {
           text: '操作系统',
           items: [
-            { text: '操作系统考点总览', link: '/operating-system/content/' },
+            { text: '408 试卷题型与分数', link: '/operating-system/content/' },
             {
               text: '第一章 计算机系统概述',
-              link: '/operating-system/content/computer-system-overview/',
+              link: '/operating-system/content/computer-system-overview/section-1',
               items: [
                 { text: '第一节 操作系统的基本概念', link: '/operating-system/content/computer-system-overview/section-1' },
                 { text: '第二节 操作系统发展历程', link: '/operating-system/content/computer-system-overview/section-2' },
@@ -238,7 +249,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第二章 进程与线程',
-              link: '/operating-system/content/processes-threads/',
+              link: '/operating-system/content/processes-threads/section-1',
               items: [
                 { text: '第一节 进程与线程简介', link: '/operating-system/content/processes-threads/section-1' },
                 { text: '第二节 CPU 调度', link: '/operating-system/content/processes-threads/section-2' },
@@ -248,7 +259,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第三章 内存管理',
-              link: '/operating-system/content/memory-management/',
+              link: '/operating-system/content/memory-management/section-1',
               items: [
                 { text: '第一节 内存管理概念', link: '/operating-system/content/memory-management/section-1' },
                 { text: '第二节 虚拟内存管理', link: '/operating-system/content/memory-management/section-2' },
@@ -256,7 +267,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第四章 文件管理',
-              link: '/operating-system/content/file-management/',
+              link: '/operating-system/content/file-management/section-1',
               items: [
                 { text: '第一节 文件系统基础', link: '/operating-system/content/file-management/section-1' },
                 { text: '第二节 目录与文件', link: '/operating-system/content/file-management/section-2' },
@@ -265,7 +276,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第五章 输入/输出管理',
-              link: '/operating-system/content/io-management/',
+              link: '/operating-system/content/io-management/section-1',
               items: [
                 { text: '第一节 I/O管理概述', link: '/operating-system/content/io-management/section-1' },
                 { text: '第二节 设备独立性软件', link: '/operating-system/content/io-management/section-2' },
@@ -283,7 +294,7 @@ export default withMermaid(defineConfig({
             { text: '操作系统例题总览', link: '/operating-system/practice/' },
             {
               text: '第一章 计算机系统概述',
-              link: '/operating-system/practice/computer-system-overview/',
+              link: '/operating-system/practice/computer-system-overview/section-1',
               items: [
                 { text: '第一节 操作系统的基本概念', link: '/operating-system/practice/computer-system-overview/section-1' },
                 { text: '第二节 操作系统发展历程', link: '/operating-system/practice/computer-system-overview/section-2' },
@@ -295,7 +306,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第二章 进程与线程',
-              link: '/operating-system/practice/processes-threads/',
+              link: '/operating-system/practice/processes-threads/section-1',
               items: [
                 { text: '第一节 进程与线程简介', link: '/operating-system/practice/processes-threads/section-1' },
                 { text: '第二节 CPU 调度', link: '/operating-system/practice/processes-threads/section-2' },
@@ -305,7 +316,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第三章 内存管理',
-              link: '/operating-system/practice/memory-management/',
+              link: '/operating-system/practice/memory-management/section-1',
               items: [
                 { text: '第一节 内存管理概念', link: '/operating-system/practice/memory-management/section-1' },
                 { text: '第二节 虚拟内存管理', link: '/operating-system/practice/memory-management/section-2' },
@@ -313,7 +324,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第四章 文件管理',
-              link: '/operating-system/practice/file-management/',
+              link: '/operating-system/practice/file-management/section-1',
               items: [
                 { text: '第一节 文件系统基础', link: '/operating-system/practice/file-management/section-1' },
                 { text: '第二节 目录与文件', link: '/operating-system/practice/file-management/section-2' },
@@ -322,7 +333,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第五章 输入/输出管理',
-              link: '/operating-system/practice/io-management/',
+              link: '/operating-system/practice/io-management/section-1',
               items: [
                 { text: '第一节 I/O管理概述', link: '/operating-system/practice/io-management/section-1' },
                 { text: '第二节 设备独立性软件', link: '/operating-system/practice/io-management/section-2' },
@@ -337,7 +348,8 @@ export default withMermaid(defineConfig({
         {
           text: '数据结构',
           items: [
-            { text: '408 数据结构考点分析', link: '/data structrue/content/exam-analysis' },
+            { text: '408 试卷题型与分数', link: '/data structrue/content/' },
+            { text: '数据结构考点分析与复习策略', link: '/data structrue/content/exam-analysis' },
             {
               text: '第一章 绪论',
               link: '/data structrue/content/introduction/',
@@ -429,7 +441,8 @@ export default withMermaid(defineConfig({
         {
           text: '计算机组成原理',
           items: [
-            { text: '408 计算机组成原理考点分析', link: '/computer-organization/content/exam-analysis' },
+            { text: '408 试卷题型与分数', link: '/computer-organization/content/' },
+            { text: '计组考点分析与复习策略', link: '/computer-organization/content/exam-analysis' },
             {
               text: '第一章 计算机系统概述',
               link: '/computer-organization/content/introduction',

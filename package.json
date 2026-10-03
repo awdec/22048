@@ -5,7 +5,9 @@
     "docs:build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress build docs",
     "docs:preview": "cross-env NODE_OPTIONS=--max-old-space-size=4096 vitepress preview docs",
     "book:math:check": "node scripts/build-math-book.mjs --check",
-    "book:math:pdf": "node scripts/build-math-book.mjs --format a4"
+    "book:math:pdf": "node scripts/build-math-book.mjs --format a4",
+    "os:stats": "node scripts/os-content-stats.mjs",
+    "os:stats:write": "node scripts/os-content-stats.mjs --write"
   },
   "dependencies": {
     "vitepress": "^1.6.3"

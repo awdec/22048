@@ -2,10 +2,10 @@
 
 | 章节 | 主题 | 入口 |
 | --- | --- | --- |
-| 第一章 | 操作系统基础 | [进入例题](./computer-system-overview/) |
-| 第二章 | 进程与线程 | [进入例题](./processes-threads/) |
-| 第三章 | 内存管理 | [进入例题](./memory-management/) |
-| 第四章 | 文件管理 | [进入例题](./file-management/) |
-| 第五章 | 输入/输出管理 | [进入例题](./io-management/) |
+| 第一章 | 操作系统基础 | [进入例题](./computer-system-overview/section-1) |
+| 第二章 | 进程与线程 | [进入例题](./processes-threads/section-1) |
+| 第三章 | 内存管理 | [进入例题](./memory-management/section-1) |
+| 第四章 | 文件管理 | [进入例题](./file-management/section-1) |
+| 第五章 | 输入/输出管理 | [进入例题](./io-management/section-1) |
 
 例题与[五章讲义](../content/)逐节对应，每题均提供可折叠解析。

@@ -43,3 +43,34 @@ pre {
   max-height: var(--home-hero-image-height) !important;
   object-fit: contain;
 }
+
+/* mermaid：插件渲染出的 <div class="mermaid"> 内部是内联 SVG，
+   默认贴左。这里让整块图在正文栏中水平居中。
+   （flowchart 默认 useMaxWidth，svg 宽度 100% 时看不出差别；
+     窄图或 useMaxWidth: false 的图则明显居中。） */
+.vp-doc .mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+.vp-doc .mermaid svg {
+  margin: 0 auto;
+}
+
+/* 文章字数与阅读时间：位于正文标题上方，靠右显示。
+   SSR 会先渲染一个空占位，客户端统计完成后填充文字；
+   未填充时不占高度，避免首屏出现空条。
+   margin-bottom 即与下方 h1 标题的间距（h1 自身没有上外边距）。 */
+.doc-reading-stats {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--vp-c-text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.doc-reading-stats:empty {
+  display: none;
+}
