@@ -33,30 +33,6 @@
 
 ### 2.2 代码实现
 
-::: details 点击展开代码
-
-```c
-void SelectSort(int A[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        int min = i;
-
-        for (int j = i + 1; j < n; j++) {
-            if (A[j] < A[min]) {
-                min = j;
-            }
-        }
-
-        if (min != i) {
-            int temp = A[i];
-            A[i] = A[min];
-            A[min] = temp;
-        }
-    }
-}
-```
-
-:::
-
 ### 2.3 性能分析
 
 简单选择排序比较次数与初始序列无关。
@@ -122,31 +98,6 @@ $$
 5. 重复直到堆中只剩一个元素。
 
 ### 3.3 向下调整
-
-::: details 点击展开代码
-
-```c
-void HeadAdjust(int A[], int k, int len) {
-    A[0] = A[k];
-
-    for (int i = 2 * k; i <= len; i *= 2) {
-        if (i < len && A[i] < A[i + 1]) {
-            i++;
-        }
-
-        if (A[0] >= A[i]) {
-            break;
-        } else {
-            A[k] = A[i];
-            k = i;
-        }
-    }
-
-    A[k] = A[0];
-}
-```
-
-:::
 
 这段代码假设有效元素存放在 `A[1]` 到 `A[len]` 中，`A[0]` 作为暂存单元。
 

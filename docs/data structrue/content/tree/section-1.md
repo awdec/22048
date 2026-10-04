@@ -231,24 +231,6 @@ $$
 
 若数组下标从 $1$ 开始：
 
-::: details 点击展开代码
-
-```c
-int Parent(int i) {
-    return i / 2;
-}
-
-int LeftChild(int i) {
-    return 2 * i;
-}
-
-int RightChild(int i) {
-    return 2 * i + 1;
-}
-```
-
-:::
-
 ## 5.2 链式存储
 
 二叉树更常用链式存储。
@@ -261,40 +243,9 @@ int RightChild(int i) {
 
 ### 二叉链表定义
 
-::: details 点击展开代码
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-typedef char ElemType;
-
-typedef struct BiTNode {
-    ElemType data;
-    struct BiTNode *lchild;
-    struct BiTNode *rchild;
-} BiTNode, *BiTree;
-```
-
-:::
-
 ### 三叉链表定义
 
 三叉链表在二叉链表基础上增加双亲指针，便于查找某结点的双亲。
-
-::: details 点击展开代码
-
-```c
-typedef struct TriTNode {
-    ElemType data;
-    struct TriTNode *lchild;
-    struct TriTNode *rchild;
-    struct TriTNode *parent;
-} TriTNode, *TriTree;
-```
-
-:::
 
 ## 6. 二叉树遍历
 
@@ -323,22 +274,6 @@ typedef struct TriTNode {
 
 ### 递归实现
 
-::: details 点击展开代码
-
-```c
-void PreOrder(BiTree T) {
-    if (T == NULL) {
-        return;
-    }
-
-    printf("%c ", T->data);
-    PreOrder(T->lchild);
-    PreOrder(T->rchild);
-}
-```
-
-:::
-
 ## 6.2 中序遍历
 
 中序遍历顺序：
@@ -354,22 +289,6 @@ void PreOrder(BiTree T) {
 ```
 
 ### 递归实现
-
-::: details 点击展开代码
-
-```c
-void InOrder(BiTree T) {
-    if (T == NULL) {
-        return;
-    }
-
-    InOrder(T->lchild);
-    printf("%c ", T->data);
-    InOrder(T->rchild);
-}
-```
-
-:::
 
 ## 6.3 后序遍历
 
@@ -387,22 +306,6 @@ void InOrder(BiTree T) {
 
 ### 递归实现
 
-::: details 点击展开代码
-
-```c
-void PostOrder(BiTree T) {
-    if (T == NULL) {
-        return;
-    }
-
-    PostOrder(T->lchild);
-    PostOrder(T->rchild);
-    printf("%c ", T->data);
-}
-```
-
-:::
-
 ## 6.4 层次遍历
 
 层次遍历按照从上到下、从左到右的顺序访问结点。
@@ -419,81 +322,7 @@ void PostOrder(BiTree T) {
 
 ### 队列实现
 
-::: details 点击展开代码
-
-```c
-#define MaxSize 100
-
-typedef struct {
-    BiTree data[MaxSize];
-    int front;
-    int rear;
-} TreeQueue;
-
-void InitQueue(TreeQueue *Q) {
-    Q->front = 0;
-    Q->rear = 0;
-}
-
-bool QueueEmpty(TreeQueue Q) {
-    return Q.front == Q.rear;
-}
-
-bool EnQueue(TreeQueue *Q, BiTree T) {
-    if ((Q->rear + 1) % MaxSize == Q->front) {
-        return false;
-    }
-
-    Q->data[Q->rear] = T;
-    Q->rear = (Q->rear + 1) % MaxSize;
-    return true;
-}
-
-bool DeQueue(TreeQueue *Q, BiTree *T) {
-    if (QueueEmpty(*Q)) {
-        return false;
-    }
-
-    *T = Q->data[Q->front];
-    Q->front = (Q->front + 1) % MaxSize;
-    return true;
-}
-```
-
-:::
-
 ### 层次遍历实现
-
-::: details 点击展开代码
-
-```c
-void LevelOrder(BiTree T) {
-    if (T == NULL) {
-        return;
-    }
-
-    TreeQueue Q;
-    InitQueue(&Q);
-    EnQueue(&Q, T);
-
-    while (!QueueEmpty(Q)) {
-        BiTree p;
-        DeQueue(&Q, &p);
-
-        printf("%c ", p->data);
-
-        if (p->lchild != NULL) {
-            EnQueue(&Q, p->lchild);
-        }
-
-        if (p->rchild != NULL) {
-            EnQueue(&Q, p->rchild);
-        }
-    }
-}
-```
-
-:::
 
 ## 7. 非递归遍历
 
@@ -505,88 +334,9 @@ void LevelOrder(BiTree T) {
 
 实现逻辑：沿左孩子一路入栈；走到空后，弹栈访问结点，再转向右子树。
 
-::: details 点击展开代码
-
-```c
-typedef struct {
-    BiTree data[MaxSize];
-    int top;
-} TreeStack;
-
-void InitStack(TreeStack *S) {
-    S->top = -1;
-}
-
-bool StackEmpty(TreeStack S) {
-    return S.top == -1;
-}
-
-bool Push(TreeStack *S, BiTree T) {
-    if (S->top == MaxSize - 1) {
-        return false;
-    }
-
-    S->data[++S->top] = T;
-    return true;
-}
-
-bool Pop(TreeStack *S, BiTree *T) {
-    if (StackEmpty(*S)) {
-        return false;
-    }
-
-    *T = S->data[S->top--];
-    return true;
-}
-
-void InOrderNonRecursive(BiTree T) {
-    TreeStack S;
-    InitStack(&S);
-
-    BiTree p = T;
-
-    while (p != NULL || !StackEmpty(S)) {
-        if (p != NULL) {
-            Push(&S, p);
-            p = p->lchild;
-        } else {
-            Pop(&S, &p);
-            printf("%c ", p->data);
-            p = p->rchild;
-        }
-    }
-}
-```
-
-:::
-
 ## 7.2 非递归先序遍历
 
 实现逻辑：先访问当前结点并入栈，然后沿左子树深入；左子树走完后弹栈转向右子树。
-
-::: details 点击展开代码
-
-```c
-void PreOrderNonRecursive(BiTree T) {
-    TreeStack S;
-    InitStack(&S);
-
-    BiTree p = T;
-
-    while (p != NULL || !StackEmpty(S)) {
-        if (p != NULL) {
-            printf("%c ", p->data);
-            Push(&S, p);
-            p = p->lchild;
-        } else {
-            Pop(&S, &p);
-            p = p->rchild;
-        }
-    }
-}
-```
-
-:::
 
 ## 8. 二叉树的建立与销毁
 
@@ -602,52 +352,9 @@ ABD##E##CF###
 
 ### 先序建树
 
-::: details 点击展开代码
-
-```c
-BiTree CreateBiTreeByPreOrder(const char str[], int *index) {
-    char ch = str[*index];
-    (*index)++;
-
-    if (ch == '\0' || ch == '#') {
-        return NULL;
-    }
-
-    BiTNode *node = (BiTNode *)malloc(sizeof(BiTNode));
-    if (node == NULL) {
-        return NULL;
-    }
-
-    node->data = ch;
-    node->lchild = CreateBiTreeByPreOrder(str, index);
-    node->rchild = CreateBiTreeByPreOrder(str, index);
-
-    return node;
-}
-```
-
-:::
-
 ### 销毁二叉树
 
 销毁二叉树通常采用后序遍历思想：先释放左子树，再释放右子树，最后释放根结点。
-
-::: details 点击展开代码
-
-```c
-void DestroyBiTree(BiTree *T) {
-    if (*T == NULL) {
-        return;
-    }
-
-    DestroyBiTree(&(*T)->lchild);
-    DestroyBiTree(&(*T)->rchild);
-    free(*T);
-    *T = NULL;
-}
-```
-
-:::
 
 ## 9. 二叉树常见递归算法
 
@@ -661,79 +368,11 @@ void DestroyBiTree(BiTree *T) {
 
 ### 求结点个数
 
-::: details 点击展开代码
-
-```c
-int CountNodes(BiTree T) {
-    if (T == NULL) {
-        return 0;
-    }
-
-    return CountNodes(T->lchild) + CountNodes(T->rchild) + 1;
-}
-```
-
-:::
-
 ### 求叶结点个数
-
-::: details 点击展开代码
-
-```c
-int CountLeaves(BiTree T) {
-    if (T == NULL) {
-        return 0;
-    }
-
-    if (T->lchild == NULL && T->rchild == NULL) {
-        return 1;
-    }
-
-    return CountLeaves(T->lchild) + CountLeaves(T->rchild);
-}
-```
-
-:::
 
 ### 求二叉树高度
 
-::: details 点击展开代码
-
-```c
-int Height(BiTree T) {
-    if (T == NULL) {
-        return 0;
-    }
-
-    int leftHeight = Height(T->lchild);
-    int rightHeight = Height(T->rchild);
-
-    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
-}
-```
-
-:::
-
 ### 交换左右子树
-
-::: details 点击展开代码
-
-```c
-void SwapChildren(BiTree T) {
-    if (T == NULL) {
-        return;
-    }
-
-    BiTree temp = T->lchild;
-    T->lchild = T->rchild;
-    T->rchild = temp;
-
-    SwapChildren(T->lchild);
-    SwapChildren(T->rchild);
-}
-```
-
-:::
 
 ## 10. 由遍历序列构造二叉树
 
@@ -815,83 +454,17 @@ $$
 - $rtag = 0$：`rchild` 指向右孩子。
 - $rtag = 1$：`rchild` 指向后继线索。
 
-::: details 点击展开代码
-
-```c
-typedef struct ThreadNode {
-    ElemType data;
-    struct ThreadNode *lchild;
-    struct ThreadNode *rchild;
-    int ltag;
-    int rtag;
-} ThreadNode, *ThreadTree;
-```
-
-:::
-
 ## 11.2 中序线索化
 
 中序线索化就是在中序遍历过程中，把空的左指针改为中序前驱线索，把空的右指针改为中序后继线索。
 
 实现时通常用 `pre` 指针记录刚刚访问过的结点。
 
-::: details 点击展开代码
-
-```c
-void InThread(ThreadTree T, ThreadTree *pre) {
-    if (T == NULL) {
-        return;
-    }
-
-    InThread(T->lchild, pre);
-
-    if (T->lchild == NULL) {
-        T->lchild = *pre;
-        T->ltag = 1;
-    } else {
-        T->ltag = 0;
-    }
-
-    if (*pre != NULL && (*pre)->rchild == NULL) {
-        (*pre)->rchild = T;
-        (*pre)->rtag = 1;
-    }
-
-    *pre = T;
-
-    InThread(T->rchild, pre);
-}
-```
-
-:::
-
 ## 11.3 中序线索二叉树找后继
 
 若结点 `p` 有右子树，则其中序后继是右子树中最左下的结点。
 
 若结点 `p` 没有右子树，则 `rchild` 指向的就是后继线索。
-
-::: details 点击展开代码
-
-```c
-ThreadNode *FirstNode(ThreadNode *p) {
-    while (p != NULL && p->ltag == 0) {
-        p = p->lchild;
-    }
-
-    return p;
-}
-
-ThreadNode *NextNode(ThreadNode *p) {
-    if (p->rtag == 0) {
-        return FirstNode(p->rchild);
-    }
-
-    return p->rchild;
-}
-```
-
-:::
 
 ## 12. 树、森林与二叉树的转换
 
@@ -1077,4 +650,4 @@ $$
 5. 结点的度为儿子的数量，树的度为树中所有结点的最大值
 6. 树的路径长度，一般是根到每个结点的路径长度之和。某结点的路径长度一般指到根的路径长度。
 7. 顺序存储 $i,2i,2i+1$。
-8. 
+8.

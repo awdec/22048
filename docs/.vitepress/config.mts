@@ -91,7 +91,7 @@ export default withMermaid(defineConfig({
             { text: '408 试卷题型与分数', link: '/computer-network/content/' },
             {
               text: '第一章 计算机网络概述',
-              link: '/computer-network/content/network-architecture/',
+              link: '/computer-network/content/network-architecture/section-1',
               items: [
                 { text: '第一节 计算机网络基本概念', link: '/computer-network/content/network-architecture/section-1' },
                 { text: '第二节 计算机网络体系结构', link: '/computer-network/content/network-architecture/section-2' },
@@ -99,7 +99,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第二章 物理层',
-              link: '/computer-network/content/physical-layer/',
+              link: '/computer-network/content/physical-layer/section-1',
               items: [
                 { text: '第一节 通信基础', link: '/computer-network/content/physical-layer/section-1' },
                 { text: '第二节 传输介质', link: '/computer-network/content/physical-layer/section-2' },
@@ -108,7 +108,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第三章 数据链路层',
-              link: '/computer-network/content/data-link-layer/',
+              link: '/computer-network/content/data-link-layer/section-1',
               items: [
                 { text: '第一节 数据链路层的功能', link: '/computer-network/content/data-link-layer/section-1' },
                 { text: '第二节 组帧', link: '/computer-network/content/data-link-layer/section-2' },
@@ -122,7 +122,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第四章 网络层',
-              link: '/computer-network/content/network-layer/',
+              link: '/computer-network/content/network-layer/section-1',
               items: [
                 { text: '第一节 网络层的功能', link: '/computer-network/content/network-layer/section-1' },
                 { text: '第二节 IPv4', link: '/computer-network/content/network-layer/section-2' },
@@ -135,7 +135,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第五章 传输层',
-              link: '/computer-network/content/transport-layer/',
+              link: '/computer-network/content/transport-layer/section-1',
               items: [
                 { text: '第一节 传输层提供的服务', link: '/computer-network/content/transport-layer/section-1' },
                 { text: '第二节 UDP', link: '/computer-network/content/transport-layer/section-2' },
@@ -144,7 +144,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第六章 应用层',
-              link: '/computer-network/content/application-layer/',
+              link: '/computer-network/content/application-layer/section-1',
               items: [
                 { text: '第一节 网络应用模型', link: '/computer-network/content/application-layer/section-1' },
                 { text: '第二节 域名系统', link: '/computer-network/content/application-layer/section-2' },
@@ -164,7 +164,7 @@ export default withMermaid(defineConfig({
             { text: '计算机网络例题总览', link: '/computer-network/practice/' },
             {
               text: '第一章 计算机网络概述',
-              link: '/computer-network/practice/network-architecture/',
+              link: '/computer-network/practice/network-architecture/section-1',
               items: [
                 { text: '第一节 计算机网络基本概念', link: '/computer-network/practice/network-architecture/section-1' },
                 { text: '第二节 计算机网络体系结构', link: '/computer-network/practice/network-architecture/section-2' },
@@ -172,7 +172,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第二章 物理层',
-              link: '/computer-network/practice/physical-layer/',
+              link: '/computer-network/practice/physical-layer/section-1',
               items: [
                 { text: '第一节 通信基础', link: '/computer-network/practice/physical-layer/section-1' },
                 { text: '第二节 传输介质', link: '/computer-network/practice/physical-layer/section-2' },
@@ -181,7 +181,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第三章 数据链路层',
-              link: '/computer-network/practice/data-link-layer/',
+              link: '/computer-network/practice/data-link-layer/section-1',
               items: [
                 { text: '第一节 数据链路层的功能', link: '/computer-network/practice/data-link-layer/section-1' },
                 { text: '第二节 组帧', link: '/computer-network/practice/data-link-layer/section-2' },
@@ -195,7 +195,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第四章 网络层',
-              link: '/computer-network/practice/network-layer/',
+              link: '/computer-network/practice/network-layer/section-1',
               items: [
                 { text: '第一节 网络层的功能', link: '/computer-network/practice/network-layer/section-1' },
                 { text: '第二节 IPv4', link: '/computer-network/practice/network-layer/section-2' },
@@ -208,7 +208,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第五章 传输层',
-              link: '/computer-network/practice/transport-layer/',
+              link: '/computer-network/practice/transport-layer/section-1',
               items: [
                 { text: '第一节 传输层提供的服务', link: '/computer-network/practice/transport-layer/section-1' },
                 { text: '第二节 UDP', link: '/computer-network/practice/transport-layer/section-2' },
@@ -217,7 +217,7 @@ export default withMermaid(defineConfig({
             },
             {
               text: '第六章 应用层',
-              link: '/computer-network/practice/application-layer/',
+              link: '/computer-network/practice/application-layer/section-1',
               items: [
                 { text: '第一节 网络应用模型', link: '/computer-network/practice/application-layer/section-1' },
                 { text: '第二节 域名系统', link: '/computer-network/practice/application-layer/section-2' },
@@ -349,7 +349,6 @@ export default withMermaid(defineConfig({
           text: '数据结构',
           items: [
             { text: '408 试卷题型与分数', link: '/data structrue/content/' },
-            { text: '数据结构考点分析与复习策略', link: '/data structrue/content/exam-analysis' },
             {
               text: '第一章 绪论',
               link: '/data structrue/content/introduction/',
@@ -442,7 +441,6 @@ export default withMermaid(defineConfig({
           text: '计算机组成原理',
           items: [
             { text: '408 试卷题型与分数', link: '/computer-organization/content/' },
-            { text: '计组考点分析与复习策略', link: '/computer-organization/content/exam-analysis' },
             {
               text: '第一章 计算机系统概述',
               link: '/computer-organization/content/introduction',

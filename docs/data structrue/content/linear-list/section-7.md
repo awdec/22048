@@ -71,20 +71,6 @@ $$
 
 实现逻辑：把二维下标映射为一维数组下标。
 
-::: details 点击展开代码
-
-```c
-int RowMajorIndex(int i, int j, int cols) {
-    return i * cols + j;
-}
-
-int RowMajorIndexFromOne(int i, int j, int cols) {
-    return (i - 1) * cols + (j - 1);
-}
-```
-
-:::
-
 ## 6.4 列优先存储地址计算
 
 设二维数组 `A[m][n]` 有 `m` 行、`n` 列，下标从 `0` 开始。
@@ -107,20 +93,6 @@ LOC(A[i][j]) = LOC(A[1][1]) + ((j - 1) \times m + (i - 1)) \times L
 $$
 
 ### 列优先下标映射
-
-::: details 点击展开代码
-
-```c
-int ColumnMajorIndex(int i, int j, int rows) {
-    return j * rows + i;
-}
-
-int ColumnMajorIndexFromOne(int i, int j, int rows) {
-    return (j - 1) * rows + (i - 1);
-}
-```
-
-:::
 
 ## 6.5 多维数组地址计算
 
@@ -207,24 +179,6 @@ $$
 
 ### 对称矩阵下标映射
 
-::: details 点击展开代码
-
-```c
-int SymmetricIndex(int i, int j) {
-    int k;
-
-    if (i >= j) {
-        k = i * (i - 1) / 2 + j;
-    } else {
-        k = j * (j - 1) / 2 + i;
-    }
-
-    return k - 1;
-}
-```
-
-:::
-
 ## 7.2 三角矩阵
 
 三角矩阵分为上三角矩阵和下三角矩阵。
@@ -253,21 +207,6 @@ $$
 - 若 `i < j`，访问常数 `c`。
 
 ### 下三角矩阵下标映射
-
-::: details 点击展开代码
-
-```c
-int LowerTriangularIndex(int i, int j, int n) {
-    if (i >= j) {
-        int k = i * (i - 1) / 2 + j;
-        return k - 1;
-    }
-
-    return n * (n + 1) / 2;
-}
-```
-
-:::
 
 ### 上三角矩阵
 
@@ -301,21 +240,6 @@ $$
 若 `i > j`，访问常数 `c`。
 
 ### 上三角矩阵下标映射
-
-::: details 点击展开代码
-
-```c
-int UpperTriangularIndex(int i, int j, int n) {
-    if (i <= j) {
-        int k = (i - 1) * (2 * n - i + 2) / 2 + (j - i + 1);
-        return k - 1;
-    }
-
-    return n * (n + 1) / 2;
-}
-```
-
-:::
 
 ## 7.3 三对角矩阵
 
@@ -392,20 +316,6 @@ $$
 
 ### 三对角矩阵下标映射
 
-::: details 点击展开代码
-
-```c
-int TriDiagonalIndex(int i, int j) {
-    if (i - j > 1 || j - i > 1) {
-        return -1;
-    }
-
-    return 2 * i + j - 3;
-}
-```
-
-:::
-
 ## 7.4 稀疏矩阵
 
 若矩阵中大多数元素为 `0`，只有少数非零元素，则称为稀疏矩阵。
@@ -447,30 +357,6 @@ int TriDiagonalIndex(int i, int j) {
 
 ### 三元组定义
 
-::: details 点击展开代码
-
-```c
-#define MaxTerms 100
-#define MaxCols 100
-
-typedef int ElemType;
-
-typedef struct {
-    int row;
-    int col;
-    ElemType value;
-} Triple;
-
-typedef struct {
-    Triple data[MaxTerms];
-    int rows;
-    int cols;
-    int nums;
-} SparseMatrix;
-```
-
-:::
-
 ## 7.6 稀疏矩阵转置
 
 稀疏矩阵转置是 408 的常见考点。
@@ -489,31 +375,6 @@ typedef struct {
 
 实现逻辑：依次枚举原矩阵列号，把该列中的非零元素按顺序写入转置矩阵。
 
-::: details 点击展开代码
-
-```c
-void TransposeSparseMatrix(SparseMatrix A, SparseMatrix *B) {
-    B->rows = A.cols;
-    B->cols = A.rows;
-    B->nums = A.nums;
-
-    int index = 0;
-
-    for (int col = 1; col <= A.cols; col++) {
-        for (int i = 0; i < A.nums; i++) {
-            if (A.data[i].col == col) {
-                B->data[index].row = A.data[i].col;
-                B->data[index].col = A.data[i].row;
-                B->data[index].value = A.data[i].value;
-                index++;
-            }
-        }
-    }
-}
-```
-
-:::
-
 普通转置时间复杂度为：
 
 $$
@@ -530,46 +391,6 @@ $$
 
 - `num[col]`：原矩阵第 `col` 列中非零元素个数。
 - `pos[col]`：原矩阵第 `col` 列第一个非零元素在转置矩阵三元组表中的起始位置。
-
-::: details 点击展开代码
-
-```c
-void FastTransposeSparseMatrix(SparseMatrix A, SparseMatrix *B) {
-    int num[MaxCols + 1] = {0};
-    int pos[MaxCols + 1] = {0};
-
-    B->rows = A.cols;
-    B->cols = A.rows;
-    B->nums = A.nums;
-
-    if (A.nums == 0) {
-        return;
-    }
-
-    for (int i = 0; i < A.nums; i++) {
-        num[A.data[i].col]++;
-    }
-
-    pos[1] = 0;
-
-    for (int col = 2; col <= A.cols; col++) {
-        pos[col] = pos[col - 1] + num[col - 1];
-    }
-
-    for (int i = 0; i < A.nums; i++) {
-        int col = A.data[i].col;
-        int index = pos[col];
-
-        B->data[index].row = A.data[i].col;
-        B->data[index].col = A.data[i].row;
-        B->data[index].value = A.data[i].value;
-
-        pos[col]++;
-    }
-}
-```
-
-:::
 
 快速转置时间复杂度为：
 

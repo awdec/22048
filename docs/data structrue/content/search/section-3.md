@@ -263,275 +263,37 @@ AVL 树的删除操作也先按照二叉排序树的规则删除结点。
 
 定义逻辑：每个结点保存关键字、高度、左孩子指针和右孩子指针。
 
-::: details 点击展开代码
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-typedef int KeyType;
-
-typedef struct AVLNode {
-    KeyType key;
-    int height;
-    struct AVLNode *left;
-    struct AVLNode *right;
-} AVLNode, *AVLTree;
-```
-
-:::
-
 ### 8.2 基本工具函数
 
 实现逻辑：高度由左右子树高度较大者加一得到；平衡因子由左子树高度减右子树高度得到。
-
-::: details 点击展开代码
-
-```c
-int Max(int a, int b) {
-    return a > b ? a : b;
-}
-
-int Height(AVLTree T) {
-    return T == NULL ? 0 : T->height;
-}
-
-void UpdateHeight(AVLTree T) {
-    if (T != NULL) {
-        T->height = Max(Height(T->left), Height(T->right)) + 1;
-    }
-}
-
-int BalanceFactor(AVLTree T) {
-    return T == NULL ? 0 : Height(T->left) - Height(T->right);
-}
-
-AVLNode *CreateNode(KeyType key) {
-    AVLNode *node = (AVLNode *)malloc(sizeof(AVLNode));
-    if (node == NULL) {
-        return NULL;
-    }
-
-    node->key = key;
-    node->height = 1;
-    node->left = NULL;
-    node->right = NULL;
-    return node;
-}
-```
-
-:::
 
 ### 8.3 右旋
 
 实现逻辑：左孩子上升，原根结点下降为其右孩子，再更新高度。
 
-::: details 点击展开代码
-
-```c
-AVLTree RightRotate(AVLTree A) {
-    AVLTree B = A->left;
-    AVLTree Br = B->right;
-
-    B->right = A;
-    A->left = Br;
-
-    UpdateHeight(A);
-    UpdateHeight(B);
-
-    return B;
-}
-```
-
-:::
-
 ### 8.4 左旋
 
 实现逻辑：右孩子上升，原根结点下降为其左孩子，再更新高度。
-
-::: details 点击展开代码
-
-```c
-AVLTree LeftRotate(AVLTree A) {
-    AVLTree B = A->right;
-    AVLTree Bl = B->left;
-
-    B->left = A;
-    A->right = Bl;
-
-    UpdateHeight(A);
-    UpdateHeight(B);
-
-    return B;
-}
-```
-
-:::
 
 ### 8.5 平衡调整
 
 实现逻辑：先更新当前结点高度，再根据平衡因子判断四种失衡类型。
 
-::: details 点击展开代码
-
-```c
-AVLTree Rebalance(AVLTree T) {
-    if (T == NULL) {
-        return NULL;
-    }
-
-    UpdateHeight(T);
-
-    int bf = BalanceFactor(T);
-
-    if (bf > 1) {
-        if (BalanceFactor(T->left) < 0) {
-            T->left = LeftRotate(T->left);
-        }
-
-        return RightRotate(T);
-    }
-
-    if (bf < -1) {
-        if (BalanceFactor(T->right) > 0) {
-            T->right = RightRotate(T->right);
-        }
-
-        return LeftRotate(T);
-    }
-
-    return T;
-}
-```
-
-:::
-
 ### 8.6 查找
 
 实现逻辑：AVL 树仍然是二叉排序树，因此查找过程与普通二叉排序树相同。
-
-::: details 点击展开代码
-
-```c
-AVLNode *SearchAVL(AVLTree T, KeyType key) {
-    while (T != NULL) {
-        if (key == T->key) {
-            return T;
-        }
-
-        if (key < T->key) {
-            T = T->left;
-        } else {
-            T = T->right;
-        }
-    }
-
-    return NULL;
-}
-```
-
-:::
 
 ### 8.7 插入
 
 实现逻辑：先递归执行二叉排序树插入，再在回溯过程中更新高度并调整平衡。
 
-::: details 点击展开代码
-
-```c
-AVLTree InsertAVL(AVLTree T, KeyType key) {
-    if (T == NULL) {
-        return CreateNode(key);
-    }
-
-    if (key < T->key) {
-        T->left = InsertAVL(T->left, key);
-    } else if (key > T->key) {
-        T->right = InsertAVL(T->right, key);
-    } else {
-        return T;
-    }
-
-    return Rebalance(T);
-}
-```
-
-:::
-
 ### 8.8 删除
 
 实现逻辑：先按二叉排序树规则删除结点，再在回溯过程中逐层调整平衡。
 
-::: details 点击展开代码
-
-```c
-AVLNode *FindMin(AVLTree T) {
-    while (T != NULL && T->left != NULL) {
-        T = T->left;
-    }
-
-    return T;
-}
-
-AVLTree DeleteAVL(AVLTree T, KeyType key) {
-    if (T == NULL) {
-        return NULL;
-    }
-
-    if (key < T->key) {
-        T->left = DeleteAVL(T->left, key);
-    } else if (key > T->key) {
-        T->right = DeleteAVL(T->right, key);
-    } else {
-        if (T->left == NULL || T->right == NULL) {
-            AVLNode *child = T->left != NULL ? T->left : T->right;
-
-            free(T);
-            return child;
-        }
-
-        AVLNode *successor = FindMin(T->right);
-        T->key = successor->key;
-        T->right = DeleteAVL(T->right, successor->key);
-    }
-
-    return Rebalance(T);
-}
-```
-
-:::
-
 ### 8.9 中序遍历与销毁
 
 实现逻辑：中序遍历 AVL 树可以得到递增序列；销毁时采用后序方式释放结点。
-
-::: details 点击展开代码
-
-```c
-void InOrder(AVLTree T) {
-    if (T == NULL) {
-        return;
-    }
-
-    InOrder(T->left);
-    printf("%d ", T->key);
-    InOrder(T->right);
-}
-
-void DestroyAVL(AVLTree *T) {
-    if (*T == NULL) {
-        return;
-    }
-
-    DestroyAVL(&(*T)->left);
-    DestroyAVL(&(*T)->right);
-    free(*T);
-    *T = NULL;
-}
-```
-
-:::
 
 ## 9. 408 常考点
 

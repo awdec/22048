@@ -35,31 +35,6 @@
 
 ### 2.2 代码实现
 
-::: details 点击展开代码
-
-```c
-void BubbleSort(int A[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        bool flag = false;
-
-        for (int j = 0; j < n - i - 1; j++) {
-            if (A[j] > A[j + 1]) {
-                int temp = A[j];
-                A[j] = A[j + 1];
-                A[j + 1] = temp;
-                flag = true;
-            }
-        }
-
-        if (!flag) {
-            return;
-        }
-    }
-}
-```
-
-:::
-
 ### 2.3 性能分析
 
 若使用 `flag` 判断一趟中是否发生交换，则最好情况为：
@@ -104,39 +79,6 @@ $$
 注意：枢轴左右两边内部不一定有序。
 
 ### 3.2 代码实现
-
-::: details 点击展开代码
-
-```c
-int Partition(int A[], int low, int high) {
-    int pivot = A[low];
-
-    while (low < high) {
-        while (low < high && A[high] >= pivot) {
-            high--;
-        }
-        A[low] = A[high];
-
-        while (low < high && A[low] <= pivot) {
-            low++;
-        }
-        A[high] = A[low];
-    }
-
-    A[low] = pivot;
-    return low;
-}
-
-void QuickSort(int A[], int low, int high) {
-    if (low < high) {
-        int pivotPos = Partition(A, low, high);
-        QuickSort(A, low, pivotPos - 1);
-        QuickSort(A, pivotPos + 1, high);
-    }
-}
-```
-
-:::
 
 ### 3.3 性能分析
 

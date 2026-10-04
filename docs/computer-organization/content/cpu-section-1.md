@@ -1,17 +1,5 @@
 <h1><center>第一节 CPU 的功能和基本结构</center></h1>
 
-中央处理器（Central Processing Unit，CPU）是解释并执行机器指令的核心部件。它按照指令系统的规定，从主存取出指令、分析指令、执行操作，并控制数据在寄存器、主存和 I/O 系统之间传送。
-
-本节的知识主线为：
-
-$$
-\text{CPU 的功能}
-\longrightarrow
-\text{运算器与控制器}
-\longrightarrow
-\text{CPU 中的寄存器}
-$$
-
 ## 1. CPU 的功能
 
 CPU 的基本功能可以概括为指令控制、操作控制、时间控制、数据加工以及异常和中断处理。

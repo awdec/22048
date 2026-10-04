@@ -10,9 +10,7 @@ import { onContentUpdated, useData } from 'vitepress'
 import { nextTick, onMounted, onUnmounted } from 'vue'
 import { CHARS_PER_MINUTE, readingMinutes } from '../shared/reading-stats.mjs'
 
-/** 已经渲染过的结果缓存，避免重复写 DOM 触发观察器抖动。 */
-const renderedCache = new WeakMap<Element, string>()
-/** 已统计过的路由：切换页面时 DOM 会被复用，需要让缓存失效并重新计数。 */
+/** 已统计过的路由：切换页面时 DOM 会被复用，需要清除旧统计并重新计数。 */
 let lastPath = ''
 
 const { page, frontmatter } = useData()
@@ -99,10 +97,9 @@ function renderStats() {
   if (!article) return
 
   const text = formatStats(countTextIn(article))
-  if (renderedCache.get(article) === text) return
-  renderedCache.set(article, text)
-
   let el = article.querySelector<HTMLElement>('[data-doc-reading-stats]')
+  // 路由切换会移除统计节点，只有节点仍存在且文字一致时才跳过更新。
+  if (el?.textContent === text) return
   if (!el) {
     el = document.createElement('div')
     el.dataset.docReadingStats = ''
@@ -121,7 +118,7 @@ async function updateStats() {
 let observer: MutationObserver | undefined
 
 onContentUpdated(() => {
-  // 路由切换时 <main> 往往被复用，缓存必须按页面失效，否则会沿用上一页的字数。
+  // 路由切换时 <main> 往往被复用，先移除旧统计，避免沿用上一页的字数。
   if (lastPath !== page.value.relativePath) {
     lastPath = page.value.relativePath
     removeStats()

@@ -36,23 +36,6 @@ DFS 的思想是：从一个顶点出发，访问它的某个未访问邻接点�
 3. 依次检查 $v$ 的邻接点。
 4. 若某个邻接点未访问，则从该邻接点继续 DFS。
 
-::: details 点击展开代码
-
-```c
-void DFS(Graph G, int v) {
-    visit(v);
-    visited[v] = true;
-
-    for (int w = FirstNeighbor(G, v); w >= 0; w = NextNeighbor(G, v, w)) {
-        if (!visited[w]) {
-            DFS(G, w);
-        }
-    }
-}
-```
-
-:::
-
 其中：
 
 - `FirstNeighbor(G, v)` 表示顶点 `v` 的第一个邻接点。
@@ -63,24 +46,6 @@ void DFS(Graph G, int v) {
 若图不连通，从某个顶点出发无法访问所有顶点。
 
 因此需要对每个顶点检查一次：
-
-::: details 点击展开代码
-
-```c
-void DFSTraverse(Graph G) {
-    for (int v = 0; v < G.vexnum; v++) {
-        visited[v] = false;
-    }
-
-    for (int v = 0; v < G.vexnum; v++) {
-        if (!visited[v]) {
-            DFS(G, v);
-        }
-    }
-}
-```
-
-:::
 
 对于无向图，调用 DFS 的次数等于连通分量个数。
 
@@ -113,53 +78,9 @@ BFS 通常借助队列实现。
 5. 依次检查该顶点的所有邻接点。
 6. 若邻接点未访问，则访问、标记并入队。
 
-::: details 点击展开代码
-
-```c
-void BFS(Graph G, int v) {
-    visit(v);
-    visited[v] = true;
-    EnQueue(Q, v);
-
-    while (!QueueEmpty(Q)) {
-        DeQueue(Q, &v);
-
-        for (int w = FirstNeighbor(G, v); w >= 0; w = NextNeighbor(G, v, w)) {
-            if (!visited[w]) {
-                visit(w);
-                visited[w] = true;
-                EnQueue(Q, w);
-            }
-        }
-    }
-}
-```
-
-:::
-
 ### 3.2 非连通图的 BFS
 
 与 DFS 类似，非连通图也需要从每个未访问顶点重新开始 BFS。
-
-::: details 点击展开代码
-
-```c
-void BFSTraverse(Graph G) {
-    for (int v = 0; v < G.vexnum; v++) {
-        visited[v] = false;
-    }
-
-    InitQueue(Q);
-
-    for (int v = 0; v < G.vexnum; v++) {
-        if (!visited[v]) {
-            BFS(G, v);
-        }
-    }
-}
-```
-
-:::
 
 对于无向图，调用 BFS 的次数也等于连通分量个数。
 
@@ -182,36 +103,6 @@ BFS 生成树体现了从起点出发按层扩展的过程。
 - 第 $k$ 层顶点距离起点为 $k$。
 
 可以用 `d` 数组记录距离：
-
-::: details 点击展开代码
-
-```c
-void BFSMinDistance(Graph G, int u) {
-    for (int i = 0; i < G.vexnum; i++) {
-        d[i] = INFINITY;
-        path[i] = -1;
-    }
-
-    d[u] = 0;
-    visited[u] = true;
-    EnQueue(Q, u);
-
-    while (!QueueEmpty(Q)) {
-        DeQueue(Q, &u);
-
-        for (int w = FirstNeighbor(G, u); w >= 0; w = NextNeighbor(G, u, w)) {
-            if (!visited[w]) {
-                d[w] = d[u] + 1;
-                path[w] = u;
-                visited[w] = true;
-                EnQueue(Q, w);
-            }
-        }
-    }
-}
-```
-
-:::
 
 其中：
 

@@ -42,27 +42,6 @@
 
 ### 2.2 代码实现
 
-::: details 点击展开代码
-
-```c
-void InsertSort(int A[], int n) {
-    for (int i = 1; i < n; i++) {
-        if (A[i] < A[i - 1]) {
-            int temp = A[i];
-            int j;
-
-            for (j = i - 1; j >= 0 && A[j] > temp; j--) {
-                A[j + 1] = A[j];
-            }
-
-            A[j + 1] = temp;
-        }
-    }
-}
-```
-
-:::
-
 ### 2.3 性能分析
 
 | 情况 | 时间复杂度 |

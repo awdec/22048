@@ -148,155 +148,25 @@ $$
 
 ### 公共定义
 
-::: details 点击展开代码
-
-```c
-#include <stdio.h>
-#include <stdbool.h>
-
-#define MaxLen 255
-
-typedef struct {
-    char ch[MaxLen + 1];
-    int length;
-} SString;
-```
-
-:::
-
 ### 赋值
 
 实现逻辑：从字符数组中逐个复制字符，直到遇到字符串结束符或达到最大长度。
 
-::: details 点击展开代码
-
-```c
-bool StrAssign(SString *T, const char chars[]) {
-    int i = 0;
-
-    while (chars[i] != '\0') {
-        if (i >= MaxLen) {
-            return false;
-        }
-
-        T->ch[i + 1] = chars[i];
-        i++;
-    }
-
-    T->length = i;
-    return true;
-}
-```
-
-:::
-
 ### 复制
 
-::: details 点击展开代码
-
-```c
-void StrCopy(SString *T, SString S) {
-    for (int i = 1; i <= S.length; i++) {
-        T->ch[i] = S.ch[i];
-    }
-
-    T->length = S.length;
-}
-```
-
-:::
-
 ### 判空与求长度
-
-::: details 点击展开代码
-
-```c
-bool StrEmpty(SString S) {
-    return S.length == 0;
-}
-
-int StrLength(SString S) {
-    return S.length;
-}
-```
-
-:::
 
 ### 比较
 
 实现逻辑：从左到右逐个比较字符。若某个位置字符不同，则字符编码值大的串更大；若前面全部相同，则长度更长的串更大。
 
-::: details 点击展开代码
-
-```c
-int StrCompare(SString S, SString T) {
-    int len = S.length < T.length ? S.length : T.length;
-
-    for (int i = 1; i <= len; i++) {
-        if (S.ch[i] != T.ch[i]) {
-            return S.ch[i] - T.ch[i];
-        }
-    }
-
-    return S.length - T.length;
-}
-```
-
-:::
-
 ### 求子串
 
 实现逻辑：先判断起始位置和长度是否合法，再连续复制 `len` 个字符。
 
-::: details 点击展开代码
-
-```c
-bool SubString(SString *Sub, SString S, int pos, int len) {
-    if (pos < 1 || pos > S.length || len < 0) {
-        return false;
-    }
-
-    if (pos + len - 1 > S.length) {
-        return false;
-    }
-
-    for (int i = 1; i <= len; i++) {
-        Sub->ch[i] = S.ch[pos + i - 1];
-    }
-
-    Sub->length = len;
-    return true;
-}
-```
-
-:::
-
 ### 串连接
 
 实现逻辑：先复制第一个串，再接着复制第二个串。若总长度超过 `MaxLen`，则连接失败。
-
-::: details 点击展开代码
-
-```c
-bool Concat(SString *T, SString S1, SString S2) {
-    if (S1.length + S2.length > MaxLen) {
-        return false;
-    }
-
-    for (int i = 1; i <= S1.length; i++) {
-        T->ch[i] = S1.ch[i];
-    }
-
-    for (int i = 1; i <= S2.length; i++) {
-        T->ch[S1.length + i] = S2.ch[i];
-    }
-
-    T->length = S1.length + S2.length;
-    return true;
-}
-```
-
-:::
 
 ## 4.2 堆分配存储
 
@@ -310,79 +180,13 @@ bool Concat(SString *T, SString S1, SString S2) {
 
 ### 公共定义
 
-::: details 点击展开代码
-
-```c
-#include <stdlib.h>
-
-typedef struct {
-    char *ch;
-    int length;
-} HString;
-```
-
-:::
-
 ### 初始化
 
 实现逻辑：空堆串不占用字符空间，先让指针为 `NULL`，长度为 `0`。
 
-::: details 点击展开代码
-
-```c
-void InitHString(HString *S) {
-    S->ch = NULL;
-    S->length = 0;
-}
-```
-
-:::
-
 ### 赋值
 
-::: details 点击展开代码
-
-```c
-bool HStrAssign(HString *T, const char chars[]) {
-    int len = 0;
-
-    while (chars[len] != '\0') {
-        len++;
-    }
-
-    char *space = (char *)malloc((len + 1) * sizeof(char));
-    if (space == NULL) {
-        return false;
-    }
-
-    for (int i = 0; i < len; i++) {
-        space[i] = chars[i];
-    }
-
-    space[len] = '\0';
-
-    free(T->ch);
-    T->ch = space;
-    T->length = len;
-    return true;
-}
-```
-
-:::
-
 ### 销毁
-
-::: details 点击展开代码
-
-```c
-void DestroyHString(HString *S) {
-    free(S->ch);
-    S->ch = NULL;
-    S->length = 0;
-}
-```
-
-:::
 
 ## 4.3 块链存储
 
@@ -415,33 +219,6 @@ void DestroyHString(HString *S) {
 ## 5.1 BF 算法实现
 
 实现逻辑：主串从第 `i` 个位置开始尝试匹配模式串。若匹配失败，主串起点后移一位。
-
-::: details 点击展开代码
-
-```c
-int IndexBF(SString S, SString T) {
-    int i = 1;
-    int j = 1;
-
-    while (i <= S.length && j <= T.length) {
-        if (S.ch[i] == T.ch[j]) {
-            i++;
-            j++;
-        } else {
-            i = i - j + 2;
-            j = 1;
-        }
-    }
-
-    if (j > T.length) {
-        return i - T.length;
-    }
-
-    return 0;
-}
-```
-
-:::
 
 ## 5.2 BF 算法复杂度
 
@@ -521,58 +298,9 @@ ab
 
 实现逻辑：`i` 扫描模式串当前位置，`j` 表示当前最长相同前后缀长度对应的位置。
 
-::: details 点击展开代码
-
-```c
-void GetNext(SString T, int next[]) {
-    int i = 1;
-    int j = 0;
-
-    next[1] = 0;
-
-    while (i < T.length) {
-        if (j == 0 || T.ch[i] == T.ch[j]) {
-            i++;
-            j++;
-            next[i] = j;
-        } else {
-            j = next[j];
-        }
-    }
-}
-```
-
-:::
-
 ## 6.3 KMP 匹配
 
 实现逻辑：当 `S.ch[i]` 与 `T.ch[j]` 失配时，主串指针 `i` 不回退，只让 `j` 跳到 `next[j]`。
-
-::: details 点击展开代码
-
-```c
-int IndexKMP(SString S, SString T, int next[]) {
-    int i = 1;
-    int j = 1;
-
-    while (i <= S.length && j <= T.length) {
-        if (j == 0 || S.ch[i] == T.ch[j]) {
-            i++;
-            j++;
-        } else {
-            j = next[j];
-        }
-    }
-
-    if (j > T.length) {
-        return i - T.length;
-    }
-
-    return 0;
-}
-```
-
-:::
 
 ## 6.4 nextval 数组
 
@@ -588,34 +316,6 @@ int IndexKMP(SString S, SString T, int next[]) {
 - 若 `T.ch[i] == T.ch[j]`，则 `nextval[i] = nextval[j]`。
 
 ### 求 nextval 数组
-
-::: details 点击展开代码
-
-```c
-void GetNextVal(SString T, int nextval[]) {
-    int i = 1;
-    int j = 0;
-
-    nextval[1] = 0;
-
-    while (i < T.length) {
-        if (j == 0 || T.ch[i] == T.ch[j]) {
-            i++;
-            j++;
-
-            if (T.ch[i] != T.ch[j]) {
-                nextval[i] = j;
-            } else {
-                nextval[i] = nextval[j];
-            }
-        } else {
-            j = nextval[j];
-        }
-    }
-}
-```
-
-:::
 
 KMP 匹配时只需要把 `next` 数组替换为 `nextval` 数组即可。
 
@@ -691,7 +391,7 @@ KMP 失配后：
 
 | 内容 | 重点 |
 | --- | --- |
-| 串的定义 | 零个或多个字符组成的有限序列 |  
+| 串的定义 | 零个或多个字符组成的有限序列 |
 | 空串 | 长度为 `0` |
 | 子串 | 必须连续 |
 | 定长顺序存储 | 数组 + 串长 |

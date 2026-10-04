@@ -67,150 +67,33 @@
 
 定义逻辑：循环队列用数组保存元素，用 `front` 和 `rear` 分别记录队头位置和队尾后一个位置。
 
-::: details 点击展开代码
-
-```c
-#include <stdio.h>
-#include <stdbool.h>
-
-#define MaxSize 50
-
-typedef int ElemType;
-
-typedef struct {
-    ElemType data[MaxSize];
-    int front;
-    int rear;
-} SqQueue;
-```
-
-:::
-
 ### 初始化
 
 实现逻辑：空队列中没有有效元素，让 `front` 与 `rear` 指向同一位置。
-
-::: details 点击展开代码
-
-```c
-void InitSqQueue(SqQueue *Q) {
-    Q->front = 0;
-    Q->rear = 0;
-}
-```
-
-:::
 
 ### 判空与判满
 
 实现逻辑：循环队列中 `front == rear` 表示队空；队尾再前进一步就追上队头时表示队满。
 
-::: details 点击展开代码
-
-```c
-bool SqQueueEmpty(SqQueue Q) {
-    return Q.front == Q.rear;
-}
-
-bool SqQueueFull(SqQueue Q) {
-    return (Q.rear + 1) % MaxSize == Q.front;
-}
-```
-
-:::
-
 ### 求长度
 
 实现逻辑：队尾位置减去队头位置后对 `MaxSize` 取模。
-
-::: details 点击展开代码
-
-```c
-int SqQueueLength(SqQueue Q) {
-    return (Q.rear - Q.front + MaxSize) % MaxSize;
-}
-```
-
-:::
 
 ### 入队
 
 实现逻辑：先判断队列是否已满；若未满，把元素写入 `rear` 所指位置，再让 `rear` 循环后移。
 
-::: details 点击展开代码
-
-```c
-bool EnSqQueue(SqQueue *Q, ElemType e) {
-    if (SqQueueFull(*Q)) {
-        return false;
-    }
-
-    Q->data[Q->rear] = e;
-    Q->rear = (Q->rear + 1) % MaxSize;
-    return true;
-}
-```
-
-:::
-
 ### 出队
 
 实现逻辑：先判断队列是否为空；若非空，取出 `front` 所指元素，再让 `front` 循环后移。
-
-::: details 点击展开代码
-
-```c
-bool DeSqQueue(SqQueue *Q, ElemType *e) {
-    if (SqQueueEmpty(*Q)) {
-        return false;
-    }
-
-    *e = Q->data[Q->front];
-    Q->front = (Q->front + 1) % MaxSize;
-    return true;
-}
-```
-
-:::
 
 ### 读队头元素
 
 实现逻辑：读取 `data[front]`，但不改变 `front`。
 
-::: details 点击展开代码
-
-```c
-bool GetHeadSqQueue(SqQueue Q, ElemType *e) {
-    if (SqQueueEmpty(Q)) {
-        return false;
-    }
-
-    *e = Q.data[Q.front];
-    return true;
-}
-```
-
-:::
-
 ### 清空与销毁
 
 实现逻辑：静态数组不需要手动释放空间，让 `front` 与 `rear` 重新相等即可。
-
-::: details 点击展开代码
-
-```c
-void ClearSqQueue(SqQueue *Q) {
-    Q->front = 0;
-    Q->rear = 0;
-}
-
-void DestroySqQueue(SqQueue *Q) {
-    Q->front = 0;
-    Q->rear = 0;
-}
-```
-
-:::
 
 ## 5.3 循环队列的其他判满方法
 
@@ -259,160 +142,25 @@ void DestroySqQueue(SqQueue *Q) {
 
 定义逻辑：链队列结点包含数据域和后继指针；`front` 指向头结点，`rear` 指向队尾结点。
 
-::: details 点击展开代码
-
-```c
-#include <stdlib.h>
-
-typedef struct QueueNode {
-    ElemType data;
-    struct QueueNode *next;
-} QueueNode;
-
-typedef struct {
-    QueueNode *front;
-    QueueNode *rear;
-    int length;
-} LinkQueue;
-```
-
-:::
-
 ### 初始化
 
 实现逻辑：创建一个头结点，队空时队头指针和队尾指针都指向头结点。
 
-::: details 点击展开代码
-
-```c
-bool InitLinkQueue(LinkQueue *Q) {
-    QueueNode *head = (QueueNode *)malloc(sizeof(QueueNode));
-    if (head == NULL) {
-        return false;
-    }
-
-    head->next = NULL;
-    Q->front = head;
-    Q->rear = head;
-    Q->length = 0;
-    return true;
-}
-```
-
-:::
-
 ### 判空
-
-::: details 点击展开代码
-
-```c
-bool LinkQueueEmpty(LinkQueue Q) {
-    return Q.front == Q.rear;
-}
-```
-
-:::
 
 ### 入队
 
 实现逻辑：新结点插入到当前队尾之后，再让 `rear` 指向新结点。
 
-::: details 点击展开代码
-
-```c
-bool EnLinkQueue(LinkQueue *Q, ElemType e) {
-    QueueNode *node = (QueueNode *)malloc(sizeof(QueueNode));
-    if (node == NULL) {
-        return false;
-    }
-
-    node->data = e;
-    node->next = NULL;
-    Q->rear->next = node;
-    Q->rear = node;
-    Q->length++;
-    return true;
-}
-```
-
-:::
-
 ### 出队
 
 实现逻辑：删除头结点之后的第一个数据结点。若删除的是队尾结点，需要让 `rear` 重新指向头结点。
 
-::: details 点击展开代码
-
-```c
-bool DeLinkQueue(LinkQueue *Q, ElemType *e) {
-    if (LinkQueueEmpty(*Q)) {
-        return false;
-    }
-
-    QueueNode *p = Q->front->next;
-    *e = p->data;
-    Q->front->next = p->next;
-
-    if (Q->rear == p) {
-        Q->rear = Q->front;
-    }
-
-    free(p);
-    Q->length--;
-    return true;
-}
-```
-
-:::
-
 ### 读队头元素
-
-::: details 点击展开代码
-
-```c
-bool GetHeadLinkQueue(LinkQueue Q, ElemType *e) {
-    if (LinkQueueEmpty(Q)) {
-        return false;
-    }
-
-    *e = Q.front->next->data;
-    return true;
-}
-```
-
-:::
 
 ### 清空与销毁
 
 实现逻辑：清空时释放所有数据结点，保留头结点；销毁时再释放头结点。
-
-::: details 点击展开代码
-
-```c
-void ClearLinkQueue(LinkQueue *Q) {
-    QueueNode *p = Q->front->next;
-
-    while (p != NULL) {
-        QueueNode *next = p->next;
-        free(p);
-        p = next;
-    }
-
-    Q->front->next = NULL;
-    Q->rear = Q->front;
-    Q->length = 0;
-}
-
-void DestroyLinkQueue(LinkQueue *Q) {
-    ClearLinkQueue(Q);
-    free(Q->front);
-    Q->front = NULL;
-    Q->rear = NULL;
-    Q->length = 0;
-}
-```
-
-:::
 
 ## 5.5 双端队列
 
@@ -460,4 +208,3 @@ $$
 | --- | --- | --- | --- |
 | 栈 | 栈顶 | 栈顶 | 后进先出 |
 | 队列 | 队尾 | 队头 | 先进先出 |
-

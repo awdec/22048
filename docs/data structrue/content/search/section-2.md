@@ -23,22 +23,6 @@ $$
 
 从前向后查找关键字 `key`。
 
-::: details 点击展开代码
-
-```c
-int SearchSeq(int A[], int n, int key) {
-    for (int i = 0; i < n; i++) {
-        if (A[i] == key) {
-            return i;
-        }
-    }
-
-    return -1;
-}
-```
-
-:::
-
 若等概率查找成功，则第 $i$ 个元素需要比较 $i$ 次。
 
 查找成功的平均查找长度为：
@@ -58,23 +42,6 @@ $$
 哨兵用于减少循环中的边界判断。
 
 常见做法是把待查关键字放在数组的某个固定位置作为哨兵。
-
-::: details 点击展开代码
-
-```c
-int SearchSeq(int A[], int n, int key) {
-    A[0] = key;
-    int i = n;
-
-    while (A[i] != key) {
-        i--;
-    }
-
-    return i;
-}
-```
-
-:::
 
 这段代码通常假设有效元素存放在 `A[1]` 到 `A[n]` 中，`A[0]` 是哨兵。
 
@@ -116,31 +83,6 @@ int SearchSeq(int A[], int n, int key) {
 5. 若 `key < A[mid]`，在左半区继续查找。
 6. 若 `key > A[mid]`，在右半区继续查找。
 7. 若 `low > high`，查找失败。
-
-::: details 点击展开代码
-
-```c
-int BinarySearch(int A[], int n, int key) {
-    int low = 0;
-    int high = n - 1;
-
-    while (low <= high) {
-        int mid = (low + high) / 2;
-
-        if (A[mid] == key) {
-            return mid;
-        } else if (key < A[mid]) {
-            high = mid - 1;
-        } else {
-            low = mid + 1;
-        }
-    }
-
-    return -1;
-}
-```
-
-:::
 
 折半查找时间复杂度为：
 

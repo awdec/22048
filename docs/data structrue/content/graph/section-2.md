@@ -79,25 +79,6 @@ $$
 
 ### 2.4 邻接矩阵定义
 
-::: details 点击展开代码
-
-```c
-#define MaxVertexNum 100
-#define INFINITY 65535
-
-typedef char VertexType;
-typedef int EdgeType;
-
-typedef struct {
-    VertexType vex[MaxVertexNum];
-    EdgeType edge[MaxVertexNum][MaxVertexNum];
-    int vexnum;
-    int arcnum;
-} MGraph;
-```
-
-:::
-
 其中：
 
 - `vex` 保存顶点信息。
@@ -128,34 +109,6 @@ typedef struct {
 - 邻接点下标
 - 指向下一条边结点的指针
 - 边权值，可选
-
-::: details 点击展开代码
-
-```c
-#define MaxVertexNum 100
-
-typedef char VertexType;
-typedef int EdgeType;
-
-typedef struct ArcNode {
-    int adjvex;
-    struct ArcNode *next;
-    EdgeType weight;
-} ArcNode;
-
-typedef struct VNode {
-    VertexType data;
-    ArcNode *first;
-} VNode, AdjList[MaxVertexNum];
-
-typedef struct {
-    AdjList vertices;
-    int vexnum;
-    int arcnum;
-} ALGraph;
-```
-
-:::
 
 ### 3.2 无向图的邻接表
 

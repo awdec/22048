@@ -66,144 +66,33 @@
 
 定义逻辑：顺序栈用数组 `data` 保存元素，用 `top` 记录栈顶元素下标。
 
-::: details 点击展开代码
-
-```c
-#include <stdio.h>
-#include <stdbool.h>
-
-#define MaxSize 50
-
-typedef int ElemType;
-
-typedef struct {
-    ElemType data[MaxSize];
-    int top;
-} SqStack;
-```
-
-:::
-
 ### 初始化
 
 实现逻辑：空栈中没有有效元素，将 `top` 置为 `-1`。
-
-::: details 点击展开代码
-
-```c
-void InitSqStack(SqStack *S) {
-    S->top = -1;
-}
-```
-
-:::
 
 ### 判空与判满
 
 实现逻辑：若 `top == -1`，说明栈空；若 `top == MaxSize - 1`，说明数组空间已经用完。
 
-::: details 点击展开代码
-
-```c
-bool SqStackEmpty(SqStack S) {
-    return S.top == -1;
-}
-
-bool SqStackFull(SqStack S) {
-    return S.top == MaxSize - 1;
-}
-```
-
-:::
-
 ### 求长度
 
 实现逻辑：当 `top` 指向最后一个有效元素时，栈中元素个数为 `top + 1`。
-
-::: details 点击展开代码
-
-```c
-int SqStackLength(SqStack S) {
-    return S.top + 1;
-}
-```
-
-:::
 
 ### 入栈
 
 实现逻辑：先判断栈是否已满；若未满，先移动栈顶指针，再把元素写入新栈顶。
 
-::: details 点击展开代码
-
-```c
-bool PushSqStack(SqStack *S, ElemType e) {
-    if (SqStackFull(*S)) {
-        return false;
-    }
-
-    S->data[++S->top] = e;
-    return true;
-}
-```
-
-:::
-
 ### 出栈
 
 实现逻辑：先判断栈是否为空；若非空，取出当前栈顶元素，再移动栈顶指针。
-
-::: details 点击展开代码
-
-```c
-bool PopSqStack(SqStack *S, ElemType *e) {
-    if (SqStackEmpty(*S)) {
-        return false;
-    }
-
-    *e = S->data[S->top--];
-    return true;
-}
-```
-
-:::
 
 ### 读栈顶元素
 
 实现逻辑：读取 `data[top]`，但不改变 `top`。
 
-::: details 点击展开代码
-
-```c
-bool GetTopSqStack(SqStack S, ElemType *e) {
-    if (SqStackEmpty(S)) {
-        return false;
-    }
-
-    *e = S.data[S.top];
-    return true;
-}
-```
-
-:::
-
 ### 清空与销毁
 
 实现逻辑：静态数组不需要手动释放空间，将 `top` 重新置为 `-1` 即可。
-
-::: details 点击展开代码
-
-```c
-void ClearSqStack(SqStack *S) {
-    S->top = -1;
-}
-
-void DestroySqStack(SqStack *S) {
-    S->top = -1;
-}
-```
-
-:::
 
 ## 4.3 共享栈
 
@@ -219,90 +108,15 @@ void DestroySqStack(SqStack *S) {
 
 ### 公共定义
 
-::: details 点击展开代码
-
-```c
-typedef struct {
-    ElemType data[MaxSize];
-    int top0;
-    int top1;
-} SharedStack;
-```
-
-:::
-
 ### 初始化
-
-::: details 点击展开代码
-
-```c
-void InitSharedStack(SharedStack *S) {
-    S->top0 = -1;
-    S->top1 = MaxSize;
-}
-```
-
-:::
 
 ### 入栈
 
 实现逻辑：先判断共享空间是否已满，再根据栈号决定从左端还是右端压入元素。
 
-::: details 点击展开代码
-
-```c
-bool PushSharedStack(SharedStack *S, int stackNo, ElemType e) {
-    if (S->top0 + 1 == S->top1) {
-        return false;
-    }
-
-    if (stackNo == 0) {
-        S->data[++S->top0] = e;
-        return true;
-    }
-
-    if (stackNo == 1) {
-        S->data[--S->top1] = e;
-        return true;
-    }
-
-    return false;
-}
-```
-
-:::
-
 ### 出栈
 
 实现逻辑：0 号栈从左侧栈顶弹出，1 号栈从右侧栈顶弹出。
-
-::: details 点击展开代码
-
-```c
-bool PopSharedStack(SharedStack *S, int stackNo, ElemType *e) {
-    if (stackNo == 0) {
-        if (S->top0 == -1) {
-            return false;
-        }
-
-        *e = S->data[S->top0--];
-        return true;
-    }
-
-    if (stackNo == 1) {
-        if (S->top1 == MaxSize) {
-            return false;
-        }
-
-        *e = S->data[S->top1++];
-        return true;
-    }
-
-    return false;
-}
-```
-
-:::
 
 ## 4.4 链栈
 
@@ -318,135 +132,25 @@ bool PopSharedStack(SharedStack *S, int stackNo, ElemType *e) {
 
 定义逻辑：`top` 指向栈顶结点，`length` 记录栈中元素个数。
 
-::: details 点击展开代码
-
-```c
-#include <stdlib.h>
-
-typedef struct StackNode {
-    ElemType data;
-    struct StackNode *next;
-} StackNode;
-
-typedef struct {
-    StackNode *top;
-    int length;
-} LinkStack;
-```
-
-:::
-
 ### 初始化
 
 实现逻辑：空链栈没有栈顶结点，令 `top` 指向 `NULL`。
 
-::: details 点击展开代码
-
-```c
-void InitLinkStack(LinkStack *S) {
-    S->top = NULL;
-    S->length = 0;
-}
-```
-
-:::
-
 ### 判空
-
-::: details 点击展开代码
-
-```c
-bool LinkStackEmpty(LinkStack S) {
-    return S.top == NULL;
-}
-```
-
-:::
 
 ### 入栈
 
 实现逻辑：新结点插入到当前栈顶之前，再让 `top` 指向新结点。
 
-::: details 点击展开代码
-
-```c
-bool PushLinkStack(LinkStack *S, ElemType e) {
-    StackNode *node = (StackNode *)malloc(sizeof(StackNode));
-    if (node == NULL) {
-        return false;
-    }
-
-    node->data = e;
-    node->next = S->top;
-    S->top = node;
-    S->length++;
-    return true;
-}
-```
-
-:::
-
 ### 出栈
 
 实现逻辑：删除当前栈顶结点，保存其后继作为新的栈顶。
 
-::: details 点击展开代码
-
-```c
-bool PopLinkStack(LinkStack *S, ElemType *e) {
-    if (LinkStackEmpty(*S)) {
-        return false;
-    }
-
-    StackNode *p = S->top;
-    *e = p->data;
-    S->top = p->next;
-    free(p);
-    S->length--;
-    return true;
-}
-```
-
-:::
-
 ### 读栈顶元素
-
-::: details 点击展开代码
-
-```c
-bool GetTopLinkStack(LinkStack S, ElemType *e) {
-    if (LinkStackEmpty(S)) {
-        return false;
-    }
-
-    *e = S.top->data;
-    return true;
-}
-```
-
-:::
 
 ### 清空与销毁
 
 实现逻辑：不断弹出栈顶结点，直到链栈为空。
-
-::: details 点击展开代码
-
-```c
-void ClearLinkStack(LinkStack *S) {
-    ElemType temp;
-
-    while (!LinkStackEmpty(*S)) {
-        PopLinkStack(S, &temp);
-    }
-}
-
-void DestroyLinkStack(LinkStack *S) {
-    ClearLinkStack(S);
-}
-```
-
-:::
 
 ## 4.5 408 常考点
 
@@ -487,4 +191,3 @@ void DestroyLinkStack(LinkStack *S) {
 | --- | --- | --- |
 | 顺序栈 | 存储密度高，访问简单 | 容量固定，可能栈满 |
 | 链栈 | 容量更灵活，不需要连续空间 | 需要额外指针域 |
-

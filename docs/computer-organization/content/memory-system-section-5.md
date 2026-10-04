@@ -1,21 +1,5 @@
 <h1><center>第五节 高速缓冲存储器</center></h1>
 
-高速缓冲存储器简称 Cache，位于 CPU 与主存之间，用来缓解 CPU 处理速度与主存访问速度之间的矛盾。Cache 保存主存中一部分数据的副本，并利用程序访问的局部性，使 CPU 的大部分访存请求能够在高速存储器中完成。
-
-本节的知识主线为：
-
-$$
-\text{局部性原理}
-\longrightarrow
-\text{Cache 工作过程}
-\longrightarrow
-\text{映射与替换}
-\longrightarrow
-\text{写策略和一致性}
-\longrightarrow
-\text{容量与性能分析}
-$$
-
 ## 1. 程序访问的局部性原理
 
 程序在一段时间内通常只访问整个地址空间中的一小部分内容，这种现象称为程序访问的局部性。局部性是 Cache 能够提高访存性能的根本原因。

@@ -56,41 +56,11 @@ $$
 parent[i] = i
 $$
 
-::: details 点击展开代码
-
-```c
-#define MaxSize 100
-
-int parent[MaxSize];
-
-void InitSet(int n) {
-    for (int i = 0; i < n; i++) {
-        parent[i] = i;
-    }
-}
-```
-
-:::
-
 ## 4. 查找操作
 
 查找操作用于找到元素所在集合的代表元，也就是树根。
 
 基本思想：不断沿着双亲指针向上走，直到找到根结点。
-
-::: details 点击展开代码
-
-```c
-int Find(int x) {
-    while (parent[x] != x) {
-        x = parent[x];
-    }
-
-    return x;
-}
-```
-
-:::
 
 若：
 
@@ -109,21 +79,6 @@ $$
 1. 分别查找两个元素所在集合的根。
 2. 若根相同，说明已经在同一集合中。
 3. 若根不同，把其中一棵树的根挂到另一棵树的根下面。
-
-::: details 点击展开代码
-
-```c
-void Union(int x, int y) {
-    int rootX = Find(x);
-    int rootY = Find(y);
-
-    if (rootX != rootY) {
-        parent[rootY] = rootX;
-    }
-}
-```
-
-:::
 
 合并后，两个集合就变成一个集合。
 
@@ -151,20 +106,6 @@ void Union(int x, int y) {
 
 这样后续查找会更快。
 
-::: details 点击展开代码
-
-```c
-int Find(int x) {
-    if (parent[x] != x) {
-        parent[x] = Find(parent[x]);
-    }
-
-    return parent[x];
-}
-```
-
-:::
-
 路径压缩不会改变集合划分，只会改变树的形态。
 
 ## 7. 按秩合并
@@ -177,47 +118,6 @@ int Find(int x) {
 - 按规模合并：维护每个集合的结点数。
 
 下面以按规模合并为例。
-
-::: details 点击展开代码
-
-```c
-int parent[MaxSize];
-int size[MaxSize];
-
-void InitSet(int n) {
-    for (int i = 0; i < n; i++) {
-        parent[i] = i;
-        size[i] = 1;
-    }
-}
-
-int Find(int x) {
-    if (parent[x] != x) {
-        parent[x] = Find(parent[x]);
-    }
-
-    return parent[x];
-}
-
-void Union(int x, int y) {
-    int rootX = Find(x);
-    int rootY = Find(y);
-
-    if (rootX == rootY) {
-        return;
-    }
-
-    if (size[rootX] < size[rootY]) {
-        parent[rootX] = rootY;
-        size[rootY] += size[rootX];
-    } else {
-        parent[rootY] = rootX;
-        size[rootX] += size[rootY];
-    }
-}
-```
-
-:::
 
 路径压缩和按秩合并通常配合使用。
 
