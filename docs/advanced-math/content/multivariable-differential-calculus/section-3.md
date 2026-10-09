@@ -4,7 +4,7 @@
 
 
 $$
-\lim_{(\Delta x,\Delta y)\to(0,0)}\dfrac{f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)-f_x(x_0,y_0)h-f_y(x_0,y_0)k}{\sqrt{\Delta x^2+\Delta y^2}}=0
+\lim_{(\Delta x,\Delta y)\to(0,0)}\dfrac{f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)-f_x(x_0,y_0)\Delta x-f_y(x_0,y_0)\Delta y}{\sqrt{\Delta x^2+\Delta y^2}}=0
 $$
 
 则称函数 $z=f(x,y)$ 在点 $(x,y)$ 处可微。
@@ -28,8 +28,6 @@ $dz=\lim_{\Delta x\to 0,\Delta y\to 0}\frac{f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y
 
 
 ## 3. 可微、连续、偏导存在的关系
-
-多元函数中三者关系非常重要：
 
 $$
 \text{可微}

@@ -643,7 +643,6 @@ export default withMermaid(defineConfig({
               items: [
                 { text: '第一节 二重积分的概念和性质', link: '/advanced-math/content/double-integral/section-1' },
                 { text: '第二节 二重积分的计算', link: '/advanced-math/content/double-integral/section-2' },
-                { text: '第三节 二重积分的应用', link: '/advanced-math/content/double-integral/section-3' },
               ],
             },
             {
@@ -883,6 +882,7 @@ export default withMermaid(defineConfig({
             { text: '向量组等价', link: '/linear-algebra/skills/equivalent-vector-systems' },
             { text: '基础解系和列向量之间的关系', link: '/linear-algebra/skills/fundamental-solutions-and-columns' },
             { text: '正交矩阵的性质', link: '/linear-algebra/skills/orthogonal-matrices' },
+            { text: '实对称矩阵的题型与结论', link: '/linear-algebra/skills/symmetric-matrices' },
             { text: '正定矩阵的证明', link: '/linear-algebra/skills/positive-definite-proofs' },
             { text: '矩阵等价、相似、合同的对比总结', link: '/linear-algebra/skills/equivalence-similarity-congruence' },
             // 后续在此平铺追加技巧文档，例如：

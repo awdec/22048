@@ -13,7 +13,11 @@
     "ds:stats": "node scripts/ds-content-stats.mjs",
     "ds:stats:write": "node scripts/ds-content-stats.mjs --write",
     "co:stats": "node scripts/co-content-stats.mjs",
-    "co:stats:write": "node scripts/co-content-stats.mjs --write"
+    "co:stats:write": "node scripts/co-content-stats.mjs --write",
+    "math:stats": "node scripts/math-content-stats.mjs",
+    "math:stats:write": "node scripts/math-content-stats.mjs --write",
+    "la:stats": "node scripts/la-content-stats.mjs",
+    "la:stats:write": "node scripts/la-content-stats.mjs --write"
   },
   "dependencies": {
     "vitepress": "^1.6.3"

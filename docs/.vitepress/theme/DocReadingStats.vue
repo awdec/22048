@@ -8,7 +8,7 @@
  */
 import { onContentUpdated, useData } from 'vitepress'
 import { nextTick, onMounted, onUnmounted } from 'vue'
-import { CHARS_PER_MINUTE, readingMinutes } from '../shared/reading-stats.mjs'
+import { readingSpeed, readingMinutes } from '../shared/reading-stats.mjs'
 
 /** 已统计过的路由：切换页面时 DOM 会被复用，需要清除旧统计并重新计数。 */
 let lastPath = ''
@@ -67,8 +67,9 @@ function countTextIn(node: Node): number {
 }
 
 function formatStats(chars: number): string {
-  const minutes = readingMinutes(chars)
-  return `全文 ${chars.toLocaleString('zh-CN')} 字 · 预计阅读 ${minutes} 分钟（按 ${CHARS_PER_MINUTE} 字/分钟）`
+  const charsPerMinute = readingSpeed(page.value.relativePath)
+  const minutes = readingMinutes(chars, charsPerMinute)
+  return `全文 ${chars.toLocaleString('zh-CN')} 字 · 预计阅读 ${minutes} 分钟（按 ${charsPerMinute} 字/分钟）`
 }
 
 function isContentPage(): boolean {

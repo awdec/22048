@@ -5,7 +5,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { createMarkdownRenderer, resolveConfig } from 'vitepress'
-import { CHARS_PER_MINUTE, readingMinutes } from '../docs/.vitepress/shared/reading-stats.mjs'
+import { readingSpeed, readingMinutes } from '../docs/.vitepress/shared/reading-stats.mjs'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const vitepressRequire = createRequire(import.meta.resolve('vitepress'))
@@ -48,9 +48,10 @@ function formatNumber(n) {
   return n.toLocaleString('zh-CN')
 }
 
-export async function runContentStats(subjectDir, marker) {
+export async function runContentStats(subjectDir, marker, heading = '## 六、各章字数与阅读时长') {
   const contentDir = path.join(ROOT, 'docs', subjectDir, 'content')
   const indexFile = path.join(contentDir, 'index.md')
+  const charsPerMinute = readingSpeed(subjectDir)
   const config = await resolveConfig(path.join(ROOT, 'docs'))
   const md = await createMarkdownRenderer(config.srcDir, config.markdown, config.site.base)
   const sidebar = config.site.themeConfig.sidebar[`/${subjectDir}/content`]
@@ -68,7 +69,7 @@ export async function runContentStats(subjectDir, marker) {
       const raw = fs.readFileSync(file, 'utf8')
       const body = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '')
       const chars = countText(parse(md.render(body)))
-      return { file: path.relative(contentDir, file).replace(/\\/g, '/'), chars, minutes: readingMinutes(chars) }
+      return { file: path.relative(contentDir, file).replace(/\\/g, '/'), chars, minutes: readingMinutes(chars, charsPerMinute) }
     })
     rows.push({
       label: chapter.text,
@@ -100,9 +101,9 @@ export async function runContentStats(subjectDir, marker) {
     const begin = `<!-- ${marker}:begin -->`
     const end = `<!-- ${marker}:end -->`
     const block = [
-      '## 六、各章字数与阅读时长',
+      heading,
       '',
-      `下表汇总各章正文的总字数与推荐阅读时长。字数沿用文章页面的统计口径；阅读时长按每篇约 ${CHARS_PER_MINUTE} 字/分钟、向上取整后逐篇相加，最后一行为各章合计。统计范围为侧边栏各章下的小节正文，不含本页、章节目录页、考点分析页与例题。`,
+      `下表汇总各章正文的总字数与推荐阅读时长。字数沿用文章页面的统计口径；阅读时长按每篇约 ${charsPerMinute} 字/分钟、向上取整后逐篇相加，最后一行为各章合计。统计范围为侧边栏各章下的小节正文，不含本页、章节目录页、考点分析页与例题。`,
       '',
       begin,
       table,
@@ -113,7 +114,7 @@ export async function runContentStats(subjectDir, marker) {
     const pattern = new RegExp(`${begin}[\\s\\S]*?${end}`)
     const updated = pattern.test(index)
       ? index
-        .replace(/阅读时长按每篇约 \d+ 字\/分钟/, `阅读时长按每篇约 ${CHARS_PER_MINUTE} 字/分钟`)
+        .replace(/阅读时长按每篇约 \d+ 字\/分钟/, `阅读时长按每篇约 ${charsPerMinute} 字/分钟`)
         .replace(pattern, `${begin}\n${table}\n${end}`)
       : `${index.replace(/\s*$/, '')}\n\n${block}`
     if (updated === index) {

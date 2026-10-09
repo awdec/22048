@@ -16,6 +16,7 @@
 - [向量组等价](./equivalent-vector-systems)
 - [基础解系和列向量之间的关系](./fundamental-solutions-and-columns)
 - [正交矩阵的性质](./orthogonal-matrices)
+- [实对称矩阵的题型与结论](./symmetric-matrices)
 - [正定矩阵的证明](./positive-definite-proofs)
 - [矩阵等价、相似、合同的对比总结](./equivalence-similarity-congruence)
 
