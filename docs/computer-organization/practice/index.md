@@ -4,13 +4,13 @@
 
 ## 章节导航
 
-1. [计算机系统概述](./introduction/)
-2. [数据的表示和运算](./data-representation-operation/)
-3. [存储系统](./memory-system/)
-4. [指令系统](./instruction-system/)
-5. [中央处理器](./cpu/)
-6. [总线](./bus/)
-7. [输入/输出系统](./io-system/)
+1. [计算机系统概述](./introduction/section-1.md)
+2. [数据的表示和运算](./data-representation-operation/section-1.md)
+3. [存储系统](./memory-system/section-1.md)
+4. [指令系统](./instruction-system/section-1.md)
+5. [中央处理器](./cpu/section-1.md)
+6. [总线](./bus/section-1.md)
+7. [输入/输出系统](./io-system/section-1.md)
 
 ## 使用方法
 

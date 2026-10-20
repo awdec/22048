@@ -57,6 +57,21 @@ npm run docs:build
 npm run docs:preview
 ```
 
+## 各科字数与阅读时长统计
+
+修改正文后，在项目根目录执行对应命令，重新生成该科 `content/index.md` 末尾的各章字数与阅读时长表格。
+
+| 课程 | 重新生成并写入表格 | 只查看统计 | 阅读速度 |
+| --- | --- | --- | --- |
+| 高等数学 | `npm run math:stats:write` | `npm run math:stats` | 400 字/分钟 |
+| 线性代数 | `npm run la:stats:write` | `npm run la:stats` | 400 字/分钟 |
+| 数据结构 | `npm run ds:stats:write` | `npm run ds:stats` | 250 字/分钟 |
+| 计算机组成原理 | `npm run co:stats:write` | `npm run co:stats` | 250 字/分钟 |
+| 操作系统 | `npm run os:stats:write` | `npm run os:stats` | 250 字/分钟 |
+| 计算机网络 | `npm run network:stats:write` | `npm run network:stats` | 250 字/分钟 |
+
+统计范围为侧边栏各章下的小节正文，不含科目首页、章节目录页、考点分析页与例题。字数沿用文章顶部的统计口径：正文去掉空白后计数，LaTeX 公式取 TeX 源码计数一次，包含命令字母和符号。每篇阅读时长向上取整，至少为 1 分钟，再逐章相加，表格末行给出全科合计。
+
 ## 主要项目结构
 
 ```text
@@ -69,7 +84,38 @@ npm run docs:preview
 │   ├── advanced-math/       # 高等数学笔记与练习
 │   ├── computer-network/    # 计算机网络笔记与练习
 │   ├── computer-organization/ # 计算机组成原理笔记与练习
+│   │   ├── content/         # 考点与章节笔记
+│   │   │   ├── index.md     # 试卷说明与各章篇幅统计
+│   │   │   ├── exam-analysis.md # 考点分析
+│   │   │   ├── introduction/ # 第一章 计算机系统概述
+│   │   │   ├── data-representation-operation/ # 第二章 数据的表示和运算
+│   │   │   ├── memory-system/ # 第三章 存储系统
+│   │   │   ├── instruction-system/ # 第四章 指令系统
+│   │   │   ├── cpu/         # 第五章 中央处理器
+│   │   │   ├── bus/         # 第六章 总线
+│   │   │   └── io-system/   # 第七章 输入/输出系统
+│   │   └── practice/        # 按章整理的习题
+│   │       ├── index.md     # 习题总览与章节导航
+│   │       ├── exam-analysis.md # 考点分析
+│   │       ├── introduction/ # 第一章 计算机系统概述
+│   │       ├── data-representation-operation/ # 第二章 数据的表示和运算
+│   │       ├── memory-system/ # 第三章 存储系统
+│   │       ├── instruction-system/ # 第四章 指令系统
+│   │       ├── cpu/         # 第五章 中央处理器
+│   │       ├── bus/         # 第六章 总线
+│   │       └── io-system/   # 第七章 输入/输出系统
 │   ├── data structrue/      # 数据结构笔记与练习
+│   │   ├── content/         # 考点与章节笔记
+│   │   │   ├── index.md     # 试卷说明与各章篇幅统计
+│   │   │   ├── exam-analysis.md # 考点分析
+│   │   │   ├── introduction/ # 第一章 绪论
+│   │   │   ├── linear-list/ # 第二章 线性表
+│   │   │   ├── string/      # 第三章 字符串
+│   │   │   ├── tree/        # 第四章 树
+│   │   │   ├── graph/       # 第五章 图
+│   │   │   ├── search/      # 第六章 查找
+│   │   │   └── sort/        # 第七章 排序
+│   │   └── practice/        # 例题与练习
 │   ├── linear-algebra/      # 线性代数笔记与练习
 │   ├── operating-system/    # 操作系统笔记与练习
 │   ├── public/              # 静态资源
@@ -88,7 +134,9 @@ npm run docs:preview
 - `content/`：考点、知识梳理和章节笔记。
 - `practice/`：例题、练习与总结。
 
-课程内容主要按“章”组织。多数章节使用 `index.md` 作为章节概览，使用 `section-N.md` 记录各小节；部分已有内容仍采用 `<chapter>.md`、`<chapter>-section-N.md` 或独立的总结文件。
+课程内容主要按“章”组织，小节保存在 `<chapter>/section-N.md` 中，部分知识点另有独立的总结文件。
+
+数据结构的 `content/` 与计算机组成原理的 `content/`、`practice/` 均按七章分目录，章目录内仅保留各节的 `section-N.md`，侧边栏点击章名直接进入该章第一节；计算机组成原理习题总览中的章节导航也链接到对应第一节。
 
 新增或调整页面后，还需要在 `docs/.vitepress/config.mts` 中同步维护导航栏和侧边栏。
 
